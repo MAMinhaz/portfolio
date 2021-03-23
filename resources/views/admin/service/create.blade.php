@@ -60,37 +60,100 @@
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <label>Service list 1</label>
-                                                    <input type="text" class="form-control" name="service_list[0]">
+                                                    <input type="text" class="form-control" name="service_list_1">
+
+                                                    @error('service_list_1')
+                                                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            <strong>{{ $message }}</strong> 
+                                                        </div>
+                                                    @enderror
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <label>Service list 2</label>
-                                                    <input type="text" class="form-control" name="service_list[1]">
+                                                    <input type="text" class="form-control" name="service_list_2">
+
+                                                    @error('service_list_2')
+                                                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            <strong>{{ $message }}</strong> 
+                                                        </div>
+                                                    @enderror
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <label>Service list 3</label>
-                                                    <input type="text" class="form-control" name="service_list[2]">
+                                                    <input type="text" class="form-control" name="service_list_3">
+
+                                                    @error('service_list_3')
+                                                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            <strong>{{ $message }}</strong> 
+                                                        </div>
+                                                    @enderror
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <label>Service list 4</label>
-                                                    <input type="text" class="form-control" name="service_list[3]">
+                                                    <input type="text" class="form-control" name="service_list_4">
+
+                                                    @error('service_list_4')
+                                                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            <strong>{{ $message }}</strong> 
+                                                        </div>
+                                                    @enderror
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <label>Service list 5</label>
-                                                    <input type="text" class="form-control" name="service_list[4]">
+                                                    <input type="text" class="form-control" name="service_list_5">
+
+                                                    @error('service_list_5')
+                                                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            <strong>{{ $message }}</strong> 
+                                                        </div>
+                                                    @enderror
                                                 </div>
+
                                                 <div class="col-md-4">
                                                     <label>Service list 6</label>
-                                                    <input type="text" class="form-control" name="service_list[5]">
+                                                    <input type="text" class="form-control" name="service_list_6">
+
+                                                    @error('service_list_6')
+                                                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                            role="alert">
+                                                            <button type="button" class="close" data-dismiss="alert"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                            <strong>{{ $message }}</strong> 
+                                                        </div>
+                                                    @enderror
                                                 </div>
                                             </div>
-                                            <br>
-                                        </div>
-                                        <div class="bg-danger">
-                                            @php
-                                                foreach ($errors->get('service_list.*') as $message) {
-                                                    print_r($message);
-                                                }
-                                            @endphp
                                         </div>
                                     </div>
 

@@ -15,7 +15,13 @@ class CreateServiceTitlesTable extends Migration
     {
         Schema::create('service_titles', function (Blueprint $table) {
             $table->id();
-            $table->string('service_title', 200)->nullable();
+            $table->string('service_title', 300);
+            $table->string('service_list_1', 200)->nullable();
+            $table->string('service_list_2', 200)->nullable();
+            $table->string('service_list_3', 200)->nullable();
+            $table->string('service_list_4', 200)->nullable();
+            $table->string('service_list_5', 200)->nullable();
+            $table->string('service_list_6', 200)->nullable();
             $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();

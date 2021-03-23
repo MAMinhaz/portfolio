@@ -47,14 +47,14 @@
 <body>
     <!-- Preloader
     ================================================== --> 
-    <div class="preloader">
+    {{-- <div class="preloader">
         <div class="preloader-inner">
             <div class="preloader-icon">
                 <span></span>
                 <span></span>
             </div><!-- /preloader-icon -->
         </div><!-- /preloader-inner -->
-    </div><!-- /preloader -->
+    </div><!-- /preloader --> --}}
 
     <!-- Header
     ================================================== --> 
@@ -190,19 +190,26 @@
                 <div class="col-lg-12">
                     <div class="service-carousel owl-carousel" data-owl-items="3" data-owl-margin="30" data-owl-dots="1" data-owl-loop="1" data-owl-center="1" data-animate="hg-fadeInUp">
 
-                        <div class="item">
-                            <div class="service-card dark">
-                                <div class="service-icon color-deep-cerise">
-                                    <i class="fas fa-marker"></i>
-                                </div><!--  /.service-icon -->
-                                <h2 class="service-title">Design</h2><!--  /.service-title -->
-                                <ul class="service-list">
-                                    <li>Info graphic Design</li>
-                                    <li>UI/UX Design</li>
-                                    <li>Branding Design</li>
-                                </ul><!--  /.service-list -->
-                            </div><!--  /.service-card -->
-                        </div><!--  /.item --> 
+                        @foreach($services as $value)
+                            <div class="item">
+                                <div class="service-card dark">
+                                    <div class="service-icon color-deep-cerise">
+                                        <i class="fas fa-marker"></i>
+                                    </div><!--  /.service-icon -->
+                                    <h2 class="service-title">
+                                        {{ $value->service_title }}
+                                    </h2><!--  /.service-title -->
+                                    <ul class="service-list">
+                                        <li>{{ $value->service_list_1 }}</li>
+                                        <li>{{ $value->service_list_2 }}</li>
+                                        <li>{{ $value->service_list_3 }}</li>
+                                        <li>{{ $value->service_list_4 }}</li>
+                                        <li>{{ $value->service_list_5 }}</li>
+                                        <li>{{ $value->service_list_6 }}</li>
+                                    </ul><!--  /.service-list -->
+                                </div><!--  /.service-card -->
+                            </div><!--  /.item --> 
+                        @endforeach
                     </div><!--  /.owl-carousel -->
                 </div><!--  /.col-lg-12 -->
             </div><!--  /.row -->

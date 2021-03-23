@@ -22,13 +22,13 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div>
-                            @if(session()->has('lv_saved'))
+                            @if(session()->has('service_saved'))
                                 <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
                                     role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="false">×</span>
                                     </button>
-                                    <strong>{{ session('lv_saved') }}</strong>
+                                    <strong>{{ session('service_saved') }}</strong>
                                 </div>
                             @endif
 
@@ -37,7 +37,6 @@
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
-
                                     <strong>{{ session('lv_title_dup') }}</strong>
                                 </div>
                             @endif
@@ -51,32 +50,38 @@
                                 </div>
                             @endif
 
-                            @if(session()->has('lv_edited'))
+                            @if(session()->has('service_edited'))
                                 <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
                                     role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="false">×</span>
                                     </button>
-                                    <strong>{{ session('lv_edited') }}</strong>
+                                    <strong>{{ session('service_edited') }}</strong>
                                 </div>
                             @endif
 
-                            @if(session()->has('hard_delete'))
+                            @if(session()->has('service_deleted'))
                                 <div class="alert alert-icon alert-white alert-danger alert-dismissible fade show" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                     <i class="mdi mdi-block-helper"></i>
-                                    <strong>{{ session('hard_delete') }}</strong>
+                                    <strong>{{ session('service_deleted') }}</strong>
                                 </div>
                             @endif
                         </div>
                         <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
-                            <a href="{{ route('landview_create') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Add</a>
+                            <a href="{{ route('service_create') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Add</a>
                             <thead>
                                 <tr>
                                     <th>Serial number</th>
                                     <th>Service Title</th>
+                                    <th>Service List Number 1</th>
+                                    <th>Service List Number 2</th>
+                                    <th>Service List Number 3</th>
+                                    <th>Service List Number 4</th>
+                                    <th>Service List Number 5</th>
+                                    <th>Service List Number 6</th>
                                     <th>Added by</th>
                                     <th>Actions</th>
                                 </tr>
@@ -86,10 +91,16 @@
                                     <tr>
                                         <td>{{ $loop->index ++ }}</td>
                                         <td>{{ $service->service_title }}</td>
+                                        <td>{{ $service->service_list_1 }}</td>
+                                        <td>{{ $service->service_list_2 }}</td>
+                                        <td>{{ $service->service_list_3 }}</td>
+                                        <td>{{ $service->service_list_4 }}</td>
+                                        <td>{{ $service->service_list_5 }}</td>
+                                        <td>{{ $service->service_list_6 }}</td>
                                         <td>{{ users()->find($service->addedby)->name }}</td>
                                         <td>
-                                            <a href="{{ route('landview_edit', $service->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit</a>
-                                            <a href="{{ route('landview_hard_delete', $service->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete</a>
+                                            <a href="{{ route('service_edit', $service->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Service</a>
+                                            <a href="{{ route('service_hard_delete', $service->id) }}" id="id" onclick="myFunction()" value="{{ $service->id }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Service</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -97,13 +108,12 @@
                         </table>
                     </div>
                 </div>
-
 @endsection
 
 @section('scripts')
     <script>
-            $(document).ready(function() {
-                $('#aaa').DataTable();
-            });
-        </script>
+        $(document).ready(function() {
+            $('#aaa').DataTable();
+        });
+    </script>
 @endsection
