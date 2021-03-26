@@ -4,9 +4,9 @@
                     <!-- Logo container-->
                     <div class="logo">
                         <!-- Text Logo -->
-                        <!--<a href="index.html" class="logo">-->
+                        <a href="index.html" class="logo">
                         <!--Adminox-->
-                        <!--</a>-->
+                        </a>
                         <!-- Image Logo -->
                         <a href="index.html" class="logo">
                             <img src="{{asset('dash')}}/assets/images/logo_dark.png" alt="" height="24" class="logo-lg">

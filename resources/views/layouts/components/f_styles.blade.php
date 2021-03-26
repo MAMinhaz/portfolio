@@ -16,6 +16,10 @@
         <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 
-        {{-- <!-- sweatalert2 js -->
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script> --}}
+        <!-- sweatalert2 js -->
+        {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script> --}}
+        {{-- <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script> --}}
+
+        <!-- Modal-Effect -->
+        <script src="{{ asset('dash') }}/plugins/custombox/js/custombox.min.js"></script>
+        <script src="{{ asset('dash') }}/plugins/custombox/js/legacy.min.js"></script>

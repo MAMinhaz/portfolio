@@ -237,11 +237,13 @@
 
             <!-- Content Row -->
             <div class="row justify-content-md-center mrb-75">
-                <div class="col-lg-10 pd-l-60 pd-r-60">            
+                <div class="col-lg-10 pd-l-60 pd-r-60">
                     <div class="row">
                         <div class="col-lg-12 text-center">
                             <h2 class="xl-title mrb-30 color-white">About My Business &amp; Skills</h2>
-                            <p class="description mrb-75 fts-18 w-500 color-silver">A very small stage in a vast cosmic arena great turbuslent clouds encyclo-paedia galactica star stuff harvesting star light the carbon in our apple pies. Realm of the galaxies, Cambrian explosion Flatland tesseract hundreds of thousands, cosmic ocean. Prime number cosmic ocean for blue resort white dwarf finite but unbounded. A very small stage in a vast cosmic arena great turbulent clouds encyclopaedia galactica</p>
+                            @foreach($about_me_des as $value)
+                            <p class="description mrb-75 fts-18 w-500 color-silver">{{ $value->about_me_des }}</p>
+                            @endforeach
                         </div><!--  /.col-lg-12 -->
                     </div><!--  /.row -->
 
@@ -313,13 +315,13 @@
             </div><!--  /.row -->
             
             <!-- Mock Up Content Row -->
-            <div class="row justify-content-md-center">
+            {{-- <div class="row justify-content-md-center">
                 <div class="col-lg-11">
                     <div class="mock-up-block ml-b-135" data-animate="hg-fadeInUp">
                         <img src="{{asset('front')}}/assets/images/author-mockup-dark.png" alt="Author Mock Up" />
                     </div><!--  /.mock-up-block -->
                 </div><!--  /.col-lg-10 -->
-            </div><!--  /.row -->
+            </div><!--  /.row --> --}}
         </div><!--  /.container -->
     </section><!--  /.about-block -->
 
