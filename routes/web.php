@@ -14,11 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 //portofolio controller routes
-    Route::get('/', [App\Http\Controllers\PortfolioController::class, 'portoview'])->name('portoview');
+    Route::get('/', [App\Http\Controllers\PortfolioController::class, 'portfolio'])->name('portfolio');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 //landview controller routes
     Route::middleware(['auth'])->group(function () {
@@ -30,6 +31,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::get('/portfolio/landview/delete/{id}', [App\Http\Controllers\LandviewController::class, 'hard_delete'])->name('landview_hard_delete');
     });
 
+
 //Service controller routes
     Route::middleware(['auth'])->group(function () {
         Route::get('/portfolio/services', [App\Http\Controllers\ServiceController::class, 'index'])->name('service');
@@ -39,6 +41,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::post('/portfolio/service/edit/post', [App\Http\Controllers\ServiceController::class, 'edit_post'])->name('service_edit_post');
         Route::get('/portfolio/service/delete/{id}', [App\Http\Controllers\ServiceController::class, 'hard_delete'])->name('service_hard_delete');
     });
+
 
 //Aboutme controller routes
     Route::middleware(['auth'])->group(function () {
@@ -62,4 +65,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::get('/portfolio/aboutme/milestones/edit/{id}', [App\Http\Controllers\AboutMeController::class, 'aboutme_ms_edit'])->name('aboutme_ms_edit');
         Route::post('/portfolio/aboutme/milestones/edit/post', [App\Http\Controllers\AboutMeController::class, 'aboutme_ms_edit_post'])->name('aboutme_ms_edit_post');
         Route::get('/portfolio/aboutme/milestones/delete/{id}', [App\Http\Controllers\AboutMeController::class, 'aboutme_ms_hard_delete'])->name('aboutme_ms_hard_delete');
+    });
+
+
+//Service controller routes
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/portfolio/portfolio', [App\Http\Controllers\PortfolioController::class, 'portfolio_index'])->name('portfolio_index');
+        Route::get('/portfolio/portfolio/create', [App\Http\Controllers\PortfolioController::class, 'portfolio_create'])->name('portfolio_create');
+        Route::post('/portfolio/portfolio/create/post', [App\Http\Controllers\PortfolioController::class, 'portfolio_create_post'])->name('portfolio_create_post');
+        // Route::get('/portfolio/service/edit/{id}', [App\Http\Controllers\ServiceController::class, 'edit'])->name('service_edit');
+        // Route::post('/portfolio/service/edit/post', [App\Http\Controllers\ServiceController::class, 'edit_post'])->name('service_edit_post');
+        // Route::get('/portfolio/service/delete/{id}', [App\Http\Controllers\ServiceController::class, 'hard_delete'])->name('service_hard_delete');
     });

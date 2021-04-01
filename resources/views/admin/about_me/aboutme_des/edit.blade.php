@@ -8,7 +8,7 @@
             <div class="page-title-box">
                 <div class="btn-group pull-right">
                     <ol class="breadcrumb hide-phone p-0 m-0">
-                        <li class="breadcrumb-item"><a href="{{ route('portoview') }}">Your Portfolio</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
                         <li class="breadcrumb-item active">Portfolio - About Me Section</li>
                     </ol>
