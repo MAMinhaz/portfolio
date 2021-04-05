@@ -16,7 +16,6 @@ class CreatePortfoCategoriesTable extends Migration
         Schema::create('portfo_categories', function (Blueprint $table) {
             $table->id();
             $table->string('category_name');
-            $table->integer('portfo_id');
             $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();

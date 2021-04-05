@@ -20,6 +20,7 @@ class CreatePortfosTable extends Migration
             $table->date('date');
             $table->string('clients');
             $table->integer('category_id');
+            $table->string('thumbnail_image')->default('thumbnail_image_default.jpg');
             $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();

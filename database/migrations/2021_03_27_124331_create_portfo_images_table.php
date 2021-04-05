@@ -16,8 +16,7 @@ class CreatePortfoImagesTable extends Migration
         Schema::create('portfo_images', function (Blueprint $table) {
             $table->id();
             $table->integer('portfo_id');
-            $table->string('thumbnail_image')->default('thumbnail_image_default');
-            $table->string('portfo_image')->default('portfo_image_default');
+            $table->string('portfo_image')->default('portfo_image_default.jpg');
             $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();

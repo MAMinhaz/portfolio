@@ -55,3 +55,39 @@
     </div>
 
 {{-- flash messages end --}}
+
+
+{{-- single image upload start --}}
+    if ($request->hasFile('product_thumbnail_picture')) {
+        $uploaded_picture = $request->file('product_thumbnail_picture');
+        $picture_name = $cat_id.".".$uploaded_picture->getClientOriginalExtension();
+        $picture_location = 'public/uploads/product_thumbnail_picture/'.$picture_name;
+        Image::make($uploaded_picture)->save(base_path($picture_location));
+        Product::find($cat_id)->update([
+            'product_thumbnail_picture' => $picture_name,
+            'updated_at' => Carbon::now(),
+        ]);
+    }
+{{-- single image upload end --}}
+
+{{-- Multiple image upload start --}}
+    if($request->hasFile('product_multiple_picture')){
+
+        $flag = 1;
+
+        foreach ($request->file('product_multiple_picture') as $single_picture) {
+            $uploaded_picture = $single_picture;
+            $picture_name = $cat_id."-".$flag.".".$uploaded_picture->getClientOriginalExtension();
+            $picture_location = 'public/uploads/product_multiple_picture/'.$picture_name;
+            Image::make($uploaded_picture)->save(base_path($picture_location));
+
+            $flag++;
+
+            Picture_Multiple::insert([
+                'product_id' => $cat_id,
+                'product_multiple_picture' => $picture_name,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+    }
+{{-- Multiple image upload end --}}
