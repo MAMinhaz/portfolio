@@ -72,10 +72,10 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     Route::middleware(['auth'])->group(function () {
         // Portfolio content Routes
         Route::get('/portfolio/portfolio', [App\Http\Controllers\PortfolioController::class, 'portfolio_index'])->name('portfolio_index');
-        Route::post('/portfolio/portfolio/create/post', [App\Http\Controllers\PortfolioController::class, 'portfolio_create_post'])->name('portfolio_create_post');
-        Route::get('/portfolio/portfolio/edit/{id}', [App\Http\Controllers\PortfolioController::class, 'portfolio_edit'])->name('portfolio_edit');
-        // Route::post('/portfolio/service/edit/post', [App\Http\Controllers\ServiceController::class, 'edit_post'])->name('service_edit_post');
-        // Route::get('/portfolio/service/delete/{id}', [App\Http\Controllers\ServiceController::class, 'hard_delete'])->name('service_hard_delete');
+        Route::post('/portfolio/portfolio-details/create/post', [App\Http\Controllers\PortfolioController::class, 'portfolio_create_post'])->name('portfolio_create_post');
+        Route::get('/portfolio/portfolio-details/edit/{id}', [App\Http\Controllers\PortfolioController::class, 'portfolio_edit'])->name('portfolio_edit');
+        Route::post('/portfolio/portfolio-details/edit/post', [App\Http\Controllers\PortfolioController::class, 'portfolio_edit_post'])->name('portfolio_edit_post');
+        Route::get('/portfolio/portfolio-details/delete/{id}', [App\Http\Controllers\PortfolioController::class, 'portfolio_hard_delete'])->name('portfolio_hard_delete');
 
         // Portfolio Category Routes
         Route::post('/portfolio/portfolio_category/post', [App\Http\Controllers\PortfolioController::class, 'portfolio_cat_create_post'])->name('portfolio_cat_create_post');

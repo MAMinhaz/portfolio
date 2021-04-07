@@ -212,28 +212,6 @@
                                 @endif
                                 {{-- flash warning -> about me milestone limit crossed end --}}
 
-                                {{-- flash warning -> about me milestone name field is blank start --}}
-                                @if(session()->has('aboutme_ms_blank_name'))
-                                    <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong>{{ session('aboutme_ms_blank_name') }}</strong>
-                                    </div>
-                                @endif
-                                {{-- flash warning -> about me milestone name field is blank end --}}
-
-                                {{-- flash warning -> about me milestone digit field is blank start --}}
-                                @if(session()->has('aboutme_ms_blank_digit'))
-                                    <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong>{{ session('aboutme_ms_blank_digit') }}</strong>
-                                    </div>
-                                @endif
-                                {{-- flash warning -> about me milestone digit field is blank end --}}
-
                                 {{-- flash success -> about me milestone added start --}}
                                 @if(session()->has('portfo_details_done'))
                                     <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
@@ -246,17 +224,17 @@
                                 @endif
                                 {{-- flash success -> about me milestone added end --}}
 
-                                {{-- flash success -> about me milestone edited start --}}
-                                @if(session()->has('aboutme_milestone_edited'))
+                                {{-- flash success -> portfolio details edited start --}}
+                                @if(session()->has('portfo_details_edit_done'))
                                     <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
                                         role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="false">×</span>
                                         </button>
-                                        <strong>{{ session('aboutme_milestone_edited') }}</strong>
+                                        <strong>{{ session('portfo_details_edit_done') }}</strong>
                                     </div>
                                 @endif
-                                {{-- flash success -> about me milestone edited end --}}
+                                {{-- flash success -> portfolio details edited end --}}
 
                                 {{-- flash danger -> about me milestone deleted start --}}
                                 @if(session()->has('aboutme_ms_deleted'))
@@ -330,7 +308,7 @@
                                             </td>
                                             <td>
                                                 <a href="{{ route('portfolio_edit', $portfo->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Portfolio</a>
-                                                <a href="{{ route('aboutme_ms_hard_delete', $portfo->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Portfolio</a>
+                                                <a href="{{ route('portfolio_hard_delete', $portfo->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Portfolio</a>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -442,7 +420,6 @@
                                             <input type="file" class="form-control" name="portfo_image[]" multiple>
                                         </div>
                                     </div>
-
 
                             <button type="submit" class="btn btn-primary">Add Portfolio</button>
                         </form>

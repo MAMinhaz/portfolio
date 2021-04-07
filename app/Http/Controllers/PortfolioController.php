@@ -113,7 +113,57 @@ class PortfolioController extends Controller
     function portfolio_edit($id){
         return view('admin.portfolio.portfolio_content.edit', [
             'portfo_details' => Portfo::findOrFail($id),
+            'portfolio_category' => PortfoCategory::all(),
         ]);
+    }
+
+    function portfolio_edit_post(Request $request){
+        // input validation
+        $request->validate([
+            'title' => ['string', 'required'],
+            'description' => ['string'],
+            'date' => ['date'],
+            'clients' => ['string'],
+            'category_id' => ['numeric'],
+        ]);
+
+        // updating data to portfolio table
+        Portfo::findOrFail($request->value)->update([
+                'title' => $request->title,
+                'description' => $request->description,
+                'date' => $request->date,
+                'clients' => $request->clients,
+                'category_id' => $request->category_id,
+                'updated_at' => now(),
+        ]);
+        
+        // redirecting to portfolio index page
+        return redirect()->route('portfolio_index')->with('portfo_details_edit_done', 'Your have edited an existing portfolio for your portfolios ');
+    }
+
+    function portfolio_hard_delete($id){
+        // portfolio data to delete
+        $portfolio = Portfo::findOrFail($id);
+
+        // portfolio data deleting
+        $portfolio->forceDelete();
+
+        // thumbnail picture deleting
+        if($portfolio->thumbnail_image != 'thumbnail_image_default.jpg'){
+            $portfo_thumb_picture_location = 'public/uploads/portfolios/thumbnail_image/'.$portfolio->thumbnail_image;
+            unlink(base_path($portfo_thumb_picture_location));
+        }
+
+        // portfolio multiple images deleting
+        foreach (PortfoImages::where('portfo_id', $portfolio->id)->get() as $value) {
+            if($value->portfo_image != 'portfo_image_default.jpg'){
+                $portfo_multiple_picture_location = 'public/uploads/portfolios/portfo_image/'.$value->portfo_image;
+                unlink(base_path($portfo_multiple_picture_location));
+            }
+        }
+
+        // redirecting to home page
+        return redirect()->route('portfolio_index')->with('portfo_details_deleted', 'Your have deleted an existing portfolio for your portfolios ');
     }
 
     function portfolio_cat_create_post(Request $request){
