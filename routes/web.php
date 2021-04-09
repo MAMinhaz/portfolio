@@ -13,15 +13,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//portofolio controller routes
+    //portofolio controller routes
     Route::get('/', [App\Http\Controllers\PortfolioController::class, 'portfolio'])->name('portfolio');
 
-Auth::routes();
+    Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//landview controller routes
+    //landview controller routes
     Route::middleware(['auth'])->group(function () {
         Route::get('/portfolio/landview', [App\Http\Controllers\LandviewController::class, 'index'])->name('landview');
         Route::get('/portfolio/landview/create', [App\Http\Controllers\LandviewController::class, 'create'])->name('landview_create');
@@ -32,7 +32,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     });
 
 
-//Service controller routes
+    //Service controller routes
     Route::middleware(['auth'])->group(function () {
         Route::get('/portfolio/services', [App\Http\Controllers\ServiceController::class, 'index'])->name('service');
         Route::get('/portfolio/services/create', [App\Http\Controllers\ServiceController::class, 'create'])->name('service_create');
@@ -43,7 +43,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     });
 
 
-//Aboutme controller routes
+    //Aboutme controller routes
     Route::middleware(['auth'])->group(function () {
         //Aboutme section home route
         Route::get('/portfolio/aboutme', [App\Http\Controllers\AboutMeController::class, 'index'])->name('aboutme');
@@ -68,7 +68,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
     });
 
 
-//portfolio controller routes
+    //portfolio controller routes
     Route::middleware(['auth'])->group(function () {
         // Portfolio content Routes
         Route::get('/portfolio/portfolio', [App\Http\Controllers\PortfolioController::class, 'portfolio_index'])->name('portfolio_index');
@@ -82,4 +82,24 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
         Route::get('/portfolio/portfolio_category/edit/{id}', [App\Http\Controllers\PortfolioController::class, 'portfolio_cat_edit'])->name('portfolio_cat_edit');
         Route::post('/portfolio/portfolio_category/edit/post', [App\Http\Controllers\PortfolioController::class, 'portfolio_cat_edit_post'])->name('portfolio_cat_edit_post');
         Route::get('/portfolio/portfolio_category/delete/{id}', [App\Http\Controllers\PortfolioController::class, 'portfolio_cat_hard_delete'])->name('portfolio_cat_hard_delete');
+    });
+
+    //Testimonial controller routes
+    Route::middleware(['auth'])->group(function (){
+        // Testimonial content Routes
+        Route::get('/portfolio/testimonial', [App\Http\Controllers\TestimonialController::class, 'testimonial_index'])->name('testimonial_index');
+        Route::post('/portfolio/testimonial/create/post', [App\Http\Controllers\TestimonialController::class, 'testimonial_create_post'])->name('testimonial_create_post');
+        Route::get('/portfolio/testimonial/show/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_show'])->name('testimonial_show');
+        Route::get('/portfolio/testimonial/hide/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_hide'])->name('testimonial_hide');
+        Route::get('/portfolio/testimonial/edit/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_edit'])->name('testimonial_edit');
+        Route::post('/portfolio/testimonial/edit/post', [App\Http\Controllers\TestimonialController::class, 'testimonial_edit_post'])->name('testimonial_edit_post');
+        Route::get('/portfolio/testimonial/delete/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_hard_delete'])->name('testimonial_hard_delete');
+
+        // Testimonial content Routes
+        Route::post('/portfolio/testimonial/companies/create/post', [App\Http\Controllers\TestimonialController::class, 'testimonial_companies_create_post'])->name('testimonial_companies_create_post');
+        Route::get('/portfolio/testimonial/companies/show/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_companies_show'])->name('testimonial_companies_show');
+        Route::get('/portfolio/testimonial/companies/hide/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_companies_hide'])->name('testimonial_companies_hide');
+        Route::get('/portfolio/testimonial/companies/edit/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_companies_edit'])->name('testimonial_companies_edit');
+        Route::post('/portfolio/testimonial/companies/edit/post', [App\Http\Controllers\TestimonialController::class, 'testimonial_companies_edit_post'])->name('testimonial_companies_edit_post');
+        Route::get('/portfolio/testimonial/companies/delete/{id}', [App\Http\Controllers\TestimonialController::class, 'testimonial_companies_hard_delete'])->name('testimonial_companies_hard_delete');
     });

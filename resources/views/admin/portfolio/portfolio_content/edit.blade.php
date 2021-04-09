@@ -1,6 +1,3 @@
-@php
-    error_reporting(0);
-@endphp
 @extends('layouts.admin')
 
 @section('admin_content')
