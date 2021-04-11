@@ -148,9 +148,6 @@
                             @isset($landviews)
                                 @foreach($landviews as $landview)
                                     <li>{{ $landview->profession_name }}</li>
-                                    @php
-                                        $landing_image = $landview->landview_image
-                                    @endphp
                                 @endforeach
                             @endisset
                         </ul><!--  /.hero-designation -->
@@ -162,7 +159,7 @@
             </div><!--  /.row -->
         </div><!--  /.container-fluid -->
         <div class="hg-background">
-            <div class="hg-background-image" data-bg-image="{{ asset('dash') }}/uploads/landview_image/{{ $landing_image}}"></div><!--  /.hg-background-image -->
+            <div class="hg-background-image" data-bg-image="{{ asset('front') }}/assets/images/banner/hero-banner-2.jpg"></div><!--  /.hg-background-image -->
         </div><!--  /.hg-background -->
     </section><!--  /.hero-block -->
 
@@ -826,29 +823,106 @@
                         </div><!--  /.col-md-4 -->
 
                         <div class="col-md-8">
-                            <form method="post" class="contact-form dark-theme hg-form-email" data-php-path="{{asset('front')}}/assets/php/email.php">
+                            {{-- confirmation alert --}}
+                            @if(session()->has('contact_created'))
+                                <div class="alert alert-light alert-dismissible fade show" role="alert">
+                                    <strong>{{ session('contact_created') }}</strong> 
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+
+                            <form method="post" class="contact-form dark-theme" method="POST" action="{{ route('contact_create_post') }}" enctype="multipart/form-data">
+                            @csrf
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <label>Name *</label>
-                                        <input name="name" type="text" class="form-control" />
-                                    </div><!--  /.col-md-6 -->                 
+                                        <label>Your Name </label>
+                                        <input name="contact_name" type="text" class="form-control" />
+                                        @error('contact_name')
+                                            <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>{{ $message }}</strong> 
+                                            </div>
+                                        @enderror
+                                    </div><!--  /.col-md-6 -->
 
                                     <div class="col-md-6">
-                                        <label>Email *</label>
-                                        <input name="email" type="email" class="form-control" />
+                                        <label>Your Email </label>
+                                        <input name="contact_email" type="email" class="form-control" />
+                                        @error('contact_email')
+                                            <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>{{ $message }}</strong> 
+                                            </div>
+                                        @enderror
                                     </div><!--  /.col-md-6 -->
 
                                     <div class="col-md-12">
                                         <label>Subject</label>
-                                        <input name="subject" type="text" class="form-control" />
+                                        <input name="contact_subject" type="text" class="form-control" />
+                                        @error('contact_subject')
+                                            <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>{{ $message }}</strong> 
+                                            </div>
+                                        @enderror
                                     </div><!--  /.col-md-12 -->
 
                                     <div class="col-md-12">
                                         <label>Your Message</label>
-                                        <textarea name="message" cols="30" rows="10" class="form-control"></textarea>
+                                        <textarea name="contact_message" cols="30" rows="10" class="form-control"></textarea>
+                                        @error('contact_message')
+                                            <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>{{ $message }}</strong> 
+                                            </div>
+                                        @enderror
                                     </div><!--  /.col-md-12 -->
 
                                     <div class="col-md-12">
+                                        <label>Attachment</label>
+                                        <input name="contact_attachment" type="file" class="form-control" />
+                                        <small class="text-white bg-dark">
+                                            <ol>
+                                                <li>
+                                                    You can attach file if you want.
+                                                </li>
+                                                <li>
+                                                    Do not submit blank file.
+                                                </li>
+                                            </ol>
+                                        </small>
+                                        @error('contact_attachment')
+                                            <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
+                                                role="alert">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">×</span>
+                                                </button>
+                                                <strong>{{ $message }}</strong> 
+                                            </div>
+                                        @enderror
+                                    </div><!--  /.col-md-12 -->
+                                    <br><br><br>
+
+                                    <div class="col-md-12 mt-3">
                                         <button type="submit" class="btn btn-default btn-contact">Send A Message</button>
                                     </div><!--  /.col-md-12 -->
                                 </div><!--  /.row -->

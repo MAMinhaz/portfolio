@@ -57,7 +57,7 @@
 {{-- flash messages end --}}
 
 
-{{-- single image upload start --}}
+    {{-- single image upload start --}}
     if ($request->hasFile('product_thumbnail_picture')) {
         $uploaded_picture = $request->file('product_thumbnail_picture');
         $picture_name = $cat_id.".".$uploaded_picture->getClientOriginalExtension();
@@ -68,9 +68,9 @@
             'updated_at' => Carbon::now(),
         ]);
     }
-{{-- single image upload end --}}
+    {{-- single image upload end --}}
 
-{{-- Multiple image upload start --}}
+    {{-- Multiple image upload start --}}
     if($request->hasFile('product_multiple_picture')){
 
         $flag = 1;
@@ -90,4 +90,31 @@
             ]);
         }
     }
-{{-- Multiple image upload end --}}
+    {{-- Multiple image upload end --}}
+
+    {{-- file upload post start --}}
+    $contact_id = Contact::insertGetId($request->except('_token')+[
+        'created_at' => Carbon::now()
+    ]);
+
+    // return back();
+    if($request->hasFile('contact_attachment')){
+        // $file_path = $request->file('contact_attachment')->store('contact_attachment');
+        $path = $request->file('contact_attachment')->storeAs(
+            'contact_upload', $contact_id . '.' . $request->file('contact_attachment')->getClientOriginalExtension(),
+        );
+    Contact::find($contact_id)->update([
+        'contact_attachment' => $path,
+        'updated_at' => Carbon::now(),
+        ]);
+    }
+    return back();
+    {{-- file upload post end --}}
+
+
+
+    {{-- file download start --}}
+    return Storage::download(Contact::findOrFail($contact_id)->contact_attachment);
+    return back();
+    {{-- file download end --}}
+
