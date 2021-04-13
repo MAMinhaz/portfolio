@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
@@ -23,6 +24,8 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/', [PortfolioController::class, 'portfolio'])->name('portfolio');
 
     Auth::routes();
+
+    Route::get('admin-dashboard', [HomeController::class, 'index'])->middleware('auth')->name('home');
 
     //landview controller routes
     Route::middleware(['auth'])->group(function () {
@@ -115,4 +118,18 @@ use App\Http\Controllers\TestimonialController;
         Route::post('/create/contact', [ContactController::class, 'contact_create_post'])->name('contact_create_post');
         Route::get('/portfolio/contacts/delete/{id}', [ContactController::class, 'contact_hard_delete'])->name('contact_hard_delete');
         Route::get('/portfolio/contacts/download/{id}', [ContactController::class, 'contact_download'])->name('contact_download');
+    });
+
+
+    //Blog controller routes
+    Route::middleware(['auth'])->group(function (){
+        // blog content index routes
+        Route::get('/portfolio/blog/blog/all', [BlogController::class, 'blog_index'])->name('blog_index');
+
+        // blog category routes
+        Route::get('/portfolio/blog/blog-category/all', [BlogController::class, 'blog_cats_index'])->name('blog_cats_index');
+        Route::post('/portfolio/blog/blog-category/create/post', [BlogController::class, 'blog_cats_create_post'])->name('blog_cats_create_post');
+        Route::get('/portfolio/blog/blog-category/edit/{id}', [BlogController::class, 'blog_cat_edit'])->name('blog_cat_edit');
+        Route::post('/portfolio/blog/blog-category/edit/post', [BlogController::class, 'blog_cat_edit_post'])->name('blog_cat_edit_post');
+        Route::get('/portfolio/blog/blog-category/delete/{id}', [BlogController::class, 'blog_cats_hard_delete'])->name('blog_cats_hard_delete');
     });

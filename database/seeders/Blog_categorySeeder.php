@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\PortfoCategory;
+use App\Models\Blog_category;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Auth;
 
-class Portfolio_categorySeeder extends Seeder
+class Blog_categorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,8 +15,9 @@ class Portfolio_categorySeeder extends Seeder
      */
     public function run()
     {
-        PortfoCategory::insert([
+        Blog_category::insert([
             'category_name' => "new category",
+            'blog_id' => 1,
             'addedby' => 1,
             'created_at' => now(),
         ]);
