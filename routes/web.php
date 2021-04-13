@@ -132,4 +132,11 @@ use App\Http\Controllers\TestimonialController;
         Route::get('/portfolio/blog/blog-category/edit/{id}', [BlogController::class, 'blog_cat_edit'])->name('blog_cat_edit');
         Route::post('/portfolio/blog/blog-category/edit/post', [BlogController::class, 'blog_cat_edit_post'])->name('blog_cat_edit_post');
         Route::get('/portfolio/blog/blog-category/delete/{id}', [BlogController::class, 'blog_cats_hard_delete'])->name('blog_cats_hard_delete');
+
+        // blog tags routes
+        Route::get('/portfolio/blog/blog-tags/all', [BlogController::class, 'blog_tags_index'])->name('blog_tags_index');
+        Route::post('/portfolio/blog/blog-tags/create/post', [BlogController::class, 'blog_tags_create_post'])->name('blog_tags_create_post');
+        Route::get('/portfolio/blog/blog-tags/edit/{id}', [BlogController::class, 'blog_tag_edit'])->name('blog_tag_edit');
+        Route::post('/portfolio/blog/blog-tags/edit/post', [BlogController::class, 'blog_tag_edit_post'])->name('blog_tag_edit_post');
+        Route::get('/portfolio/blog/blog-tags/delete/{id}', [BlogController::class, 'blog_tag_hard_delete'])->name('blog_tag_hard_delete');
     });

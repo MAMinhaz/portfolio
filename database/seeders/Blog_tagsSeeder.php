@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Blog_category;
+use App\Models\Blog_tags;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
 
-class Blog_categorySeeder extends Seeder
+class Blog_tagsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +14,8 @@ class Blog_categorySeeder extends Seeder
      */
     public function run()
     {
-        Blog_category::insert([
-            'category_name' => "new category",
+        Blog_tags::insert([
+            'tag' => 'fakeer',
             'addedby' => 1,
             'created_at' => now(),
         ]);
