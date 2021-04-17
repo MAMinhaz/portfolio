@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
@@ -25,7 +26,7 @@ use App\Http\Controllers\TestimonialController;
 
     Auth::routes();
 
-    Route::get('admin-dashboard', [HomeController::class, 'index'])->middleware('auth')->name('home');
+    Route::get('admin-dashboard', [HomeController::class, 'admin_dashboard'])->middleware('auth')->name('home');
 
     //landview controller routes
     Route::middleware(['auth'])->group(function () {
@@ -133,10 +134,11 @@ use App\Http\Controllers\TestimonialController;
         Route::post('/portfolio/blog/blog-category/edit/post', [BlogController::class, 'blog_cat_edit_post'])->name('blog_cat_edit_post');
         Route::get('/portfolio/blog/blog-category/delete/{id}', [BlogController::class, 'blog_cats_hard_delete'])->name('blog_cats_hard_delete');
 
-        // blog tags routes
-        Route::get('/portfolio/blog/blog-tags/all', [BlogController::class, 'blog_tags_index'])->name('blog_tags_index');
-        Route::post('/portfolio/blog/blog-tags/create/post', [BlogController::class, 'blog_tags_create_post'])->name('blog_tags_create_post');
-        Route::get('/portfolio/blog/blog-tags/edit/{id}', [BlogController::class, 'blog_tag_edit'])->name('blog_tag_edit');
-        Route::post('/portfolio/blog/blog-tags/edit/post', [BlogController::class, 'blog_tag_edit_post'])->name('blog_tag_edit_post');
-        Route::get('/portfolio/blog/blog-tags/delete/{id}', [BlogController::class, 'blog_tag_hard_delete'])->name('blog_tag_hard_delete');
+        // blog post routes
+        Route::get('/portfolio/blog/blog-post/create', [BlogController::class, 'blog_post_create'])->name('blog_post_create');
+        Route::post('/portfolio/blog/blog-post/create/post', [BlogController::class, 'blog_post_create_post'])->name('blog_post_create_post');
+        Route::get('/portfolio/blog/blog-post/edit/{id}', [BlogController::class, 'blog_post_edit'])->name('blog_post_edit');
+        Route::post('/portfolio/blog/blog-post/edit/post', [BlogController::class, 'blog_post_edit_post'])->name('blog_post_edit_post');
+        Route::get('/portfolio/blog/blog-post/delete/{id}', [BlogController::class, 'blog_post_hard_delete'])->name('blog_post_hard_delete');
+        Route::get('/portfolio/blog/blog-post/preview/{id}', [BlogController::class, 'blog_post_preview'])->name('blog_post_preview');
     });

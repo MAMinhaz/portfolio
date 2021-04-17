@@ -24,5 +24,5 @@
         <script src="{{ asset('dash') }}/plugins/custombox/js/custombox.min.js"></script>
         <script src="{{ asset('dash') }}/plugins/custombox/js/legacy.min.js"></script>
 
-        {{-- <!--Wysiwig js-->
-        <script src="{{ asset('dash') }}/plugins/tinymce/tinymce.min.js"></script> --}}
+        <!--Wysiwig js-->
+        <script src="{{ asset('dash') }}/plugins/tinymce/tinymce.min.js"></script>

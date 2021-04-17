@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Blog_tags;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Blog_category;
 use Illuminate\Support\Facades\Auth;
+use Intervention\Image\Facades\Image;
+use Symfony\Component\Console\Input\Input;
 
 class BlogController extends Controller
 {
@@ -36,8 +40,7 @@ class BlogController extends Controller
 
         // data inserting
         Blog_category::insert([
-            'category_name' => $request->category_name,
-            'blog_id' => 1,
+            'category_name' => Str::title($request->category_name),
             'addedby' => Auth::id(),
             'created_at' => now(),
         ]);
@@ -73,7 +76,7 @@ class BlogController extends Controller
 
         // blog category updating
         Blog_category::findOrFail($request->value)->update([
-            'category_name' => $request->category_name,
+            'category_name' => Str::title($request->category_name),
             'updated_at' => now(),
         ]);
         return redirect()->route('blog_cats_index')->with('blog_cats_edited', 'You have edited an existing blog category');
@@ -94,82 +97,156 @@ class BlogController extends Controller
 
 
     /**
-     * blog tags index page
+     * blog index page
      *
      * @return void
      */
-    function blog_tags_index(){
-        return view('admin.blog.blog_tags.index', [
-            'blog_tags' => Blog_tags::all(),
+    function blog_index(){
+        return view('admin.blog.blog.index', [
+            'blogs' => Blog::latest()->get(),
         ]);
     }
 
 
     /**
-     * blog_tags_create_post
+     * create blog post
+     *
+     * @return void
+     */
+    function blog_post_create(){
+        // return Blog_category::all();
+        return view('admin.blog.blog.create', [
+            'blog_cats' => Blog_category::latest()->get(),
+        ]);
+    }
+
+    
+    /**
+     * blog post create post
      *
      * @param  mixed $request
      * @return void
      */
-    function blog_tags_create_post(Request $request){
-        // input validatation
-        $request->validate([
-            'tag' => ['required', 'string', 'unique:blog_tags,tag']
-        ]);
-
-        // data inserting
-        Blog_tags::insert([
-            'tag' => $request->tag,
-            'addedby' => Auth::id(),
-            'created_at' => now(),
-        ]);
-        return back()->with('blog_tag_added', 'Congratulation You have added a new tag for your blog posts.');
-    }
-
-    /**
-     * blog tag edit page
-     *
-     * @param  mixed $id
-     * @return void
-     */
-    function blog_tag_edit($id){
-        // blog tag index page
-        return view('admin.blog.blog_tags.edit', [
-            'blog_tag' => Blog_tags::findOrFail($id),
-        ]);
-    }
-
-
-    /**
-     * blog tag edit post
-     *
-     * @param  mixed $request
-     * @return void
-     */
-    function blog_tag_edit_post(Request $request){
+    function blog_post_create_post(Request $request){
         // input validation
         $request->validate([
-            'tag' => ['string',]
+            "title" => ['required', 'string'],
+            "category_id" => ['required', 'integer'],
+            "description" => ['required', 'string'],
+            "blog_thumbnail_image" => ['image'],
         ]);
 
-        // blog tag updating
-        Blog_tags::findOrFail($request->value)->update([
-            'tag' => $request->tag,
-            'updated_at' => now(),
+        // blog post insert
+        $blog_id = Blog::insertGetId([
+            "title" => Str::title($request->title),
+            "category_id" => $request->category_id,
+            "description" => $request->description,
+            "addedby" => Auth::id(),
+            "created_at" => now(),
         ]);
-        return redirect()->route('blog_tags_index')->with('blog_tags_edited', 'You have edited an existing blog tag');
+
+        // blog thumbnail image upload
+        if ($request->hasFile('blog_thumbnail_image')) {
+            $uploaded_picture = $request->file('blog_thumbnail_image');
+            $picture_name = "blog_thumbnail_image-".$blog_id.".".$uploaded_picture->getClientOriginalExtension();
+            $picture_location = 'public/uploads/blog/blog_thumbnail_image/'.$picture_name;
+            Image::make($uploaded_picture)->save(base_path($picture_location));
+            Blog::find($blog_id)->update([
+                'blog_thumbnail_image' => $picture_name,
+                'updated_at' => now(),
+            ]);
+        }
+
+        return redirect()->route('blog_index')->with('blog_added', 'Congratulations You have added a new blog post');
     }
 
-
+    
     /**
-     * blog tag hard delete
+     * preview blog post
      *
      * @param  mixed $id
      * @return void
      */
-    function blog_tag_hard_delete($id){
-        // blog tag data to delete
-        Blog_tags::findOrFail($id)->forceDelete();
-        return back()->with('blog_tags_deletd', 'You have successfully deleted a blog tag.');
+    function blog_post_preview($id){
+        return view('admin.blog.preview',[
+            "blog" => Blog::findOrFail($id),
+            "description" => clean(Blog::findOrFail($id)->description),
+        ]);
+    }
+
+
+    /**
+     * blog post edit
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    function blog_post_edit($id){
+        return view('admin.blog.blog.edit', [
+            "blog_data" => Blog::findOrFail($id),
+            'blog_cats' => Blog_category::latest()->get(),
+        ]);
+    }
+
+    
+    /**
+     * blog post edit post
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    function blog_post_edit_post(Request $request){
+        // input validation
+        $request->validate([
+            "title" => ['string'],
+            "category_id" => ['integer'],
+            "description" => ['string'],
+            "blog_thumbnail_image" => ['nullable', 'image'],
+        ]);
+
+        // blog post editing
+        Blog::findOrFail($request->value)->update([
+            "title" => $request->title,
+            "category_id" => $request->category_id,
+            "description" => $request->description,
+            "updated_at" => now(),
+        ]);
+
+        // blog thumbnail image upload
+        if ($request->hasFile('blog_thumbnail_image')) {
+            $uploaded_picture = $request->file('blog_thumbnail_image');
+            $picture_name = "blog_thumbnail_image-".$blog_id.".".$uploaded_picture->getClientOriginalExtension();
+            $picture_location = 'public/uploads/blog/blog_thumbnail_image/'.$picture_name;
+            Image::make($uploaded_picture)->save(base_path($picture_location));
+            Blog::find($blog_id)->update([
+                'blog_thumbnail_image' => $picture_name,
+                'updated_at' => now(),
+            ]);
+        }
+
+        return redirect()->route('blog_index')->with('blog_edited', 'You have edited an existing blog post');
+    }
+
+    
+    /**
+     * blog post hard delete
+     *
+     * @param  mixed $id
+     * @return void
+     */
+    function blog_post_hard_delete($id){
+        // blog data
+        $Blog = Blog::findOrFail($id);
+
+        // blog data deleted
+        $Blog->forceDelete();
+
+        // blog thumbnail picture deleting
+        if($Blog->thumbnail_image != 'blog_thumbnail_image.jpg'){
+            $picture_location = 'public/uploads/blog/blog_thumbnail_image/'.$Blog->blog_thumbnail_image;
+            unlink(base_path($picture_location));
+        }
+
+        return redirect()->route('blog_index')->with('blog_deleted', 'You have deleted an existing blog post');
     }
 }
