@@ -8,35 +8,42 @@ use App\Models\User;
 use App\Models\Landview;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\Landview_profession;
 use Illuminate\Support\Facades\Auth;
 
 class LandviewController extends Controller
 {
+    /**
+     * heros info index page
+     *
+     * @return void
+     */
     function index(){
         // data overview start
         return view('admin.landview.index', [
             "landviews" => Landview::latest()->get(),
         ]);
-        // data overview end
     }
 
+
+    /**
+     * hero info create page
+     *
+     * @return void
+     */
     function create(){
         // data create start
         return view('admin.landview.create');
-        // data create end
     }
 
+
+    /**
+     * hero's info create post
+     *
+     * @param  mixed $request
+     * @return void
+     */
     function create_post(Request $request){
-        // validating duplicate title 
-        if($request->input('title')) {
-            $title = Landview::all()->pluck('title');
-
-            if (count($title) >= 1){
-                return redirect()->route('landview')->with('lv_title_dup', 'You can add your landview title once to your landview information table . If you want to add a new title try after deleting the previous title.');
-            } 
-        }
-        // validating duplicate title 
-
         // validating duplicate name
         if($request->input('name')) {
             $name = Landview::all()->pluck('name');
@@ -44,48 +51,31 @@ class LandviewController extends Controller
                 return redirect()->route('landview')->with('lv_name_dup', 'You can add your landview name once to your landview information table . If you want to add a new name try after deleting the previous title.');
             } 
         }
-        // validating duplicate name
 
         // validating inputs
         $request->validate([
-            'title' => ['alpha_spaces', 'nullable'],
-            'name' => ['alpha_spaces', 'nullable'],
-            'profession_name' => ['alpha_spaces', 'nullable'],
+            'name' => ['alpha_spaces'],
+            'profession_name1' => ['alpha_spaces'],
+            'profession_name2' => ['alpha_spaces'],
+            'profession_name3' => ['alpha_spaces'],
+            'profession_name4' => ['alpha_spaces'],
+            'profession_name5' => ['alpha_spaces'],
             'landview_image' => 'image',
         ],
         
         $messages = [
-            'title.string' => 'Your Title should be a string.',
             'name.string' => 'Your Name should be a string.',
             'profession_name.string' => 'Your profession names should be a string.',
         ]);
-        // validating inputs
 
         // inserting data
         $id = Landview::insertGetId([
-            'title' => Str::title($request->title),
             'name' => Str::title($request->name),
-            'addedby' => Auth::user()->id,
-            'profession_name' => Str::title($request->profession_name),
-            'created_at' => Carbon::now(),
+            'addedby' => Auth::id(),
+            'created_at' => now(),
         ]);
-        // inserting data
 
-/*
-        // duplicate image validation
-        if($request->hasFile('landview_image')){
-            return $picture = Landview::all()->pluck('landview_image');
-            foreach ($picture as $pictures) {
-                return $pictures;
-            }
-            count($picture);
-            if(count($picture) >= 1) {
-            }
-        }
-        // duplicate image validation
-*/
-
-        //Uploading Profile Picture Start
+        //Uploading hero Picture Start
         if($request->hasFile('landview_image')){
             $uploaded_picture = $request->file('landview_image');
             $photo_file_extention = 'landview_image_'.$id.'.'.$uploaded_picture->getClientOriginalExtension('landview_image');
@@ -96,50 +86,48 @@ class LandviewController extends Controller
                 'updated_at' => Carbon::now(),
             ]);
         }
-        //Uploading Profile Picture End
+
+        // profession name insert 
+        for ($i=1; $i <=5; $i++){ 
+            $profession_name = "profession_name".$i;
+            Landview_profession::insert([
+                "landview_id" => $id,
+                "profession_name" => Str::title($request->$profession_name),
+                "created_at" => now(),
+            ]);
+        }
 
         return redirect()->route('landview')->with('lv_saved', 'You have added new info to your landview information table');
     }
 
-    function edit(Request $request, $id){
-        // data edit form start
-        return view('admin.landview.edit',[
-            'landviews' => Landview::findOrFail($id),
-        ]);
-        // data edit form end
-    }
 
-    function edit_post(Request $request){
-            // input data validation start
-            $request->validate([
-                'title' => ['alpha_spaces', 'nullable'],
-                'name' => ['alpha_spaces', 'nullable'],
-                'profession_name' => ['alpha_spaces', 'nullable'],
-            ],
-            
-            $messages = [
-                'title.string' => 'Your Title should be a string.',
-                'name.string' => 'Your Name should be a string.',
-                'profession_name.string' => 'Your profession names should be a string.',
-            ]);
-            // input data validation end
-
-            // data edit with redirect with fash start
-            Landview::findOrFail($request->idlandview)->update([
-                'title' => Str::title($request->title),
-                'name' => Str::title($request->name),
-                'addedby' => Auth::user()->id,
-                'profession_name' => Str::title($request->profession_name),
-                'updated_at' => Carbon::now(),
-            ]);
-            return redirect()->route('landview')->with('lv_edited', 'You have edited an existing information to your landview information table');
-            // data edit and redirect with flash end
-    }
-
+    /**
+     * hero's info hard delete
+     *
+     * @param  mixed $request
+     * @param  mixed $id
+     * @return void
+     */
     function hard_delete(Request $request, $id){
-        // data deleted end
-        Landview::findOrFail($id)->forceDelete();
+        // hero's info data
+        $landview = Landview::findOrFail($id);
+        // hero professions data
+        $profession = Landview_profession::where('landview_id', $landview->id)->get();
+
+        // hero's info data deleted
+        $landview->forceDelete();
+
+        // hero's profession data deleted
+        foreach ($profession as $prof) {
+            $prof->forceDelete();
+        }
+
+        // hero thumbnail picture deleting
+        if($landview->landview_image != 'landview_image_default.jpg'){
+            $picture_location = 'public/dash/uploads/landview_image/'.$landview->landview_image;
+            unlink(base_path($picture_location));
+        }
+
         return redirect()->route('landview')->with('lv_deleted', 'You have deleted an existing information from your landview information table');
-        // data deleted end
-    } 
+    }
 }

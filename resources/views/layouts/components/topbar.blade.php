@@ -97,9 +97,15 @@
                                     </a>
 
                                     <!-- item-->
-                                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                        <i class="zmdi zmdi-power"></i> <span>Logout</span>
-                                    </a>
+                                        <a class="dropdown-item notify-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                            <i class="zmdi zmdi-power"></i> <span>Logout</span>
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
 
                                 </div>
                             </li>

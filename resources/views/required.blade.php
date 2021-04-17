@@ -118,3 +118,15 @@
     return back();
     {{-- file download end --}}
 
+    {{-- // duplicate image validation --}}
+    if($request->hasFile('landview_image')){
+        return $picture = Landview::all()->pluck('landview_image');
+        foreach ($picture as $pictures) {
+            return $pictures;
+        }
+        count($picture);
+        if(count($picture) >= 1) {
+        }
+    }
+    {{-- // duplicate image validation --}}
+

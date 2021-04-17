@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateLandviewsTable extends Migration
+class CreateLandviewProfessionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateLandviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('landviews', function (Blueprint $table) {
+        Schema::create('landview_professions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('landview_image')->default('landview_image_default.jpg');
-            $table->integer('addedby');
+            $table->integer('landview_id');
+            $table->string('profession_name');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ class CreateLandviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('landviews');
+        Schema::dropIfExists('landview_professions');
     }
 }

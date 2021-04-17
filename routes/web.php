@@ -30,12 +30,10 @@ use App\Http\Controllers\TestimonialController;
 
     //landview controller routes
     Route::middleware(['auth'])->group(function () {
-        Route::get('/portfolio/landview', [LandviewController::class, 'index'])->name('landview');
-        Route::get('/portfolio/landview/create', [LandviewController::class, 'create'])->name('landview_create');
-        Route::post('/portfolio/landview/create/post', [LandviewController::class, 'create_post'])->name('landview_create_post');
-        Route::get('/portfolio/landview/edit/{id}', [LandviewController::class, 'edit'])->name('landview_edit');
-        Route::post('/portfolio/landview/edit/post', [LandviewController::class, 'edit_post'])->name('landview_edit_post');
-        Route::get('/portfolio/landview/delete/{id}', [LandviewController::class, 'hard_delete'])->name('landview_hard_delete');
+        Route::get('/portfolio/hero-block', [LandviewController::class, 'index'])->name('landview');
+        Route::get('/portfolio/hero-block/create', [LandviewController::class, 'create'])->name('landview_create');
+        Route::post('/portfolio/hero-block/create/post', [LandviewController::class, 'create_post'])->name('landview_create_post');
+        Route::get('/portfolio/hero-block/delete/{id}', [LandviewController::class, 'hard_delete'])->name('landview_hard_delete');
     });
 
 
