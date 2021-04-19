@@ -2,9 +2,12 @@
 
 namespace Database\Seeders;
 
+use App\Models\Sociallink;
+use App\Models\Contactinfo;
 use Illuminate\Database\Seeder;
 use Database\Seeders\Blog_postSeeder;
 use Database\Seeders\Blog_categorySeeder;
+use Database\Seeders\Front_customizeSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,10 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
         $this->call([
             Portfolio_categorySeeder::class,
             Blog_categorySeeder::class,
+            Front_customizeSeeder::class,
+            Contactinfo::class,
+            Sociallink::class,
         ]);
     }
 }
