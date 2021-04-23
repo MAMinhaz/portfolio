@@ -138,7 +138,6 @@
                                         <th>designation</th>
                                         <th>Testimonial</th>
                                         <th>Testimonial Writer</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -154,7 +153,6 @@
                                             <td>
                                                 <img src="{{ asset('uploads') }}/testimonial/testimonial_image/{{ $testimonial->testimonial_image }}" class="img-fluid" alt="Image not found">
                                             </td>
-                                            <td>{{ users()->find($testimonial->addedby)->name }}</td>
                                             <td>
                                                 @isset($testimonial->created_at)
                                                     <li>Time : {{ $testimonial->created_at->format('h:i:s A') }}</li>
@@ -281,7 +279,6 @@
                                         <th>Serial number</th>
                                         <th>Company Name</th>
                                         <th>Company Logo</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -295,7 +292,6 @@
                                             <td>
                                                 <img src="{{ asset('uploads') }}/company_logo/{{ $companie->company_logo }}" alt="image not found" height="400" width="500">
                                             </td>
-                                            <td>{{ users()->find($companie->addedby)->name }}</td>
                                             <td>
                                                 @isset($companie->created_at)
                                                     <li>Time : {{ $companie->created_at->format('h:i:s A') }}</li>

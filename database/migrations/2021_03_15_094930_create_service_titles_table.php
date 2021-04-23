@@ -22,7 +22,6 @@ class CreateServiceTitlesTable extends Migration
             $table->string('service_list_4', 200)->nullable();
             $table->string('service_list_5', 200)->nullable();
             $table->string('service_list_6', 200)->nullable();
-            $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();
         });

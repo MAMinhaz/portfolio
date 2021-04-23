@@ -17,7 +17,6 @@ class CreateAboutMeMilestonesTable extends Migration
             $table->id();
             $table->string('milestone_name')->nullable();
             $table->integer('milestone_digit')->nullable();
-            $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();
         });

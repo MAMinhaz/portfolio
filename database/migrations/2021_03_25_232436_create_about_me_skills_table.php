@@ -17,7 +17,6 @@ class CreateAboutMeSkillsTable extends Migration
             $table->id();
             $table->string('skill_name')->nullable();
             $table->integer('skill_percent')->nullable();
-            $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();
         });

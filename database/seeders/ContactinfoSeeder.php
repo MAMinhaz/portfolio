@@ -21,7 +21,6 @@ class ContactinfoSeeder extends Seeder
             'email' => $faker->safeEmail,
             'cell_number' => $faker->numberBetween(1, 99999999),
             'address' => $faker->address,
-            'addedby' => 1,
             'created_at' => now(),
         ]);
     }

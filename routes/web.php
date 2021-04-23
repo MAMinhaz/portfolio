@@ -208,7 +208,11 @@ use App\Http\Controllers\CustomFrontendController;
 
         Route::post('/portfolio-customizing/frontend/customize/', [CustomFrontendController::class, 'front_customize_create_post'])->name('front_customize_create_post');
 
+        Route::post('/portfolio-customizing/frontend/customize/post', [CustomFrontendController::class, 'front_customize_edit_post'])->name('front_customize_edit_post');
+
         Route::get('/portfolio-customizing/frontend/remove-customization/{id}', [CustomFrontendController::class, 'front_customize_hard_delete'])->name('front_customize_hard_delete');
+
+        Route::get('/portfolio-customizing/frontend/download-old-cv/{id}', [CustomFrontendController::class, 'download_old_cv'])->name('download_old_cv');
 
 
         // frontend contact information customizing routes
@@ -227,7 +231,7 @@ use App\Http\Controllers\CustomFrontendController;
         Route::get('/portfolio-customizing/contact-information/hide-contact-info/{id}', [ContactinfoController::class, 'f_contactinfo_hide'])->name('f_contactinfo_hide');
 
 
-        // frontend contact information customizing routes
+        // frontend social link customizing routes
         Route::post('/portfolio-customizing/social-links/add-new-social-links/', [ContactinfoController::class, 'f_links_create_post'])->name('f_links_create_post');
 
         Route::get('/portfolio-customizing/social-link/edit-social-link/{id}', [ContactinfoController::class, 'f_links_edit'])->name('f_links_edit');

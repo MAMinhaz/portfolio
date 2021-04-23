@@ -19,7 +19,6 @@ class CreateBlogsTable extends Migration
             $table->integer('category_id');
             $table->longText('description');
             $table->string('blog_thumbnail_image')->default('blog_thumbnail_image.jpg');
-            $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();
         });

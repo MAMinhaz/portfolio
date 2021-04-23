@@ -82,7 +82,6 @@
                                     <th>Service List Number 4</th>
                                     <th>Service List Number 5</th>
                                     <th>Service List Number 6</th>
-                                    <th>Added by</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -97,7 +96,6 @@
                                         <td>{{ $service->service_list_4 }}</td>
                                         <td>{{ $service->service_list_5 }}</td>
                                         <td>{{ $service->service_list_6 }}</td>
-                                        <td>{{ users()->find($service->addedby)->name }}</td>
                                         <td>
                                             <a href="{{ route('service_edit', $service->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Service</a>
                                             <a href="{{ route('service_hard_delete', $service->id) }}" id="id" onclick="myFunction()" value="{{ $service->id }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Service</a>

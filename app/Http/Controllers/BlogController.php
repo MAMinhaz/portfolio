@@ -41,7 +41,6 @@ class BlogController extends Controller
         // data inserting
         Blog_category::insert([
             'category_name' => Str::title($request->category_name),
-            'addedby' => Auth::id(),
             'created_at' => now(),
         ]);
         return back()->with('blog_cat_added', 'Congratulation You have added a new category for your blog posts.');
@@ -141,7 +140,6 @@ class BlogController extends Controller
             "title" => Str::title($request->title),
             "category_id" => $request->category_id,
             "description" => $request->description,
-            "addedby" => Auth::id(),
             "created_at" => now(),
         ]);
 

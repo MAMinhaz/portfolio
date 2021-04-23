@@ -19,7 +19,6 @@ class CreateTestimonialsTable extends Migration
             $table->string('designation');
             $table->string('testimonial');
             $table->string('testimonial_image')->default('testimonial_image_default.jpg');
-            $table->integer('addedby');
             $table->integer('show_status')->default(1);
             $table->softDeletes();
             $table->timestamps();

@@ -44,7 +44,6 @@ class ContactinfoController extends Controller
                 'email' => $request->email,
                 'cell_number' => $request->cell_number,
                 'address' => $request->address,
-                'addedby' => Auth::id(),
                 'created_at' => now(),
             ]);
 
@@ -88,7 +87,6 @@ class ContactinfoController extends Controller
             'email' => $request->email,
             'cell_number' => $request->cell_number,
             'address' => $request->address,
-            'addedby' => Auth::id(),
             'updated_at' => now(),
         ]);
 
@@ -160,7 +158,6 @@ class ContactinfoController extends Controller
             Sociallink::insert([
                 'link_name' => $request->link_name,
                 'link' => $request->link,
-                'addedby' => Auth::id(),
                 'created_at' => now(),
             ]);
 

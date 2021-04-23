@@ -10,5 +10,9 @@ class AboutMeDes extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['about_me_des', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'about_me_des',
+        'created_at',
+        'updated_at'
+    ];
 }

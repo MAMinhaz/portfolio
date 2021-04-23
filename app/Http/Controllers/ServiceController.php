@@ -54,7 +54,6 @@ class ServiceController extends Controller
             'service_list_4' => Str::title($request->service_list_4),
             'service_list_5' => Str::title($request->service_list_5),
             'service_list_6' => Str::title($request->service_list_6),
-            'addedby' => Auth::user()->id,
             'created_at' => Carbon::now(),
         ]);
         // inserting data
@@ -99,7 +98,6 @@ class ServiceController extends Controller
             'service_list_4' => Str::title($request->service_list_4),
             'service_list_5' => Str::title($request->service_list_5),
             'service_list_6' => Str::title($request->service_list_6),
-            'addedby' => Auth::user()->id,
             'updated_at' => Carbon::now(),
         ]);
         // editing data

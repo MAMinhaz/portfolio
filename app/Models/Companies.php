@@ -10,5 +10,9 @@ class Companies extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['company_name', 'company_logo', 'addedby', 'show_status'];
+    protected $fillable = [
+        'company_name', 
+        'company_logo', 
+        'show_status'
+    ];
 }

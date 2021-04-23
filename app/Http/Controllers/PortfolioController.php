@@ -67,7 +67,6 @@ class PortfolioController extends Controller
             'date' => $request->date,
             'clients' => $request->clients,
             'category_id' => $request->category_id,
-            'addedby' => Auth::id(),
             'created_at' => now(),
         ]);
         // inserting data to portfolio table end
@@ -100,7 +99,6 @@ class PortfolioController extends Controller
                 PortfoImages::insert([
                     'portfo_id' => $portfo_id,
                     'portfo_image' => $picture_name,
-                    'addedby' => Auth::id(),
                     'created_at' => now(),
                 ]);
             }
@@ -172,7 +170,6 @@ class PortfolioController extends Controller
         ]);
         PortfoCategory::insert([
             'category_name' => $request->category_name,
-            'addedby' => Auth::id(),
             'created_at' => now(),
         ]);
         return redirect()->route('portfolio_index')->with('portfo_cat_done', 'Your have added a new category for your portfolios ');

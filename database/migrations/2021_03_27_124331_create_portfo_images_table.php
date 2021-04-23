@@ -17,7 +17,6 @@ class CreatePortfoImagesTable extends Migration
             $table->id();
             $table->integer('portfo_id');
             $table->string('portfo_image')->default('portfo_image_default.jpg');
-            $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();
         });

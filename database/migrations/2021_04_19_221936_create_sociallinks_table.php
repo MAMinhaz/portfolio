@@ -17,7 +17,6 @@ class CreateSociallinksTable extends Migration
             $table->id();
             $table->string('link_name');
             $table->string('link');
-            $table->integer('addedby');
             $table->integer('show_status')->default(1);
             $table->softDeletes();
             $table->timestamps();

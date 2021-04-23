@@ -19,7 +19,6 @@ class SociallinkSeeder extends Seeder
         DB::table('sociallinks')->insert([
             'link_name' => $faker->name,
             'link' => $faker->url,
-            'addedby' => 1,
             'created_at' => now(),
         ]);
     }

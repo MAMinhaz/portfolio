@@ -18,7 +18,6 @@ class CreateContactinfosTable extends Migration
             $table->string('email')->unique()->nullable();
             $table->bigInteger('cell_number')->unique()->nullable();
             $table->string('address')->unique()->nullable();
-            $table->integer('addedby');
             $table->integer('show_status')->default(1);
             $table->softDeletes();
             $table->timestamps();

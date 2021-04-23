@@ -82,7 +82,6 @@
                                         <th>Serial number</th>
                                         <th>Blog Category Name</th>
                                         <th>Blog Name</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -94,7 +93,6 @@
                                             <td>{{ $loop->index ++ }}</td>
                                             <td>{{ $blog_cat->category_name }}</td>
                                             <td>{{ $blog_cat->blog_id }}</td>
-                                            <td>{{ users()->find($blog_cat->addedby)->name }}</td>
                                             <td>
                                                 @isset($blog_cat->created_at)
                                                     <li>Date : {{ $blog_cat->created_at->format('d:m:Y') }}</li>

@@ -49,7 +49,6 @@ class AboutMeController extends Controller
                 // inserting data
                 AboutMeDes::insert([
                     'about_me_des' => Str::title($request->about_me_des),
-                    'addedby' => Auth::user()->id,
                     'created_at' => Carbon::now(),
                 ]);
                 // inserting data
@@ -80,7 +79,6 @@ class AboutMeController extends Controller
         // editing data start
         AboutMeDes::findOrFail($request->input('value'))->update([
             'about_me_des' => Str::title($request->about_me_des),
-            'addedby' => Auth::user()->id,
             'updated_at' => Carbon::now(),
         ]);
         // editing data end
@@ -122,7 +120,6 @@ class AboutMeController extends Controller
             AboutMeSkill::insert([
                 'skill_name' => Str::title($request->skill_name),
                 'skill_percent' => $request->skill_percent,
-                'addedby' => Auth::user()->id,
                 'created_at' => Carbon::now(),
             ]);
             // inserting data
@@ -153,7 +150,6 @@ class AboutMeController extends Controller
         AboutMeSkill::findOrFail($request->input('value'))->update([
             'skill_name' => Str::title($request->skill_name),
             'skill_percent' => $request->skill_percent,
-            'addedby' => Auth::user()->id,
             'updated_at' => Carbon::now(),
         ]);
         // updating data
@@ -202,7 +198,6 @@ class AboutMeController extends Controller
                 AboutMeMilestone::insert([
                     'milestone_name' => Str::title($request->milestone_name),
                     'milestone_digit' => $request->milestone_digit,
-                    'addedby' => Auth::user()->id,
                     'created_at' => Carbon::now(),
                 ]);
                 // inserting data
@@ -235,7 +230,6 @@ class AboutMeController extends Controller
         AboutMeMilestone::findOrFail($request->input('value'))->update([
             'milestone_name' => Str::title($request->milestone_name),
             'milestone_digit' => $request->milestone_digit,
-            'addedby' => Auth::user()->id,
             'updated_at' => Carbon::now(),
         ]);
         // updating data

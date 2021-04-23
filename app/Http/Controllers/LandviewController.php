@@ -71,7 +71,6 @@ class LandviewController extends Controller
         // inserting data
         $id = Landview::insertGetId([
             'name' => Str::title($request->name),
-            'addedby' => Auth::id(),
             'created_at' => now(),
         ]);
 

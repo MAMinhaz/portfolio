@@ -10,5 +10,10 @@ class AboutMeSkill extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['skill_name', 'skill_percent', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'skill_name',
+        'skill_percent',
+        'created_at',
+        'updated_at'
+    ];
 }

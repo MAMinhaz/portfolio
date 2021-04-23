@@ -17,7 +17,6 @@ class CreateLandviewsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('landview_image')->default('landview_image_default.jpg');
-            $table->integer('addedby');
             $table->softDeletes();
             $table->timestamps();
         });

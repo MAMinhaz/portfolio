@@ -13,7 +13,8 @@ class Sociallink extends Model
     protected $fillable = [
         'link_name',
         'link',
-        'addedby',
         'show_status',
+        'created_at',
+        'updated_at',
     ];
 }

@@ -17,7 +17,6 @@ class Blog_categorySeeder extends Seeder
     {
         Blog_category::insert([
             'category_name' => "new category",
-            'addedby' => 1,
             'created_at' => now(),
         ]);
     }

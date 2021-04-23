@@ -18,7 +18,6 @@ class Blog_postSeeder extends Seeder
             'title' => 'this is title',
             'category_id' => 1,
             'description' => 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia, magnam iure voluptatibus quia sunt excepturi inventore unde illo perspiciatis voluptatem in id accusantium atque enim, dolore at amet sint similique.',
-            'addedby' => 1,
         ]);
     }
 }

@@ -60,7 +60,6 @@
                                     <th>Hero's Name</th>
                                     <th>Hero's professions</th>
                                     <th>Hero's Display picture</th>
-                                    <th>Added by</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -77,7 +76,6 @@
                                         <td>
                                             <img src="{{ asset('dash') }}/uploads/landview_image/{{ $landview->landview_image }}" class="img-fluid" alt="image not found">
                                         </td>
-                                        <td>{{ users()->find($landview->addedby)->name }}</td>
                                         <td>
                                             <a href="{{ route('landview_hard_delete', $landview->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Hero Info</a>
                                         </td>

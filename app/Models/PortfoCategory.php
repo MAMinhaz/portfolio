@@ -10,5 +10,9 @@ class PortfoCategory extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['category_name', 'created_at', 'updated_at'];
+    protected $fillable = [
+    'category_name', 
+    'created_at', 
+    'updated_at'
+    ];
 }

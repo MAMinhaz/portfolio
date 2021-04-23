@@ -16,7 +16,6 @@ class Portfolio_categorySeeder extends Seeder
     {
         PortfoCategory::insert([
             'category_name' => "new category",
-            'addedby' => 1,
             'created_at' => now(),
         ]);
     }

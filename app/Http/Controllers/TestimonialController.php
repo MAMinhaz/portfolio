@@ -42,7 +42,6 @@ class TestimonialController extends Controller
             "testimonial_given" => $request->testimonial_given,
             "designation" => $request->designation,
             "testimonial" => $request->testimonial,
-            "addedby" => Auth::id(),
             "show_status" => 1,
             "created_at" => now(),
         ]);
@@ -181,7 +180,6 @@ class TestimonialController extends Controller
         // inserting data
         $company_id = Companies::insertGetId([
             "company_name" => $request->company_name,
-            "addedby" => Auth::id(),
             "created_at" => now(),
         ]);
 

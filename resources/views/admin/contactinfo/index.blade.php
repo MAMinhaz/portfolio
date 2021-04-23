@@ -129,7 +129,6 @@
                                         <th>Email Address</th>
                                         <th>Contact Number</th>
                                         <th>Your Address</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -142,7 +141,6 @@
                                             <td>{{ $contact->email }}</td>
                                             <td>{{ $contact->cell_number }}</td>
                                             <td>{{ $contact->address }}</td>
-                                            <td>{{ users()->find($contact->addedby)->name }}</td>
                                             <td>
                                                 @isset($contact->created_at)
                                                     <li>Date : {{ $contact->created_at->format('d:m:Y') }}</li>
@@ -272,7 +270,6 @@
                                         <th>Serial number</th>
                                         <th>Social Link Name</th>
                                         <th>Social Link</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -284,7 +281,6 @@
                                             <td>{{ $loop->index ++ }}</td>
                                             <td>{{ $link->link_name }}</td>
                                             <td>{{ $link->link }}</td>
-                                            <td>{{ users()->find($link->addedby)->name }}</td>
                                             <td>
                                                 @isset($link->created_at)
                                                     <li>Date : {{ $link->created_at->format('d:m:Y') }}</li>

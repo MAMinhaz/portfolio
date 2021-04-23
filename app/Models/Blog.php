@@ -17,7 +17,6 @@ class Blog extends Model
         "category_id",
         "description",
         "blog_thumbnail_image",
-        "addedby",
     ];
 
     public function blog_category(){

@@ -115,7 +115,6 @@
                                         <th>Blog Title</th>
                                         <th>Blog Category Name</th>
                                         <th>Blog Thumbnail Picture</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -130,7 +129,6 @@
                                             <td>
                                                 <img src="{{ asset('uploads') }}/blog/blog_thumbnail_image/{{ $blog->blog_thumbnail_image }}" alt="Blog Thumbnail Picture Not Found" class="img-fluid">
                                             </td>
-                                            <td>{{ users()->find($blog->addedby)->name }}</td>
                                             <td>
                                                 @isset($blog->created_at)
                                                     <li>Date : {{ $blog->created_at->format('d:m:Y') }}</li>

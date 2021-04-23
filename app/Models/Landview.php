@@ -11,7 +11,11 @@ class Landview extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['title', 'name', 'landview_image'];
+    protected $fillable = [
+        'title', 
+        'name', 
+        'landview_image'
+    ];
 
     public function heroProfessions(){
         return $this->hasMany(Landview_profession::class, 'landview_id', 'id');

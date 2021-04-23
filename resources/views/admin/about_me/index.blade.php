@@ -95,7 +95,6 @@
                                     <tr>
                                         <th>Serial number</th>
                                         <th>About Me Description</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -106,7 +105,6 @@
                                         <tr>
                                             <td>{{ $loop->index ++ }}</td>
                                             <td>{{ $about_me_des->about_me_des }}</td>
-                                            <td>{{ users()->find($about_me_des->addedby)->name }}</td>
                                             <td>
                                                 @isset($about_me_des->created_at)
                                                     <li>Time : {{ $about_me_des->created_at->format('h:i:s A') }}</li>
@@ -236,7 +234,6 @@
                                         <th>Serial number</th>
                                         <th>Skill Name</th>
                                         <th>Skill Percent</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -248,7 +245,6 @@
                                             <td>{{ $loop->index ++ }}</td>
                                             <td>{{ $about_me_skill->skill_name }}</td>
                                             <td>{{ $about_me_skill->skill_percent }}%</td>
-                                            <td>{{ users()->find($about_me_skill->addedby)->name }}</td>
                                             <td>
                                                 @isset($about_me_skill->created_at)
                                                     <li>Time : {{ $about_me_skill->created_at->format('h:i:s A') }}</li>
@@ -389,7 +385,6 @@
                                         <th>Serial number</th>
                                         <th>Milestone Name</th>
                                         <th>Milestone digit</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -401,7 +396,6 @@
                                             <td>{{ $loop->index ++ }}</td>
                                             <td>{{ $about_me_ms->milestone_name }}</td>
                                             <td>{{ $about_me_ms->milestone_digit }}</td>
-                                            <td>{{ users()->find($about_me_ms->addedby)->name }}</td>
                                             <td>
                                                 @isset($about_me_ms->created_at)
                                                     <li>Time : {{ $about_me_ms->created_at->format('h:i:s A') }}</li>

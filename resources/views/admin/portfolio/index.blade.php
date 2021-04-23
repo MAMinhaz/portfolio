@@ -85,7 +85,6 @@
                                     <tr>
                                         <th>Serial number</th>
                                         <th>Portfolio Category Name</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -96,7 +95,6 @@
                                         <tr>
                                             <td>{{ $loop->index ++ }}</td>
                                             <td>{{ $portfo_cat->category_name }}</td>
-                                            <td>{{ users()->find($portfo_cat->addedby)->name }}</td>
                                             <td>
                                                 @isset($portfo_cat->created_at)
                                                     <li>Time : {{ $portfo_cat->created_at->format('h:i:s A') }}</li>
@@ -264,7 +262,6 @@
                                         <th>Category</th>
                                         <th>Thumbnail Image</th>
                                         <th>Portfolio Image</th>
-                                        <th>Added by</th>
                                         <th>Created At</th>
                                         <th>Updated At</th>
                                         <th>Actions</th>
@@ -291,7 +288,6 @@
                                                     <p>nai</p>
                                                 @endforelse
                                             </td>
-                                            <td>{{ users()->find($portfo->addedby)->name }}</td>
                                             <td>
                                                 @isset($portfo->created_at)
                                                     <li>Time : {{ $portfo->created_at->format('h:i:s A') }}</li>

@@ -10,7 +10,16 @@ class Portfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    protected $fillable = ['title', 'description', 'date', 'clients', 'category_id', 'addedby', 'thumbnail_image', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'title', 
+        'description', 
+        'date', 
+        'clients', 
+        'category_id', 
+        'thumbnail_image', 
+        'created_at', 
+        'updated_at'
+    ];
 
     public function portfolio_image(){
         return $this->hasMany(PortfoImages::class, 'portfo_id', 'id');
