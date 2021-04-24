@@ -2,11 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\Blog_category;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
-class Blog_categorySeeder extends Seeder
+class PortfolioCategorySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +14,10 @@ class Blog_categorySeeder extends Seeder
      */
     public function run()
     {
-        Blog_category::insert([
-            'category_name' => "new category",
+        $faker = \Faker\Factory::create();
+
+        DB::table('portfo_categories')->insert([
+            'category_name' => $faker->word,
             'created_at' => now(),
         ]);
     }

@@ -2,12 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\Sociallink;
-use App\Models\Contactinfo;
+use Database\Seeders\BlogPost;
 use Illuminate\Database\Seeder;
-use Database\Seeders\Blog_postSeeder;
-use Database\Seeders\Blog_categorySeeder;
+use Database\Seeders\HeroSeeder;
+use Database\Seeders\BlogCategory;
+use Database\Seeders\AboutMeSeeder;
+use Database\Seeders\ServiceSeeder;
+use Database\Seeders\GetInTouchSeeder;
+use Database\Seeders\SociallinkSeeder;
+use Database\Seeders\ContactinfoSeeder;
+use Database\Seeders\TestimonialSeeder;
 use Database\Seeders\Front_customizeSeeder;
+use Database\Seeders\PortfolioDetailsSeeder;
+use Database\Seeders\PortfolioCategorySeeder;
+use Database\Seeders\TestimonialCompanySeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -19,11 +28,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            Portfolio_categorySeeder::class,
-            Blog_categorySeeder::class,
+            AboutMeSeeder::class,
+            BlogCategorySeeder::class,
+            BlogPostSeeder::class,
+            ContactinfoSeeder::class,
             Front_customizeSeeder::class,
-            Contactinfo::class,
-            Sociallink::class,
+            GetInTouchSeeder::class,
+            HeroSeeder::class,
+            PortfolioCategorySeeder::class,
+            PortfolioDetailsSeeder::class,
+            ServiceSeeder::class,
+            SociallinkSeeder::class,
+            TestimonialSeeder::class,
+            TestimonialCompanySeeder::class,
         ]);
     }
 }

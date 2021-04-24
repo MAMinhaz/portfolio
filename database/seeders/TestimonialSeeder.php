@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SociallinkSeeder extends Seeder
+class TestimonialSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,11 @@ class SociallinkSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('sociallinks')->insert([
-            'link_name' => $faker->title,
-            'link' => $faker->url,
+        DB::table('testimonials')->insert([
+            'testimonial_given' => $faker->name,
+            'designation' => $faker->jobTitle,
+            'testimonial' => $faker->sentence,
+            'show_status' => $faker->numberBetween(1, 2),
             'created_at' => now(),
         ]);
     }

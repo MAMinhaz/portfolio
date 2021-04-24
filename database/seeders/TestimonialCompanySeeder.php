@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\CustomFrontend;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class Front_customizeSeeder extends Seeder
+class TestimonialCompanySeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,10 +16,9 @@ class Front_customizeSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        CustomFrontend::insert([
-            'job_title' => $faker->title,
-            'site_name' => $faker->name,
-            'portfolio_theme' => $faker->numberBetween(1,2),
+        DB::table('companies')->insert([
+            'company_name' => $faker->company,
+            'show_status' => $faker->numberBetween(1, 2),
             'created_at' => now(),
         ]);
     }

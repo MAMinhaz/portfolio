@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SociallinkSeeder extends Seeder
+class GetInTouchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,11 @@ class SociallinkSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('sociallinks')->insert([
-            'link_name' => $faker->title,
-            'link' => $faker->url,
+        DB::table('contactinfos')->insert([
+            'email' => $faker->safeEmail,
+            'cell_number' => $faker->numberBetween(1,99999999999),
+            'address' => $faker->address,
+            'show_status' => $faker->numberBetween(1,2),
             'created_at' => now(),
         ]);
     }

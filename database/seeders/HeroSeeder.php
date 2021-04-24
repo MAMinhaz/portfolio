@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class SociallinkSeeder extends Seeder
+class HeroSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,9 +16,14 @@ class SociallinkSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('sociallinks')->insert([
-            'link_name' => $faker->title,
-            'link' => $faker->url,
+        $id = DB::table('landviews')->insertGetId([
+            'name' => $faker->name,
+            'created_at' => now(),
+        ]);
+
+        DB::table('landview_professions')->insert([
+            'landview_id' => $id,
+            'profession_name' => $faker->name,
             'created_at' => now(),
         ]);
     }
