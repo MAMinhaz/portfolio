@@ -1,3 +1,6 @@
+@php
+    error_reporting(0);
+@endphp
 @extends('layouts.admin')
 
 @section('admin_content')
@@ -408,13 +411,4 @@
                         </div><!-- /.modal-content -->
                     </div><!-- /.modal-dialog -->
                 </div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        //Near checkboxes
-        $('.product-list').click(function() {
-            $(this).siblings('input:checkbox').prop('checked', false);
-        });
-    </script>
 @endsection

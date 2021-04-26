@@ -20,7 +20,7 @@
                 <!-- end page title end breadcrumb -->
 
                 {{-- portfolio category block start --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="porfolio_category" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Portfolio's Category</h4>
                     <div class="row">
                         <div class="col-md-12">
@@ -125,7 +125,7 @@
 
 
                 {{-- portfolio details block start --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="portfolio_details" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Portfolio's Details</h4>
                     <div class="row">
                         <div class="col-md-12">

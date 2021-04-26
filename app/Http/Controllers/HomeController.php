@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use App\Models\Portfo;
+use App\Models\Contact;
 use App\Models\Landview;
 use App\Models\Companies;
 use App\Models\AboutMeDes;
@@ -37,20 +38,22 @@ class HomeController extends Controller
      */
     public function admin_dashboard()
     {
-        // return Service_title::latest()->get();
         // return Landview::latest()->get();
         // return AboutMeDes::latest()->get();
-        // return AboutMeMilestone::latest()->get();
-        // return AboutMeSkill::latest()->get();
         // return PortfoCategory::latest()->get();
         // return Portfo::latest()->get();
-        // return Testimonial::latest()->get();
-        // return Companies::latest()->get();
         // return Blog_category::latest()->get();
-        // return Blog::latest()->get();
         // return Contactinfo::latest()->get();
         // return CustomFrontend::latest()->get();
         // return Sociallink::latest()->get();
-        return view('home');
+        return view('home', [
+            'services' => Service_title::select('id')->count(),
+            'about_me_skill' => AboutMeSkill::select('id')->count(),
+            'testimonial' => Testimonial::select('id')->count(),
+            'company' => Companies::select('id')->count(),
+            'blog' => Blog::select('id')->count(),
+            'contact_message' => Contact::select('id')->count(),
+            'milestone' => AboutMeMilestone::select('id')->count(),
+        ]);
     }
 }

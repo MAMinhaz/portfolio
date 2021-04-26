@@ -21,7 +21,7 @@
 
 
                 {{-- testimonial block start --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="testimonials" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Testimonial</h4>
                     <div class="row">
                         <div class="col-md-12">
@@ -186,7 +186,7 @@
 
 
                 {{-- companies block  --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="company" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Companies</h4>
                     <div class="row">
                         <div class="col-md-12">

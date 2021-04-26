@@ -26,12 +26,12 @@ class ServiceController extends Controller
         // validating inputs
         $request->validate([
             'service_title' => ['alpha_spaces', 'string', 'unique:service_titles,service_title'],
-            'service_list_1' => ['string', 'unique:service_titles,service_list_1'],
-            'service_list_2' => ['string', 'unique:service_titles,service_list_2'],
-            'service_list_3' => ['string', 'unique:service_titles,service_list_3'],
-            'service_list_4' => ['string', 'unique:service_titles,service_list_4'],
-            'service_list_5' => ['string', 'unique:service_titles,service_list_5'],
-            'service_list_6' => ['string', 'unique:service_titles,service_list_6'],
+            'service_list_1' => ['string', 'unique:service_titles,service_list_1', 'nullable'],
+            'service_list_2' => ['string', 'unique:service_titles,service_list_2', 'nullable'],
+            'service_list_3' => ['string', 'unique:service_titles,service_list_3', 'nullable'],
+            'service_list_4' => ['string', 'unique:service_titles,service_list_4', 'nullable'],
+            'service_list_5' => ['string', 'unique:service_titles,service_list_5', 'nullable'],
+            'service_list_6' => ['string', 'unique:service_titles,service_list_6', 'nullable'],
         ],
         
         $messages = [

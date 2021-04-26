@@ -16,36 +16,31 @@
                                 <a href="#"><i class="fi-box"></i>Portfolio Contents</a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="{{ route('landview') }}">Landing Hero Block</a>
-                                    </li>
-
-                                    <li>
                                         <a href="{{ route('service') }}">Service Block</a>
                                     </li>
 
                                     <li class="has-submenu">
                                         <a href="{{ route('aboutme') }}">About Me Block</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('aboutme') }}">About Me Description</a></li>
-                                            <li><a href="{{ route('aboutme') }}">About Me Skills</a></li>
-                                            <li><a href="{{ route('aboutme') }}">About Me Milestontes</a></li>
+                                            <li><a href="{{ route('aboutme') }}#about_me_des">About Me Description</a></li>
+                                            <li><a href="{{ route('aboutme') }}#about_me_skill">About Me Skills</a></li>
+                                            <li><a href="{{ route('aboutme') }}#about_me_ms">About Me Milestontes</a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-submenu">
                                         <a href="{{ route('portfolio_index') }}">Portfolio Block</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('portfolio_index') }}">About Me Description</a></li>
-                                            <li><a href="{{ route('portfolio_index') }}">About Me Skills</a></li>
-                                            <li><a href="{{ route('portfolio_index') }}">About Me Milestontes</a></li>
+                                            <li><a href="{{ route('portfolio_index') }}#porfolio_category">Portfolio Category</a></li>
+                                            <li><a href="{{ route('portfolio_index') }}#portfolio_details">Portfolios Details</a></li>
                                         </ul>
                                     </li>
 
                                     <li class="has-submenu">
                                         <a href="{{ route('testimonial_index') }}">Testmonial Block</a>
                                         <ul class="submenu">
-                                            <li><a href="{{ route('testimonial_index') }}">Testimonials</a></li>
-                                            <li><a href="{{ route('testimonial_index') }}">Companies</a></li>
+                                            <li><a href="{{ route('testimonial_index') }}#testimonials">Testimonials</a></li>
+                                            <li><a href="{{ route('testimonial_index') }}#company">Companies</a></li>
                                         </ul>
                                     </li>
 
@@ -64,18 +59,22 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="fi-box"></i>Customize Frontend</a>
+                                <a href="#"><i class="fi-box"></i>Site Setting</a>
                                 <ul class="submenu">
 
                                     <li>
-                                        <a href="{{ route('front_customize_index') }}">Customize Frontend</a>
+                                        <a href="{{ route('landview') }}">Portfoilio Hero Info</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="{{ route('front_customize_index') }}">Customize Your Site</a>
                                     </li>
 
                                     <li class="has-submenu">
-                                        <a href="#">Customize Your Contact Information</a>
+                                        <a href="">Your Contact Informations</a>
                                         <ul class="submenu">
-                                            <a href="{{ route('f_contactinfo_index') }}">Customize Your Contact Information</a>
-                                            <a href="{{ route('f_contactinfo_index') }}">Customize Your Social Links</a>
+                                            <a href="{{ route('f_contactinfo_index') }}#main_contact_information">Customize Contact Informations</a>
+                                            <a href="{{ route('f_contactinfo_index') }}#social_links">Customize Social Links</a>
                                         </ul>
                                     </li>
                                 </ul>

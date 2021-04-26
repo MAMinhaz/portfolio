@@ -46,10 +46,10 @@ class CustomFrontendController extends Controller
                 "site_name" => ['string', 'required'],
                 "portfolio_logo" => ['image', 'required'],
                 "cv" => ['nullable'],
-                "mockup_image" => ['image', 'required'],
-                "hire_me_image" => ['image', 'required'],
-                "testimonial_image" => ['image', 'required'],
-                "get_in_touch_image" => ['image', 'required'],
+                "mockup_image" => ['image'],
+                "hire_me_image" => ['image'],
+                "testimonial_image" => ['image'],
+                "get_in_touch_image" => ['image'],
             ]);
 
             // data upload
@@ -129,10 +129,10 @@ class CustomFrontendController extends Controller
                     'get_in_touch_image' => $picture_name,
                     'updated_at' => now(),
                 ]);
+            }
 
                 // customized completed
                 return redirect()->route('front_customize_index')->with('front_customized', 'You successfullyl customized your portfolio website.');
-            }
         }
     }
 

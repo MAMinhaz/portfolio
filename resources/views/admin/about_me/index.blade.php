@@ -21,7 +21,7 @@
 
 
                 {{-- about me description block start --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="about_me_des" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">About Me - Description</h4>
                     <div class="row">
                         <div class="col-md-12">
@@ -135,7 +135,7 @@
 
 
                 {{-- about me skill block start --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="about_me_skill" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">About Me - Skills</h4>
                     <div class="row">
                         <div class="col-md-12">
@@ -275,7 +275,7 @@
 
 
                 {{-- about me milestone block start --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="about_me_ms" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">About Me - Milestone</h4>
                     <div class="row">
                         <div class="col-md-12">

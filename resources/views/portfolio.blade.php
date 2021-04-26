@@ -159,7 +159,7 @@
             </div><!--  /.row -->
         </div><!--  /.container-fluid -->
         <div class="hg-background">
-            <div class="hg-background-image" data-bg-image="{{ asset('front') }}/assets/images/banner/hero-banner-2.jpg"></div><!--  /.hg-background-image -->
+            <div class="hg-background-image" data-bg-image="{{ asset('front') }}/assets/images/banner/hero-banner.jpg"></div><!--  /.hg-background-image -->
         </div><!--  /.hg-background -->
     </section><!--  /.hero-block -->
 

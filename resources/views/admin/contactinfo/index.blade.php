@@ -21,7 +21,7 @@
 
 
                 {{-- Contact Information block --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="main_contact_information" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Social Links</h4>
                     <div class="row">
                         <div class="col-md-12">
@@ -172,7 +172,7 @@
 
 
                 {{-- Social Links block --}}
-                <div class="card m-b-20 card-block mt-3 mb-3">
+                <div id="social_links" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Contact Informations</h4>
                     <div class="row">
                         <div class="col-md-12">
