@@ -16,11 +16,13 @@ class BlogPostSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('blogs')->insert([
-            'title' => $faker->title,
-            'category_id' => 1,
-            'description' => $faker->realText,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=20 ; $i++) { 
+            DB::table('blogs')->insert([
+                'title' => $faker->title,
+                'category_id' => $faker->numberBetween(1, 10),
+                'description' => $faker->realText,
+                'created_at' => now(),
+            ]);
+        }
     }
 }

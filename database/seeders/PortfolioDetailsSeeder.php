@@ -16,12 +16,14 @@ class PortfolioDetailsSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('portfos')->insert([
-            'title' => $faker->title,
-            'description' => $faker->realText,
-            'date' => $faker->dateTime,
-            'clients' => $faker->userName,
-            'category_id' => 1,
-        ]);
+        for ($i=1; $i<=13 ; $i++) { 
+            DB::table('portfos')->insert([
+                'title' => $faker->title,
+                'description' => $faker->realText,
+                'date' => $faker->dateTime,
+                'clients' => $faker->userName,
+                'category_id' => $faker->numberBetween($min = 1, $max = 10),
+            ]);
+        }
     }
 }

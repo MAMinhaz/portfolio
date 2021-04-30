@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Create New Blog
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -29,7 +33,7 @@
 
                         <div class="form-group">
                             <label>Blog Title</label>
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="title" required>
                             <br>
 
                             @error('title')
@@ -47,7 +51,7 @@
 
                         <div class="form-group">
                             <label>Blog Category</label>
-                            <select class="form-control" name="category_id">
+                            <select class="form-control" name="category_id" required>
                                 <option value="1">Select Blog Category</option>
                                 @foreach($blog_cats as $blog_cat)
                                     <option value="{{ $blog_cat->id }}">{{ $blog_cat->category_name }}</option>
@@ -70,7 +74,7 @@
 
                         <div class="form-group">
                             <label>Blog Details</label>
-                            <textarea id="elm1" name="description"></textarea>
+                            <textarea id="elm1" name="description" required></textarea>
                             <br>
 
                             @error('description')

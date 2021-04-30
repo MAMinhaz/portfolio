@@ -9,27 +9,21 @@ use App\Models\PortfoImages;
 use Illuminate\Http\Request;
 use App\Models\Service_title;
 use App\Models\PortfoCategory;
-use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use Symfony\Component\Console\Input\Input;
 
 class PortfolioController extends Controller
-{    
+{
     /**
-     * portfolio home page
+     * Create a new controller instance.
      *
      * @return void
      */
-    function portfolio(){
-        // view main portfolio page start
-        return view('portfolio', [
-            'landviews' => Landview::all(),
-            'services' => Service_title::all(),
-            'about_me_des' => AboutMeDes::all(),
-        ]);
-        // view main portfolio page end
+    public function __construct()
+    {
+        $this->middleware('auth');
     }
-    
+
+
     /**
      * portfolio content index
      *
@@ -42,6 +36,7 @@ class PortfolioController extends Controller
             'porfo_images' => PortfoImages::all(),
         ]);
     }
+
 
     /**
      * portfolio content create post
@@ -58,7 +53,6 @@ class PortfolioController extends Controller
             'clients' => ['string'],
             'category_id' => ['numeric'],
         ]);
-        // input validation end
 
         // inserting data to portfolio table start
         $portfo_id = Portfo::insertGetId([
@@ -69,7 +63,6 @@ class PortfolioController extends Controller
             'category_id' => $request->category_id,
             'created_at' => now(),
         ]);
-        // inserting data to portfolio table end
 
         // portfolio thumbnail image upload start
         if ($request->hasFile('thumbnail_image')){
@@ -82,7 +75,6 @@ class PortfolioController extends Controller
                 'updated_at' => now(),
             ]);
         }
-        // portfolio thumbnail image upload end
 
         // Multiple image upload start
         if($request->hasFile('portfo_image')){
@@ -103,11 +95,17 @@ class PortfolioController extends Controller
                 ]);
             }
         }
-        // Multiple image upload end
 
         return redirect()->route('portfolio_index')->with('portfo_details_done', 'Your have added a new portfolio for your portfolios ');
     }
 
+
+    /**
+     * portfolio edit
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function portfolio_edit($id){
         return view('admin.portfolio.portfolio_content.edit', [
             'portfo_details' => Portfo::findOrFail($id),
@@ -139,6 +137,13 @@ class PortfolioController extends Controller
         return redirect()->route('portfolio_index')->with('portfo_details_edit_done', 'Your have edited an existing portfolio for your portfolios ');
     }
 
+
+    /**
+     * portfolio hard delete
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function portfolio_hard_delete($id){
         // portfolio data to delete
         $portfolio = Portfo::findOrFail($id);
@@ -164,34 +169,62 @@ class PortfolioController extends Controller
         return redirect()->route('portfolio_index')->with('portfo_details_deleted', 'Your have deleted an existing portfolio for your portfolios ');
     }
 
+
+    /**
+     * portfolio category create post
+     *
+     * @param  mixed $request
+     * @return void
+     */
     function portfolio_cat_create_post(Request $request){
         $request->validate([
             'category_name' => ['alpha_spaces', 'unique:portfo_categories,category_name'],
         ]);
         PortfoCategory::insert([
-            'category_name' => $request->category_name,
+            'category_name' => Str::title($request->category_name),
             'created_at' => now(),
         ]);
         return redirect()->route('portfolio_index')->with('portfo_cat_done', 'Your have added a new category for your portfolios ');
     }
 
+
+    /**
+     * portfolio category edit
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function portfolio_cat_edit($id){
         return view('admin.portfolio.portfolio_category.edit', [
             'portfolio_category' => PortfoCategory::findOrFail($id),
         ]);
     }
 
+
+    /**
+     * portfolio category edit post
+     *
+     * @param  mixed $request
+     * @return void
+     */
     function portfolio_cat_edit_post(Request $request){;
         $request->validate([
             'category_name' => ['alpha_spaces', 'unique:portfo_categories,category_name'],
         ]);
         PortfoCategory::findOrFail($request->value)->update([
-            'category_name' => $request->category_name,
+            'category_name' => Str::title($request->category_name),
             'updated_at' => now(),
         ]);
         return redirect()->route('portfolio_index')->with('portfo_cat_edit_done', 'Your have edited an existing category of your portfolios ');
     }
 
+
+    /**
+     * portfolio category hard delete
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function portfolio_cat_hard_delete($id){
         PortfoCategory::findOrFail($id)->forceDelete();
         return redirect()->route('portfolio_index')->with('portfo_cat_destroyed', 'Your have deleted an existing category of your portfolios ');

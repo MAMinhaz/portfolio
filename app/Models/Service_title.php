@@ -10,6 +10,7 @@ class Service_title extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'service_title', 
         'service_list_1', 

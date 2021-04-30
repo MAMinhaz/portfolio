@@ -4,11 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Models\Sociallink;
 use App\Models\Contactinfo;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ContactinfoController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * frontend contact info index page
      * @return void
@@ -156,7 +167,7 @@ class ContactinfoController extends Controller
 
             // data inserting
             Sociallink::insert([
-                'link_name' => $request->link_name,
+                'link_name' => Str::title($request->link_name),
                 'link' => $request->link,
                 'created_at' => now(),
             ]);

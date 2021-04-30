@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit Social Link
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -10,10 +14,10 @@
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                        <li class="breadcrumb-item active">Portfolio - Frontend Customization</li>
+                        <li class="breadcrumb-item active">Portfolio - Portfolio Customization</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Social Links</h4>
+                <h4 class="page-title">Edit Existing Social Links</h4>
             </div>
         </div>
     </div>
@@ -23,11 +27,10 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Social Links</h4>
                     <form method="POST" action="{{ route('f_links_edit_post') }}">
                         @csrf
                         <div class="form-group">
-                            <label>Your Social Service Name</label>
+                            <label style="font-size: 130%">Your Social Service Name</label>
                             <input type="text" class="form-control" name="link_name" value="{{ $link->link_name }}">
                             <input type="hidden" value="{{ $link->id }}" name="value">
                             <br>
@@ -45,7 +48,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Your Social Profile Link</label>
+                            <label style="font-size: 130%">Your Social Profile Link</label>
                             <input type="text" class="form-control" name="link" value="{{ $link->link }}">
                             <br>
 

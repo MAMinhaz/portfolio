@@ -16,12 +16,14 @@ class TestimonialSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('testimonials')->insert([
-            'testimonial_given' => $faker->name,
-            'designation' => $faker->jobTitle,
-            'testimonial' => $faker->sentence,
-            'show_status' => $faker->numberBetween(1, 2),
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=19 ; $i++) { 
+            DB::table('testimonials')->insert([
+                'testimonial_given' => $faker->name,
+                'designation' => $faker->jobTitle,
+                'testimonial' => $faker->sentence,
+                'show_status' => $faker->numberBetween(1, 2),
+                'created_at' => now(),
+            ]);
+        }
     }
 }

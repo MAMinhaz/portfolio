@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Create New Service
+@endsection
+
 @section('admin_content')
 
                 <!-- Page-Title -->
@@ -10,10 +14,10 @@
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Portfolio - Service Section</li>
+                                    <li class="breadcrumb-item active">Portfolio - Service Block</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Service Section's Content</h4>
+                            <h4 class="page-title">Create New Service</h4>
                         </div>
                     </div>
                 </div>
@@ -22,25 +26,22 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card m-b-20 text-xs-center">
-                            <div class="card-header">
-                                Service Section's Content
-                            </div>
                             <div class="card-block">
-                                <h4 class="card-title">Create New Service</h4>
                                 <form method="POST" action="{{ route('service_create_post') }}">
                                     @csrf
+
                                     <div class="form-group">
-                                        <label>Service Title</label>
+                                        <label style="font-size: 130%">Service Title</label>
                                         <input type="text" class="form-control" name="service_title">
                                         <br>
-                                        {{-- <p>
+                                        <p>
                                             <strong>Notes your should follow to add title</strong>
                                             <mark>
                                                 <ul>
-                                                    <li>You cannot add homepage title only once. If you want to add another try to add after deleting previous title or edit it . </li>
+                                                    <li>Your Service title should be unique.</li>
                                                 </ul>
                                             </mark>
-                                        </p> --}}
+                                        </p>
 
                                         @error('service_title')
                                             <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show"
@@ -54,12 +55,11 @@
                                         @enderror
                                     </div>
 
-
                                     <div class="form-group">
                                         <div class="container">
                                             <div class="row">
                                                 <div class="col-md-4">
-                                                    <label>Service list 1</label>
+                                                    <label style="font-size: 130%">Service list 1</label>
                                                     <input type="text" class="form-control" name="service_list_1">
 
                                                     @error('service_list_1')
@@ -75,7 +75,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label>Service list 2</label>
+                                                    <label style="font-size: 130%">Service list 2</label>
                                                     <input type="text" class="form-control" name="service_list_2">
 
                                                     @error('service_list_2')
@@ -91,7 +91,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label>Service list 3</label>
+                                                    <label style="font-size: 130%">Service list 3</label>
                                                     <input type="text" class="form-control" name="service_list_3">
 
                                                     @error('service_list_3')
@@ -107,7 +107,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label>Service list 4</label>
+                                                    <label style="font-size: 130%">Service list 4</label>
                                                     <input type="text" class="form-control" name="service_list_4">
 
                                                     @error('service_list_4')
@@ -123,7 +123,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label>Service list 5</label>
+                                                    <label style="font-size: 130%">Service list 5</label>
                                                     <input type="text" class="form-control" name="service_list_5">
 
                                                     @error('service_list_5')
@@ -139,7 +139,7 @@
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <label>Service list 6</label>
+                                                    <label style="font-size: 130%">Service list 6</label>
                                                     <input type="text" class="form-control" name="service_list_6">
 
                                                     @error('service_list_6')
@@ -157,16 +157,13 @@
                                         </div>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-inverse btn-rounded w-md waves-effect waves-light">Click To Create</button>
                                 </form>
                                     <br>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="{{ route('service') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-@endsection
-
-@section('scripts')
 @endsection

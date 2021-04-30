@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit About Me Milestones
+@endsection
+
 @section('admin_content')
     <!-- Page-Title -->
     <div class="row">
@@ -9,10 +13,10 @@
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                        <li class="breadcrumb-item active">Portfolio - About Me Section</li>
+                        <li class="breadcrumb-item active">Portfolio - About Me Block</li>
                     </ol>
                 </div>
-                <h4 class="page-title">About Me Section's Content</h4>
+                <h4 class="page-title">Edit Existing Milestone</h4>
             </div>
         </div>
     </div>
@@ -22,11 +26,10 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Milestone</h4>
                     <form method="POST" action="{{ route("aboutme_ms_edit_post") }}">
                         @csrf
                         <div class="form-group">
-                            <label>Milestone Name</label>
+                            <label style="font-size: 130%">Milestone Name</label>
                             <input type="text" class="form-control" name="milestone_name" value="{{ $aboutme_ms->milestone_name }}">
                             <input type="hidden" value="{{ $aboutme_ms->id }}" name="value">
                             <br>
@@ -44,7 +47,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Milestone Digit</label>
+                            <label style="font-size: 130%">Milestone Digit</label>
                             <input type="text" class="form-control" name="milestone_digit" value="{{ $aboutme_ms->milestone_digit }}">
                             <br>
 
@@ -63,12 +66,9 @@
                         <button type="submit" class="btn btn-inverse btn-rounded w-md waves-effect waves-light">Click To Complete Edit</button>
                     </form>
                         <br>
-                    <a href="{{ route('aboutme') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
+                    <a href="{{ route('aboutme') }}#about_me_ms" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
                 </div>
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
 @endsection

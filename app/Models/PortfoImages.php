@@ -10,6 +10,7 @@ class PortfoImages extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'thumbnail_image', 
         'portfo_image', 

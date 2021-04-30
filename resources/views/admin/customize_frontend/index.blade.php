@@ -1,7 +1,8 @@
-@php
-    error_reporting(0);
-@endphp
 @extends('layouts.admin')
+
+@section('title')
+    | Customize Your Portfolio
+@endsection
 
 @section('admin_content')
 
@@ -13,7 +14,7 @@
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Portfolio</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Customize Your Portfolio</li>
+                                    <li class="breadcrumb-item active">Portfolio Customization</li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Portfolio Customization</h4>
@@ -25,7 +26,6 @@
 
                 {{-- Custoize frontend portfolio - Background Contents block --}}
                 <div class="card m-b-20 card-block mt-3 mb-3">
-                    <h4 class="card-title">Portfolio Customization</h4>
                     <div class="row">
                         <div class="col-md-12">
                             {{-- customize frontend flash message start --}}
@@ -215,9 +215,10 @@
                                 @endif
                             </div>
 
-                            {{-- customized forntend datas --}}
+                            {{-- about me description table start --}}
                             @if($datas == 0)
-                                <button type="button" class="btn btn-success btn-xs waves-effect waves-light" data-toggle="modal" data-target="#customize_form">Customize Frontend</button>
+                                <a href="#customize_form" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
+                                data-overlaySpeed="100" data-overlayColor="#36404a">Customize Frontend</a>
                             @endif
                             <hr>
 
@@ -320,10 +321,10 @@
                                     <div class="form-group m-b-0 row">
                                         <div class="offset-3 col-9">
                                             @if(!empty($custom))
-                                                <a href="{{ route('front_customize_hard_delete', $custom->id) }}" class="btn btn-purple waves-effect waves-light">Remove Old Setting</a>
+                                                <a href="{{ route('front_customize_hard_delete', $custom->id) }}" class="btn btn-danger waves-effect waves-light">Remove Old Setting</a>
                                             @endif
                                             @if($datas == 1)
-                                                <button type="submit" class="btn btn-inverse waves-effect waves-light">Request New Setting</button>
+                                                <button type="submit" class="btn btn-inverse waves-effect waves-light">Edit Old Setting</button>
                                             @endif
                                         </div>
                                     </div>
@@ -334,81 +335,75 @@
                     </div>
                 </div>
 
-                <div id="customize_form" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="full-width-modalLabel" style="display: none;">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            <div class="modal-body">
-                                <div class="card-box">
-                                    <form action="{{ route('front_customize_create_post') }}" method="post" enctype="multipart/form-data">
-                                    @csrf
 
-                                    <div class="p-10 task-detail">
-                                        <h4 class="font-600 m-b-20">Portfolio Site Customization</h4>
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Your Job Title</label>
-                                                <div class="col-9">
-                                                    <input type="text" class="form-control" name="job_title">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Your Portfolio's Logo</label>
-                                                <div class="col-9">
-                                                    <input type="file" name="portfolio_logo" id="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Portfolio Website Name</label>
-                                                <div class="col-9">
-                                                    <input type="text" class="form-control" name="site_name">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Your CV</label>
-                                                <div class="col-9">
-                                                    <input type="file" name="cv">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Mock-up Image</label>
-                                                <div class="col-9">
-                                                    <input type="file" name="mockup_image" id="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Hire Me block Background Image</label>
-                                                <div class="col-9">
-                                                    <input type="file" name="hire_me_image" id="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Testimonial block Background Image</label>
-                                                <div class="col-9">
-                                                    <input type="file" name="testimonial_image" id="">
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group row">
-                                                <label class="col-3 col-form-label">Get In Touch block Background Image</label>
-                                                <div class="col-9">
-                                                    <input type="file" name="get_in_touch_image" id="">
-                                                </div>
-                                            </div>
-                                    </div>
+                {{-- frontend contact information addition modal form --}}
+                <div id="customize_form" class="modal-demo">
+                    <button type="button" class="close" onclick="Custombox.close();">
+                        <span>&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <br>
+                    <h4 class="custom-modal-title">Portfolio Customization Form</h4>
+                    <div class="custom-modal-text">
+                        <form method="POST" action="{{ route('front_customize_create_post') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Your Job Title</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" name="job_title">
                                 </div>
                             </div>
-                                <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success waves-effect waves-light">Customize</button>
-                                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Cancel</button>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Your Portfolio's Logo</label>
+                                <div class="col-9">
+                                    <input type="file" name="portfolio_logo" id="">
                                 </div>
-                            </form>
-                        </div><!-- /.modal-content -->
-                    </div><!-- /.modal-dialog -->
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Portfolio Website Name</label>
+                                <div class="col-9">
+                                    <input type="text" class="form-control" name="site_name">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Your CV</label>
+                                <div class="col-9">
+                                    <input type="file" name="cv">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Mock-up Image</label>
+                                <div class="col-9">
+                                    <input type="file" name="mockup_image" id="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Hire Me block Background Image</label>
+                                <div class="col-9">
+                                    <input type="file" name="hire_me_image" id="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Testimonial block Background Image</label>
+                                <div class="col-9">
+                                    <input type="file" name="testimonial_image" id="">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label class="col-3 col-form-label">Get In Touch block Background Image</label>
+                                <div class="col-9">
+                                    <input type="file" name="get_in_touch_image" id="">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Customize</button>
+                        </form>
+                    </div>
                 </div>
+
 @endsection

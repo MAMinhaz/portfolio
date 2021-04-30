@@ -10,6 +10,7 @@ class Contactinfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'email',
         'cell_number',

@@ -16,21 +16,27 @@ class AboutMeSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('about_me_des')->insert([
-            'about_me_des' => $faker->paragraph,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=1 ; $i++) { 
+            DB::table('about_me_des')->insert([
+                'about_me_des' => $faker->sentence,
+                'created_at' => now(),
+            ]);
+        }
 
-        DB::table('about_me_skills')->insert([
-            'skill_name' => $faker->name,
-            'skill_percent' => $faker->numberBetween(60,100),
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=6 ; $i++) { 
+            DB::table('about_me_skills')->insert([
+                'skill_name' => $faker->name,
+                'skill_percent' => $faker->numberBetween(60,100),
+                'created_at' => now(),
+            ]);
+        }
 
-        DB::table('about_me_milestones')->insert([
-            'milestone_name' => $faker->name,
-            'milestone_digit' => $faker->numberBetween(60,100),
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=4 ; $i++) { 
+            DB::table('about_me_milestones')->insert([
+                'milestone_name' => $faker->name,
+                'milestone_digit' => $faker->numberBetween(60,100),
+                'created_at' => now(),
+            ]);
+        }
     }
 }

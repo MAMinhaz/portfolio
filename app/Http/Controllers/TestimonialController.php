@@ -5,20 +5,33 @@ namespace App\Http\Controllers;
 use App\Models\Companies;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 
 class TestimonialController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * testimonial index page
      *
      * @return void
      */
     function testimonial_index(){
+        $company = Companies::all();
+        $c_count = Companies::all()->count();
         return view('admin.testimonial.index', [
             "testimonials" => Testimonial::all(),
-            "companies" => Companies::all(),
+            "companies" => $company,
+            "count" => $c_count,
         ]);
     }
 

@@ -10,6 +10,7 @@ class Portfo extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'title', 
         'description', 
@@ -21,12 +22,23 @@ class Portfo extends Model
         'updated_at'
     ];
 
+
+    /**
+     * relationship with "PortfoImages" model
+     *
+     * @return void
+     */
     public function portfolio_image(){
         return $this->hasMany(PortfoImages::class, 'portfo_id', 'id');
     }
 
-    public function portfolio_cats(){
+
+    /**
+     * relationship with "PortfoCategory" model
+     *
+     * @return void
+     */
+    public function PortfolioCats(){
         return $this->hasOne(PortfoCategory::class, 'id', 'category_id');
     }
-
 }

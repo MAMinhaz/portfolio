@@ -17,5 +17,7 @@ class Contact extends Model
         'contact_subject',
         'contact_message',
         'contact_attachment',
+        'created_at', 
+        'updated_at'
     ];
 }

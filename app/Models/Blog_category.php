@@ -10,8 +10,11 @@ class Blog_category extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'category_name',
-        'blog_id'
+        'blog_id',
+        'created_at',
+        'updated_at'
     ];
 }

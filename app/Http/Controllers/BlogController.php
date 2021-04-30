@@ -3,16 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
-use App\Models\Blog_tags;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Blog_category;
-use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
-use Symfony\Component\Console\Input\Input;
 
 class BlogController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * blog category index
      *

@@ -16,9 +16,11 @@ class PortfolioCategorySeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('portfo_categories')->insert([
-            'category_name' => $faker->word,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=10 ; $i++) { 
+            DB::table('portfo_categories')->insert([
+                'category_name' => $faker->word,
+                'created_at' => now(),
+            ]);
+        }
     }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Blog Post Preview
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -45,7 +49,6 @@
                     @php
                         echo $description;
                     @endphp
-
 
                     <a href="{{ route('blog_index') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
                 </div>

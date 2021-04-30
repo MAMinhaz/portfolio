@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LandviewController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ContactinfoController;
@@ -24,7 +25,7 @@ use App\Http\Controllers\CustomFrontendController;
 */
 
     //portofolio controller routes
-    Route::get('/', [PortfolioController::class, 'portfolio'])->name('portfolio');
+    Route::get('/', [FrontendController::class, 'portfolio'])->name('portfolio')->middleware('web', 'guest');
 
     Auth::routes();
 
@@ -213,6 +214,10 @@ use App\Http\Controllers\CustomFrontendController;
         Route::get('site-settings/customize-portfolio/remove-customization/{id}', [CustomFrontendController::class, 'front_customize_hard_delete'])->name('front_customize_hard_delete');
 
         Route::get('site-settings/customize-portfolio/download-old-cv/{id}', [CustomFrontendController::class, 'download_old_cv'])->name('download_old_cv');
+        
+        Route::get('site-settings/customize-portfolio/customize-theme/to-light/{id}', [CustomFrontendController::class, 'front_customize_to_theme_light'])->name('front_customize_to_theme_light');
+
+        Route::get('site-settings/customize-portfolio/customize-theme/to-dark/{id}', [CustomFrontendController::class, 'front_customize_to_theme_dark'])->name('front_customize_to_theme_dark');
 
 
         // frontend contact information customizing routes

@@ -11,6 +11,17 @@ use Illuminate\Support\Facades\Storage;
 class CustomFrontendController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    /**
      * front customize index
      * @return void
      */
@@ -54,7 +65,7 @@ class CustomFrontendController extends Controller
 
             // data upload
             $custom_front_id = CustomFrontend::insertGetId([
-                "job_title" => $request->job_title,
+                "job_title" => Str::title($request->job_title),
                 "site_name" => $request->job_title,
                 "created_at" => now(),
             ]);
@@ -136,7 +147,7 @@ class CustomFrontendController extends Controller
         }
     }
 
-    
+
     /**
      * front customize edit post
      *
@@ -154,7 +165,7 @@ class CustomFrontendController extends Controller
         ]);
 
         $front_data->update([
-            'job_title' => $request->job_title,
+            'job_title' => Str::title($request->job_title),
             'site_name' => $request->site_name,
             'updated_at' => now(),
         ]);
@@ -337,5 +348,20 @@ class CustomFrontendController extends Controller
     function download_old_cv($id){
         // file download 
         return Storage::download(CustomFrontend::findOrFail($id)->cv);
+    }
+
+
+    function front_customize_to_theme_light($id){
+        CustomFrontend::findOrFail($id)->update([
+            'portfolio_theme' => 1,
+        ]);
+        return redirect()->route('home')->with('theme_changed', 'You have changed your portfolio websites theme to light.');
+    }
+
+    function front_customize_to_theme_dark($id){
+        CustomFrontend::findOrFail($id)->update([
+            'portfolio_theme' => 2,
+        ]);
+        return redirect()->route('home')->with('theme_changed', 'You have changed your portfolio websites theme to dark.');
     }
 }

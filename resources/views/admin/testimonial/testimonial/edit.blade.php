@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit Testimonial
+@endsection
+
 @section('admin_content')
     <!-- Page-Title -->
     <div class="row">
@@ -9,10 +13,10 @@
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                        <li class="breadcrumb-item active">Portfolio - Testimonial Section</li>
+                        <li class="breadcrumb-item active">Portfolio - Testimonial Block</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Testimonial Section's Content</h4>
+                <h4 class="page-title">Edit Existing Testimonial Details</h4>
             </div>
         </div>
     </div>
@@ -22,7 +26,6 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Testimonial Details</h4>
                     <form method="POST" action="{{ route('testimonial_edit_post') }}">
                         @csrf
                         <input type="hidden" name="value" value="{{ $testimonials->id }}">
@@ -91,7 +94,7 @@
                         <button type="submit" class="btn btn-inverse btn-rounded w-md waves-effect waves-light">Click To Complete Edit</button>
                     </form>
                     <br>
-                    <a href="{{ route('portfolio_index') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
+                    <a href="{{ route('testimonial_index') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
                 </div>
             </div>
         </div>

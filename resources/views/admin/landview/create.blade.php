@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Create New Hero
+@endsection
+
 @section('admin_content')
 
                 <!-- Page-Title -->
@@ -13,7 +17,7 @@
                                     <li class="breadcrumb-item active">Portfolio - Hero Block</li>
                                 </ol>
                             </div>
-                            <h4 class="page-title">Hero Content</h4>
+                            <h4 class="page-title">Create New Hero Content</h4>
                         </div>
                     </div>
                 </div>
@@ -22,16 +26,12 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card m-b-20 text-xs-center">
-                            <div class="card-header">
-                                Hero Content
-                            </div>
                             <div class="card-block">
-                                <h4 class="card-title">Create New Hero Content</h4>
                                 <form method="POST" action="{{ route('landview_create_post') }}" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="form-group">
-                                        <label>Hero's Name</label>
+                                        <label style="font-size: 130%">Hero's Name</label>
                                         <input type="text" class="form-control" name="name">
                                         <br>
                                         <p>
@@ -56,7 +56,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Hero's 1st profession name</label>
+                                        <label style="font-size: 130%">Hero's 1st profession name</label>
                                         <input type="text" class="form-control" name="profession_name1">
 
                                         @error('profession_name1')
@@ -72,7 +72,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Hero's 2nd profession name</label>
+                                        <label style="font-size: 130%">Hero's 2nd profession name</label>
                                         <input type="text" class="form-control" name="profession_name2">
 
                                         @error('profession_name2')
@@ -88,7 +88,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Hero's 3rd profession name</label>
+                                        <label style="font-size: 130%">Hero's 3rd profession name</label>
                                         <input type="text" class="form-control" name="profession_name3">
 
                                         @error('profession_name3')
@@ -104,7 +104,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Hero's 4th profession name</label>
+                                        <label style="font-size: 130%">Hero's 4th profession name</label>
                                         <input type="text" class="form-control" name="profession_name4">
 
                                         @error('profession_name4')
@@ -120,7 +120,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Hero's 5th profession name</label>
+                                        <label style="font-size: 130%">Hero's 5th profession name</label>
                                         <input type="text" class="form-control" name="profession_name5">
 
                                         @error('profession_name5')
@@ -136,7 +136,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label>Hero's Display picture</label>
+                                        <label style="font-size: 130%">Hero's Display picture</label>
                                         <input type="file" name="landview_image" class="form-control" onchange="readURL(this);">
                                         <img class="hidden" id="tenant_photo_viewer" src="#" alt="your image" />
                                         <style media="screen">
@@ -158,10 +158,10 @@
                                         </script>
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Create</button>
+                                    <button type="submit" class="btn btn-inverse btn-rounded w-md waves-effect waves-light">Click To Save Hero</button>
                                 </form>
                                     <br>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    <a href="{{ route('landview') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
                             </div>
                         </div>
                     </div>

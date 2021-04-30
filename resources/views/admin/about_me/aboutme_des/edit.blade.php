@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit About Me Description
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -10,10 +14,10 @@
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                        <li class="breadcrumb-item active">Portfolio - About Me Section</li>
+                        <li class="breadcrumb-item active">Portfolio - About Me Block</li>
                     </ol>
                 </div>
-                <h4 class="page-title">About Me Section's Content</h4>
+                <h4 class="page-title">Edit Existing Description</h4>
             </div>
         </div>
     </div>
@@ -23,11 +27,10 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Description</h4>
                     <form method="POST" action="{{ route('aboutme_des_edit_post') }}">
                         @csrf
                         <div class="form-group">
-                            <label>Description</label>
+                            <label style="font-size: 135%">Description</label>
                             <input type="text" class="form-control" name="about_me_des" value="{{ $aboutme_des->about_me_des }}">
                             <input type="hidden" value="{{ $aboutme_des->id }}" name="value">
                             <br>
@@ -44,16 +47,13 @@
                             @enderror
                         </div>
 
-                        <button type="button" class="btn btn-inverse btn-rounded w-md waves-effect waves-light">Click To Complete Edit</button>
+                        <button type="submit" class="btn btn-inverse btn-rounded w-md waves-effect waves-light">Click To Complete Edit</button>
                     </form>
                         <br>
-                    <a href="{{ route('aboutme') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
+                    <a href="{{ route('aboutme') }}#about_me_des" class="btn btn-purple btn-rounded w-md waves-effect waves-light">Return Back</a>
                 </div>
             </div>
         </div>
     </div>
 
-@endsection
-
-@section('scripts')
 @endsection

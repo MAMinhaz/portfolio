@@ -10,6 +10,7 @@ class CustomFrontend extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'job_title',
         'portfolio_logo',

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit Contact Information
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -10,10 +14,10 @@
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                        <li class="breadcrumb-item active">Portfolio - Frontend Customization</li>
+                        <li class="breadcrumb-item active">Portfolio - Portfolio Customization</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Contact Informations</h4>
+                <h4 class="page-title">Edit Existing Contact Information</h4>
             </div>
         </div>
     </div>
@@ -23,11 +27,10 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Contact Information</h4>
                     <form method="POST" action="{{ route('f_contactinfo_edit_post') }}">
                         @csrf
                         <div class="form-group">
-                            <label>Your email address</label>
+                            <label style="font-size: 130%">Your email address</label>
                             <input type="email" class="form-control" name="email" value="{{ $contactinfo->email }}">
                             <input type="hidden" value="{{ $contactinfo->id }}" name="value">
                             <br>
@@ -45,7 +48,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Your contact number</label>
+                            <label style="font-size: 130%">Your contact number</label>
                             <input type="number" class="form-control" name="cell_number" value="{{ $contactinfo->cell_number }}">
                             <br>
 
@@ -62,7 +65,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Your address</label>
+                            <label style="font-size: 130%">Your address</label>
                             <address>{{ $contactinfo->address }}</address>
                             <input type="text" class="form-control" name="address" placeholder="Enter your new address">
                             <br>

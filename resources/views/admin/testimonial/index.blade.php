@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Testimonial Block
+@endsection
+
 @section('admin_content')
 
                 <!-- Page-Title -->
@@ -10,7 +14,7 @@
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Portfolio</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Portfolio - Testimonial Content</li>
+                                    <li class="breadcrumb-item active">Portfolio - Testimonial Block</li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Testimonial Content</h4>
@@ -130,16 +134,14 @@
                             <a href="#testi_add" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
                             data-overlaySpeed="100" data-overlayColor="#36404a">Add Testimonials</a>
                             <hr>
-                            <table class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
+                            <table id="tab_testi" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Serial number</th>
-                                        <th>Testimonial given by</th>
-                                        <th>designation</th>
+                                        <th>Client Name</th>
+                                        <th>Client Designation</th>
                                         <th>Testimonial</th>
-                                        <th>Testimonial Writer</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
+                                        <th>Testimonial Image</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -154,26 +156,12 @@
                                                 <img src="{{ asset('uploads') }}/testimonial/testimonial_image/{{ $testimonial->testimonial_image }}" class="img-fluid" alt="Image not found">
                                             </td>
                                             <td>
-                                                @isset($testimonial->created_at)
-                                                    <li>Time : {{ $testimonial->created_at->format('h:i:s A') }}</li>
-                                                    <li>Date : {{ $testimonial->created_at->format('d:m:Y') }}</li>
-                                                    <li>Duration : {{ $testimonial->created_at->diffForHumans() }}</li>
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($testimonial->updated_at)
-                                                    <li>Time : {{ $testimonial->updated_at->format('h:i:s A') }}</li>
-                                                    <li>Date : {{ $testimonial->updated_at->format('d:m:Y') }}</li>
-                                                    <li>Duration : {{ $testimonial->updated_at->diffForHumans() }}</li>
-                                                @endisset
-                                            </td>
-                                            <td>
                                                 <a href="{{ route('testimonial_edit', $testimonial->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Testimonial</a>
                                                 <a href="{{ route('testimonial_hard_delete', $testimonial->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Testimonial</a>
                                                 @if($testimonial->show_status == 1)
                                                     <a href="{{ route('testimonial_show', $testimonial->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Show Testimonial</a>
                                                 @elseif($testimonial->show_status == 2)
-                                                    <a href="{{ route('testimonial_hide', $testimonial->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Hide Testimonial</a>
+                                                    <a href="{{ route('testimonial_hide', $testimonial->id) }}" class="btn btn-warning btn-rounded w-md waves-effect waves-light w-sm btn-sm">Hide Testimonial</a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -186,7 +174,7 @@
 
 
                 {{-- companies block  --}}
-                <div id="company" class="card m-b-20 card-block mt-3 mb-3">
+                <div id="companies" class="card m-b-20 card-block mt-3 mb-3">
                     <h4 class="card-title">Companies</h4>
                     <div class="row">
                         <div class="col-md-12">
@@ -270,17 +258,18 @@
                             </div>
 
                             {{-- testimonial data table --}}
-                            <a href="#company" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
-                            data-overlaySpeed="100" data-overlayColor="#36404a">Add Company</a>
+                            @if($count <= 4)
+                                <a href="#company" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
+                                data-overlaySpeed="100" data-overlayColor="#36404a">Add Company</a>
+                            @else
+                            @endif
                             <hr>
-                            <table class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
+                            <table id="tab_company" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Serial number</th>
                                         <th>Company Name</th>
                                         <th>Company Logo</th>
-                                        <th>Created At</th>
-                                        <th>Updated At</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
@@ -293,26 +282,12 @@
                                                 <img src="{{ asset('uploads') }}/company_logo/{{ $companie->company_logo }}" alt="image not found" height="400" width="500">
                                             </td>
                                             <td>
-                                                @isset($companie->created_at)
-                                                    <li>Time : {{ $companie->created_at->format('h:i:s A') }}</li>
-                                                    <li>Date : {{ $companie->created_at->format('d:m:Y') }}</li>
-                                                    <li>Duration : {{ $companie->created_at->diffForHumans() }}</li>
-                                                @endisset
-                                            </td>
-                                            <td>
-                                                @isset($companie->updated_at)
-                                                    <li>Time : {{ $companie->updated_at->format('h:i:s A') }}</li>
-                                                    <li>Date : {{ $companie->updated_at->format('d:m:Y') }}</li>
-                                                    <li>Duration : {{ $companie->updated_at->diffForHumans() }}</li>
-                                                @endisset
-                                            </td>
-                                            <td>
                                                 <a href="{{ route('testimonial_companies_edit', $companie->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Company</a>
                                                 <a href="{{ route('testimonial_companies_hard_delete', $companie->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Company</a>
                                                 @if($companie->show_status == 1)
                                                     <a href="{{ route('testimonial_companies_show', $companie->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Show Company</a>
                                                 @elseif($companie->show_status == 2)
-                                                    <a href="{{ route('testimonial_companies_hide', $companie->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Hide Company</a>
+                                                    <a href="{{ route('testimonial_companies_hide', $companie->id) }}" class="btn btn-warning btn-rounded w-md waves-effect waves-light w-sm btn-sm">Hide Company</a>
                                                 @endif
                                             </td>
                                         </tr>
@@ -324,38 +299,38 @@
                 </div>
 
 
-                {{-- testimonial  addition modal form --}}
+                {{-- testimonial addition modal form --}}
                 <div id="testi_add" class="modal-demo">
                     <button type="button" class="close" onclick="Custombox.close();">
                         <span>&times;</span><span class="sr-only">Close</span>
                     </button>
                     <br>
-                    <h4 class="custom-modal-title">Add new testimonial</h4>
+                    <h4 class="custom-modal-title">Add New Testimonial</h4>
                     <div class="custom-modal-text">
                         <form method="POST" action="{{ route('testimonial_create_post') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label>Client Name</label>
+                                <label style="font-size: 150%">Client Name</label>
                                 <input type="text" class="form-control" name="testimonial_given">
                             </div>
 
                             <div class="form-group">
-                                <label>Client Designation</label>
+                                <label style="font-size: 150%">Client Designation</label>
                                 <input type="text" class="form-control" name="designation">
                             </div>
 
                             <div class="form-group">
-                                <label>Testimonial</label><br>
+                                <label style="font-size: 150%">Testimonial</label><br>
                                 <textarea name="testimonial"></textarea>
                             </div>
 
                             <div class="form-group">
-                                <label>Client Picture</label>
+                                <label style="font-size: 150%">Client Picture</label>
                                 <input type="file" class="form-control" name="testimonial_image">
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Add testimonial</button>
+                            <button type="submit" class="btn btn-primary">Add Testimonial</button>
                         </form>
                     </div>
                 </div>
@@ -366,18 +341,18 @@
                         <span>&times;</span><span class="sr-only">Close</span>
                     </button>
                     <br>
-                    <h4 class="custom-modal-title">Add new company</h4>
+                    <h4 class="custom-modal-title">Add New Client Company</h4>
                     <div class="custom-modal-text">
                         <form method="POST" action="{{ route('testimonial_companies_create_post') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group">
-                                <label>Company Name</label>
+                                <label style="font-size: 150%">Company Name</label>
                                 <input type="text" class="form-control" name="company_name">
                             </div>
 
                             <div class="form-group">
-                                <label>Company Logo</label>
+                                <label style="font-size: 150%">Company Logo</label>
                                 <input type="file" class="form-control" name="company_logo">
                             </div>
 
@@ -388,4 +363,15 @@
 @endsection
 
 @section('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#tab_testi').DataTable();
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tab_company').DataTable();
+        });
+    </script>
 @endsection

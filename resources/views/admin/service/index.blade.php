@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Service Block
+@endsection
+
 @section('admin_content')
 
                 <!-- Page-Title -->
@@ -10,7 +14,7 @@
                                 <ol class="breadcrumb hide-phone p-0 m-0">
                                     <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Portfolio</a></li>
                                     <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Portfolio - Service content</li>
+                                    <li class="breadcrumb-item active">Portfolio - Service Block</li>
                                 </ol>
                             </div>
                             <h4 class="page-title">Service Content</h4>
@@ -71,7 +75,11 @@
                                     </div>
                                 @endif
                             </div>
-                            <a href="{{ route('service_create') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm mt-3 mb-3">Add New Service</a>
+                            @if($count <= 6)
+                                <a href="{{ route('service_create') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm mt-3 mb-3">Add New Service</a>
+                            @else
+                            
+                            @endif
                             <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                                 <thead>
                                     <tr>
@@ -99,7 +107,7 @@
                                             <td>{{ $service->service_list_6 }}</td>
                                             <td>
                                                 <a href="{{ route('service_edit', $service->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Service</a>
-                                                <a href="{{ route('service_hard_delete', $service->id) }}" id="id" onclick="myFunction()" value="{{ $service->id }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Service</a>
+                                                <a href="{{ route('service_hard_delete', $service->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Service</a>
                                             </td>
                                         </tr>
                                     @endforeach

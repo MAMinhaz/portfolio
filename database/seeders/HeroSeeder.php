@@ -16,15 +16,17 @@ class HeroSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        $id = DB::table('landviews')->insertGetId([
-            'name' => $faker->name,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=1 ; $i++) { 
+            $id = DB::table('landviews')->insertGetId([
+                'name' => $faker->name,
+                'created_at' => now(),
+            ]);
 
-        DB::table('landview_professions')->insert([
-            'landview_id' => $id,
-            'profession_name' => $faker->name,
-            'created_at' => now(),
-        ]);
+            DB::table('landview_professions')->insert([
+                'landview_id' => $id,
+                'profession_name' => $faker->name,
+                'created_at' => now(),
+            ]);
+        }
     }
 }

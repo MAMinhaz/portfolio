@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Hero's Information
+@endsection
+
 @section('admin_content')
 
                 <!-- Page-Title -->
@@ -20,69 +24,77 @@
                 <!-- end page title end breadcrumb -->
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <div>
-                            @if(session()->has('lv_saved'))
-                                <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
-                                    role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="false">×</span>
-                                    </button>
-                                    <strong>{{ session('lv_saved') }}</strong>
-                                </div>
-                            @endif
+                    <div class="card m-b-20 card-block">
 
-                            @if(session()->has('lv_name_dup'))
-                                <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                    <strong>{{ session('lv_name_dup') }}</strong>
-                                </div>
-                            @endif
+                    <div class="card-box">
+                        <div class="col-md-12">
+                            <div>
+                                @if(session()->has('lv_saved'))
+                                    <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
+                                        role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="false">×</span>
+                                        </button>
+                                        <strong>{{ session('lv_saved') }}</strong>
+                                    </div>
+                                @endif
 
-                            @if(session()->has('lv_deleted'))
-                                <div class="alert alert-icon alert-white alert-danger alert-dismissible fade show" role="alert">
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                    <i class="mdi mdi-block-helper"></i>
-                                    <strong>{{ session('lv_deleted') }}</strong>
-                                </div>
-                            @endif
-                        </div>
+                                @if(session()->has('lv_name_dup'))
+                                    <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>{{ session('lv_name_dup') }}</strong>
+                                    </div>
+                                @endif
 
-                        <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
-                            <a href="{{ route('landview_create') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Add Hero Information</a>
-                            <thead>
-                                <tr>
-                                    <th>Serial number</th>
-                                    <th>Hero's Name</th>
-                                    <th>Hero's professions</th>
-                                    <th>Hero's Display picture</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($landviews as $landview)
+                                @if(session()->has('lv_deleted'))
+                                    <div class="alert alert-icon alert-white alert-danger alert-dismissible fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong>{{ session('lv_deleted') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+
+                            @if($count == 0)
+                                <a href="{{ route('landview_create') }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Add Hero Information</a>
+                                <hr>
+                            @endif
+                            <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
+                                <thead>
                                     <tr>
-                                        <td>{{ $loop->index ++ }}</td>
-                                        <td>{{ $landview->name }}</td>
-                                        <td>
-                                            @foreach($landview->heroProfessions as $pro)
-                                                <span>{{ $pro->profession_name }}</span>
-                                            @endforeach
-                                        </td>
-                                        <td>
-                                            <img src="{{ asset('dash') }}/uploads/landview_image/{{ $landview->landview_image }}" class="img-fluid" alt="image not found">
-                                        </td>
-                                        <td>
-                                            <a href="{{ route('landview_hard_delete', $landview->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Hero Info</a>
-                                        </td>
+                                        <th>Serial number</th>
+                                        <th>Hero's Name</th>
+                                        <th>Hero's professions</th>
+                                        <th>Hero's Display picture</th>
+                                        <th>Actions</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach($landviews as $landview)
+                                        <tr>
+                                            <td>{{ $loop->index ++ }}</td>
+                                            <td>{{ $landview->name }}</td>
+                                            <td>
+                                                @foreach($landview->heroProfessions as $pro)
+                                                    <span>{{ $pro->profession_name }}</span>
+                                                @endforeach
+                                            </td>
+                                            <td>
+                                                <img src="{{ asset('uploads') }}/landview_image/{{ $landview->landview_image }}" class="img-fluid" alt="Hero banner image not found">
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('landview_hard_delete', $landview->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Hero Info</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     </div>
                 </div>
 

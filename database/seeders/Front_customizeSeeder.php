@@ -19,6 +19,7 @@ class Front_customizeSeeder extends Seeder
         CustomFrontend::insert([
             'job_title' => $faker->title,
             'site_name' => $faker->name,
+            'cv' => 'cv_upload/anonymous.jpg',
             'portfolio_theme' => $faker->numberBetween(1,2),
             'created_at' => now(),
         ]);

@@ -312,13 +312,13 @@
             </div><!--  /.row -->
             
             <!-- Mock Up Content Row -->
-            {{-- <div class="row justify-content-md-center">
+            <div class="row justify-content-md-center">
                 <div class="col-lg-11">
                     <div class="mock-up-block ml-b-135" data-animate="hg-fadeInUp">
                         <img src="{{asset('front')}}/assets/images/author-mockup-dark.png" alt="Author Mock Up" />
                     </div><!--  /.mock-up-block -->
                 </div><!--  /.col-lg-10 -->
-            </div><!--  /.row --> --}}
+            </div><!--  /.row -->
         </div><!--  /.container -->
     </section><!--  /.about-block -->
 

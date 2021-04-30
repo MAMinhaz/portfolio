@@ -16,9 +16,11 @@ class BlogCategorySeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('blog_categories')->insert([
-            'category_name' => $faker->word,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i <=10 ; $i++) { 
+            DB::table('blog_categories')->insert([
+                'category_name' => $faker->unique($reset = false, $maxRetries = 10000)->word(),
+                'created_at' => now(),
+            ]);
+        }
     }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit Blog Post Category
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -13,7 +17,7 @@
                         <li class="breadcrumb-item active">Portfolio - Blog Block</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Blog block's Content</h4>
+                <h4 class="page-title">Edit Existing Blog Category</h4>
             </div>
         </div>
     </div>
@@ -23,11 +27,10 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Blog Category</h4>
                     <form method="POST" action="{{ route('blog_cat_edit_post') }}">
                         @csrf
                         <div class="form-group">
-                            <label>Blog Category Name</label>
+                            <label style="font-size: 130%">Blog Category Name</label>
                             <input type="text" class="form-control" name="category_name" value="{{ $blog_category->category_name }}">
                             <input type="hidden" value="{{ $blog_category->id }}" name="value">
                             <br>

@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 
 use Image;
 use Carbon\Carbon;
-use App\Models\User;
 use App\Models\Landview;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Landview_profession;
-use Illuminate\Support\Facades\Auth;
 
 class LandviewController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
     /**
      * heros info index page
      *
@@ -20,8 +29,12 @@ class LandviewController extends Controller
      */
     function index(){
         // data overview start
+        $hero = Landview::latest()->get();
+        $h_count = $hero->count();
+
         return view('admin.landview.index', [
-            "landviews" => Landview::latest()->get(),
+            "landviews" => $hero,
+            "count" => $h_count,
         ]);
     }
 
@@ -57,9 +70,9 @@ class LandviewController extends Controller
             'name' => ['alpha_spaces'],
             'profession_name1' => ['alpha_spaces'],
             'profession_name2' => ['alpha_spaces'],
-            'profession_name3' => ['alpha_spaces'],
-            'profession_name4' => ['alpha_spaces'],
-            'profession_name5' => ['alpha_spaces'],
+            'profession_name3' => ['alpha_spaces', 'nullable'],
+            'profession_name4' => ['alpha_spaces', 'nullable'],
+            'profession_name5' => ['alpha_spaces', 'nullable'],
             'landview_image' => 'image',
         ],
         
@@ -78,7 +91,7 @@ class LandviewController extends Controller
         if($request->hasFile('landview_image')){
             $uploaded_picture = $request->file('landview_image');
             $photo_file_extention = 'landview_image_'.$id.'.'.$uploaded_picture->getClientOriginalExtension('landview_image');
-            $picture_new_location = 'public/dash/uploads/landview_image/'.$photo_file_extention;
+            $picture_new_location = 'public/uploads/landview_image/'.$photo_file_extention;
             Image::make($uploaded_picture)->save(base_path($picture_new_location));
             Landview::find($id)->update([
                 'landview_image' => $photo_file_extention,
@@ -123,7 +136,7 @@ class LandviewController extends Controller
 
         // hero thumbnail picture deleting
         if($landview->landview_image != 'landview_image_default.jpg'){
-            $picture_location = 'public/dash/uploads/landview_image/'.$landview->landview_image;
+            $picture_location = 'public/uploads/landview_image/'.$landview->landview_image;
             unlink(base_path($picture_location));
         }
 

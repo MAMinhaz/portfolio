@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit Portfolio Category
+@endsection
+
 @section('admin_content')
     <!-- Page-Title -->
     <div class="row">
@@ -9,10 +13,10 @@
                     <ol class="breadcrumb hide-phone p-0 m-0">
                         <li class="breadcrumb-item"><a href="{{ route('portfolio') }}">Your Portfolio</a></li>
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Admin Dashboard</a></li>
-                        <li class="breadcrumb-item active">Portfolio - Portfolio Section</li>
+                        <li class="breadcrumb-item active">Portfolio - Portfolio Block</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Portfolio Section's Content</h4>
+                <h4 class="page-title">Edit Existing Portfolio Category</h4>
             </div>
         </div>
     </div>
@@ -22,11 +26,10 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Category</h4>
                     <form method="POST" action="{{ route('portfolio_cat_edit_post') }}">
                         @csrf
                         <div class="form-group">
-                            <label>Category Name</label>
+                            <label style="font-size: 150%">Category Name</label>
                             <input type="text" class="form-control" name="category_name" value="{{ $portfolio_category->category_name }}">
                             <input type="hidden" value="{{ $portfolio_category->id }}" name="value">
                             <br>
@@ -51,7 +54,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
 @endsection

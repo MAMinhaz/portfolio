@@ -15,9 +15,9 @@ class CreateContactinfosTable extends Migration
     {
         Schema::create('contactinfos', function (Blueprint $table) {
             $table->id();
-            $table->string('email')->unique()->nullable();
+            $table->string('email')->nullable();
             $table->bigInteger('cell_number')->unique()->nullable();
-            $table->string('address')->unique()->nullable();
+            $table->string('address')->nullable();
             $table->integer('show_status')->default(1);
             $table->softDeletes();
             $table->timestamps();

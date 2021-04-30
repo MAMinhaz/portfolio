@@ -16,10 +16,12 @@ class SociallinkSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('sociallinks')->insert([
-            'link_name' => $faker->title,
-            'link' => $faker->url,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=5 ; $i++) { 
+            DB::table('sociallinks')->insert([
+                'link_name' => $faker->title,
+                'link' => $faker->url,
+                'created_at' => now(),
+            ]);
+        }
     }
 }

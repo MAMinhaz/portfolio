@@ -10,6 +10,7 @@ class Sociallink extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'link_name',
         'link',

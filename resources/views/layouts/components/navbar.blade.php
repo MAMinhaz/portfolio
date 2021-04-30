@@ -9,11 +9,12 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{ route('home') }}"><i class="fi-air-play"></i>Dashboard</a>
+                                <a href="{{ route('home') }}"><i class="fi-content-right"></i>Dashboard</a>
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="fi-box"></i>Portfolio Contents</a>
+                                <a href="#"><i class="fi-paper-stack"></i>Portfolio Contents</a>
+                                {{-- <a href="#"><i class="fi-layout"></i>Site Setting</a> --}}
                                 <ul class="submenu">
                                     <li>
                                         <a href="{{ route('service') }}">Service Block</a>
@@ -59,7 +60,8 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="#"><i class="fi-box"></i>Site Setting</a>
+                                <a href="#"><i class="fi-cog"></i>Site Setting</a>
+                                {{-- <a href="#"><i class="fi-layout"></i>Site Setting</a> --}}
                                 <ul class="submenu">
 
                                     <li>
@@ -71,7 +73,7 @@
                                     </li>
 
                                     <li class="has-submenu">
-                                        <a href="">Your Contact Informations</a>
+                                        <a>Your Contact Information's</a>
                                         <ul class="submenu">
                                             <a href="{{ route('f_contactinfo_index') }}#main_contact_information">Customize Contact Informations</a>
                                             <a href="{{ route('f_contactinfo_index') }}#social_links">Customize Social Links</a>
@@ -80,6 +82,15 @@
                                 </ul>
                             </li>
 
+                            <li class="has-submenu">
+                                <a href="{{ route('logout') }}" 
+                                    onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+                                    <i class="fi-power"></i>Log Out</a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                            </li>
                         </ul>
                         <!-- End navigation menu -->
                     </div> <!-- end #navigation -->

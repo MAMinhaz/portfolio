@@ -17,11 +17,14 @@ class ContactinfoSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('contactinfos')->insert([
-            'email' => $faker->safeEmail,
-            'cell_number' => $faker->numberBetween(1, 99999999),
-            'address' => $faker->address,
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=3 ; $i++) { 
+            DB::table('contactinfos')->insert([
+                'email' => $faker->safeEmail,
+                'cell_number' => $faker->numberBetween(1,99999999999),
+                'address' => $faker->address,
+                'show_status' => $faker->numberBetween(1,2),
+                'created_at' => now(),
+            ]);
+        }
     }
 }

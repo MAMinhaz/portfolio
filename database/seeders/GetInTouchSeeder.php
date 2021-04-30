@@ -16,12 +16,13 @@ class GetInTouchSeeder extends Seeder
     {
         $faker = \Faker\Factory::create();
 
-        DB::table('contactinfos')->insert([
-            'email' => $faker->safeEmail,
-            'cell_number' => $faker->numberBetween(1,99999999999),
-            'address' => $faker->address,
-            'show_status' => $faker->numberBetween(1,2),
-            'created_at' => now(),
-        ]);
+        for ($i=1; $i<=13 ; $i++) { 
+            DB::table('contacts')->insert([
+                'contact_name' => $faker->name,
+                'contact_email' => $faker->safeEmail,
+                'contact_subject' => $faker->sentence,
+                'contact_message' => $faker->realText,
+            ]);
+        }
     }
 }

@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    | Edit Blog Post
+@endsection
+
 @section('admin_content')
 
     <!-- Page-Title -->
@@ -13,7 +17,7 @@
                         <li class="breadcrumb-item active">Portfolio - Blog Block</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Blog block's Content</h4>
+                <h4 class="page-title">Edit Existing Blog Post</h4>
             </div>
         </div>
     </div>
@@ -23,13 +27,12 @@
         <div class="col-md-12">
             <div class="card m-b-20 text-xs-center">
                 <div class="card-block">
-                    <h4 class="card-title">Edit Existing Blog Post</h4>
                     <form method="POST" action="{{ route('blog_post_edit_post') }}">
                         @csrf
 
                         <input type="hidden" class="form-control" name="value" value="{{ $blog_data->id }}">
                         <div class="form-group">
-                            <label>Blog Title</label>
+                            <label style="font-size: 130%">Blog Title</label>
                             <input type="text" class="form-control" name="title" value="{{ $blog_data->title }}">
                             <br>
 
@@ -47,7 +50,7 @@
 
 
                         <div class="form-group">
-                            <label>Blog Category</label>
+                            <label style="font-size: 130%">Blog Category</label>
                             <select class="form-control" name="category_id">
                                 <option value="1">Select Blog Category</option>
                                 @foreach($blog_cats as $blog_cat)
@@ -70,7 +73,7 @@
 
 
                         <div class="form-group">
-                            <label>Blog Details</label>
+                            <label style="font-size: 130%">Blog Details</label>
                             <textarea id="elm1" name="description">{{ $blog_data->description }}</textarea>
                             <br>
 
@@ -88,7 +91,7 @@
 
 
                         <div class="form-group">
-                            <label>Blog Thumbnail Picture</label>
+                            <label style="font-size: 130%">Blog Thumbnail Picture</label>
                             <input type="file" class="form-control" name="blog_thumbnail_image">
                             <br>
 

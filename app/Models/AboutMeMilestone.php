@@ -10,6 +10,7 @@ class AboutMeMilestone extends Model
 {
     use HasFactory;
     use SoftDeletes;
+
     protected $fillable = [
         'milestone_name', 
         'milestone_digit', 
