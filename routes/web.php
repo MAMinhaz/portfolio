@@ -9,6 +9,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\LandviewController;
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ContactinfoController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\CustomFrontendController;
@@ -27,9 +28,26 @@ use App\Http\Controllers\CustomFrontendController;
     //portofolio controller routes
     Route::get('/', [FrontendController::class, 'portfolio'])->name('portfolio')->middleware('web', 'guest');
 
-    Auth::routes();
 
+
+    //Home controller routes
     Route::get('admin-dashboard', [HomeController::class, 'admin_dashboard'])->middleware('auth')->name('home');
+
+
+
+    //CustomAuth Controlllers routes
+    Route::get('admin/admin-login', [CustomAuthController::class, 'custom_login'])->name('custom_login');
+
+    Route::post('admin/post-login', [CustomAuthController::class, 'custom_login_post'])->name('custom_login_post'); 
+
+    Route::get('admin/admin-registration', [CustomAuthController::class, 'custom_register'])->name('custom_register');
+
+    Route::post('admin/post-admin-registration', [CustomAuthController::class, 'custom_register_post'])->name('custom_register_post'); 
+
+    Route::get('admin/logout', [CustomAuthController::class, 'custom_logout'])->name('custom_logout');
+
+
+
 
 
     //landview controller routes

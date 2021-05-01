@@ -21,20 +21,23 @@
                                         <p class="m-b-0">Login to your Admin account</p>
                                     </div>
                                     <div class="account-content">
-                                        <form class="form-horizontal" action="{{ route('login') }}" method="POST" enctype="multipart/form-data">
+                                        <form class="form-horizontal" action="{{ route('custom_login_post') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
+
+                                            <div class="form-group m-b-20 row">
+                                                <div class="col-12">
+                                                    @if(session('credential_wrong'))
+                                                        <span class="invalid-feedback bg-danger" role="alert">
+                                                            <strong>{{ session('credential_wrong') }}</strong>
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            </div>
 
                                             <div class="form-group m-b-20 row">
                                                 <div class="col-12">
                                                     <label for="email">Email address</label>
                                                     <input class="form-control @error('email') is-invalid @enderror" type="email" id="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="john@deo.com">
-
-                                                    <br>
-                                                    @error('email')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -42,13 +45,6 @@
                                                 <div class="col-12">
                                                     <label for="password">Password</label>
                                                     <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
-
-                                                    <br>
-                                                    @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
                                                 </div>
                                             </div>
 
@@ -79,7 +75,7 @@
 
                                         <div class="row m-t-50">
                                             <div class="col-sm-12 text-center">
-                                                <p class="text-muted">Don't have an account? <a href="page-register.html" class="text-dark m-l-5"><b>Sign Up</b></a></p>
+                                                <p class="text-muted">Don't have an account? <a href="{{ route('custom_register') }}" class="text-dark m-l-5"><b>Sign Up</b></a></p>
                                             </div>
                                         </div>
 

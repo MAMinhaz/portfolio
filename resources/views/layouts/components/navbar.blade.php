@@ -83,13 +83,7 @@
                             </li>
 
                             <li class="has-submenu">
-                                <a href="{{ route('logout') }}" 
-                                    onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                    <i class="fi-power"></i>Log Out</a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
+                                <a href="{{ route('custom_logout') }}"><i class="fi-power"></i>Log Out</a>
                             </li>
                         </ul>
                         <!-- End navigation menu -->
