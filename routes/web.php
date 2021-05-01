@@ -36,6 +36,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //CustomAuth Controlllers routes
+<<<<<<< HEAD
     Route::get('admin/admin-login', [CustomAuthController::class, 'custom_login'])->name('custom_login')->middleware('guest');
 
     Route::post('admin/post-login', [CustomAuthController::class, 'custom_login_post'])->name('custom_login_post')->middleware('guest');
@@ -45,6 +46,17 @@ use App\Http\Controllers\CustomFrontendController;
     Route::post('admin/post-admin-registration', [CustomAuthController::class, 'custom_register_post'])->name('custom_register_post')->middleware('guest');
 
     Route::get('admin/logout', [CustomAuthController::class, 'custom_logout'])->name('custom_logout')->middleware('auth');
+=======
+    Route::get('admin/admin-login', [CustomAuthController::class, 'custom_login'])->name('custom_login');
+
+    Route::post('admin/post-login', [CustomAuthController::class, 'custom_login_post'])->name('custom_login_post'); 
+
+    Route::get('admin/admin-registration', [CustomAuthController::class, 'custom_register'])->name('custom_register');
+
+    Route::post('admin/post-admin-registration', [CustomAuthController::class, 'custom_register_post'])->name('custom_register_post'); 
+
+    Route::get('admin/logout', [CustomAuthController::class, 'custom_logout'])->name('custom_logout');
+>>>>>>> f74efe4fdadcbebe631f61c1599a2f23ae8aaedb
 
 
 
