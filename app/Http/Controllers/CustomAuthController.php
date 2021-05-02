@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class CustomAuthController extends Controller
 {
@@ -36,8 +37,7 @@ class CustomAuthController extends Controller
      *
      * @return response()
      */
-    public function custom_login_post(Request $request)
-    {
+    public function custom_login_post(Request $request){
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -58,8 +58,7 @@ class CustomAuthController extends Controller
      *
      * @return response()
      */
-    public function custom_register_post(Request $request)
-    {  
+    public function custom_register_post(Request $request){
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users',
@@ -79,8 +78,7 @@ class CustomAuthController extends Controller
      *
      * @return response()
      */
-    public function create(array $data)
-    {
+    public function create(array $data){
       return User::create([
         'name' => $data['name'],
         'email' => $data['email'],
@@ -89,16 +87,51 @@ class CustomAuthController extends Controller
     }
 
 
-
     /**
      * custom logout method
      *
      * @return response()
      */
-    public function custom_logout() {
+    public function custom_logout(){
         Session::flush();
         Auth::logout();
   
         return Redirect()->route('portfolio');
+    }
+
+
+    /**
+     * custom verification page
+     *
+     * @return void
+     */
+    function custom_verify(){
+        return view('auth.verify');
+    }
+
+
+    /**
+     * verification processing
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    function get_verified(EmailVerificationRequest $request){
+        $request->fulfill();
+
+        return redirect()->route('home');
+    }
+
+
+    /**
+     * request new verification token
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    function request_new_verification_token(Request $request){
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('message', 'Verification link sent!');
     }
 }

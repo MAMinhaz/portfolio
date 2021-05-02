@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
@@ -31,12 +32,11 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //Home controller routes
-    Route::get('admin-dashboard', [HomeController::class, 'admin_dashboard'])->middleware('auth')->name('home');
+    Route::get('admin-dashboard', [HomeController::class, 'admin_dashboard'])->middleware('verified')->name('home');
 
 
 
     //CustomAuth Controlllers routes
-<<<<<<< HEAD
     Route::get('admin/admin-login', [CustomAuthController::class, 'custom_login'])->name('custom_login')->middleware('guest');
 
     Route::post('admin/post-login', [CustomAuthController::class, 'custom_login_post'])->name('custom_login_post')->middleware('guest');
@@ -46,24 +46,17 @@ use App\Http\Controllers\CustomFrontendController;
     Route::post('admin/post-admin-registration', [CustomAuthController::class, 'custom_register_post'])->name('custom_register_post')->middleware('guest');
 
     Route::get('admin/logout', [CustomAuthController::class, 'custom_logout'])->name('custom_logout')->middleware('auth');
-=======
-    Route::get('admin/admin-login', [CustomAuthController::class, 'custom_login'])->name('custom_login');
 
-    Route::post('admin/post-login', [CustomAuthController::class, 'custom_login_post'])->name('custom_login_post'); 
+    Route::get('/email/verify',[CustomAuthController::class, 'custom_verify'])->middleware('auth')->name('verification.notice');
 
-    Route::get('admin/admin-registration', [CustomAuthController::class, 'custom_register'])->name('custom_register');
+    Route::get('/email/verify/{id}/{hash}', [CustomAuthController::class, 'get_verified'])->middleware(['auth', 'signed'])->name('verification.verify');
 
-    Route::post('admin/post-admin-registration', [CustomAuthController::class, 'custom_register_post'])->name('custom_register_post'); 
-
-    Route::get('admin/logout', [CustomAuthController::class, 'custom_logout'])->name('custom_logout');
->>>>>>> f74efe4fdadcbebe631f61c1599a2f23ae8aaedb
-
-
+    Route::post('/email/verification-notification', [CUstomAuthController::class, 'request_new_verification_token'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 
 
     //landview controller routes
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('site-settings/hero-block', [LandviewController::class, 'index'])->name('landview');
 
         Route::get('site-settings/hero-block/create-new', [LandviewController::class, 'create'])->name('landview_create');
@@ -76,7 +69,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //Service controller routes
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('portfolio/services', [ServiceController::class, 'index'])->name('service');
 
         Route::get('portfolio/services/create-new', [ServiceController::class, 'create'])->name('service_create');
@@ -93,7 +86,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //Aboutme controller routes
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         //Aboutme section home route
         Route::get('portfolio/aboutme', [AboutMeController::class, 'index'])->name('aboutme');
 
@@ -130,7 +123,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //portfolio controller routes
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', 'verified'])->group(function () {
         // Portfolio content Routes
         Route::get('portfolio/portfolio', [PortfolioController::class, 'portfolio_index'])->name('portfolio_index');
 
@@ -155,7 +148,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //Testimonial controller routes
-    Route::middleware(['auth'])->group(function (){
+    Route::middleware(['auth', 'verified'])->group(function (){
         // Testimonial content Routes
         Route::get('portfolio/testimonial', [TestimonialController::class, 'testimonial_index'])->name('testimonial_index');
 
@@ -188,7 +181,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //Contact controller routes
-    Route::middleware(['auth'])->group(function (){
+    Route::middleware(['auth', 'verified'])->group(function (){
         Route::get('portfolio/contacts', [ContactController::class, 'contact_index'])->name('contact_index');
 
         Route::post('portfolio/contact/create-new', [ContactController::class, 'contact_create_post'])->name('contact_create_post');
@@ -200,7 +193,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //Blog controller routes
-    Route::middleware(['auth'])->group(function (){
+    Route::middleware(['auth', 'verified'])->group(function (){
         // blog content index routes
         Route::get('portfolio/blog/blog', [BlogController::class, 'blog_index'])->name('blog_index');
 
@@ -233,7 +226,7 @@ use App\Http\Controllers\CustomFrontendController;
 
 
     //FrontendCustomizing controller routes
-    Route::middleware(['auth'])->group(function (){
+    Route::middleware(['auth', 'verified'])->group(function (){
         // frontend image and text customizing routes
         Route::get('site-settings/customize-portfolio', [CustomFrontendController::class, 'front_customize_index'])->name('front_customize_index');
 
