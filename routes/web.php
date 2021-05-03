@@ -1,9 +1,13 @@
 <?php
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ServiceController;
@@ -53,7 +57,36 @@ use App\Http\Controllers\CustomFrontendController;
 
     Route::post('/email/verification-notification', [CUstomAuthController::class, 'request_new_verification_token'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
+    Route::get('/forgot-password', [CustomAuthController::class, 'password_reset'])->middleware('guest')->name('password.request');
 
+    Route::post('/forgot-password', [CustomAuthController::class, 'password_reset_email'])->middleware('guest')->name('password.email');
+
+    Route::get('/reset-password/{token}', [CustomAuthController::class, 'password_reseting_form'])->middleware('guest')->name('password.reset');
+
+    Route::post('/reset-password', function (Request $request) {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) use ($request) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status == Password::PASSWORD_RESET
+                    ? redirect()->route('custom_login')->with('status', __('Your password has been changed successfully. Now give a try of your new password.'))
+                    : back()->withErrors(['email' => [__($status)]]);
+    })->middleware('guest')->name('password.update');
 
     //landview controller routes
     Route::middleware(['auth', 'verified'])->group(function () {

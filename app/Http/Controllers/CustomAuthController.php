@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class CustomAuthController extends Controller
@@ -133,5 +134,44 @@ class CustomAuthController extends Controller
         $request->user()->sendEmailVerificationNotification();
 
         return back()->with('message', 'Verification link sent!');
+    }
+
+
+    /**
+     * account finding to reset password
+     *
+     * @return void
+     */
+    function password_reset(){
+        return view('auth.passwords.password_reset');
+    }
+
+
+    /**
+     * sending password reset email
+     *
+     * @param  mixed $request
+     * @return void
+     */
+    function password_reset_email(Request $request){
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+
+        return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __('Your password reset token has been sent to your email. Enter your email address and follow the instructions to reset your password.')])
+                : back()->withErrors(['email' => __($status)]);
+    }
+    
+    /**
+     * password reseting form
+     *
+     * @param  mixed $token
+     * @return void
+     */
+    function password_reseting_form($token){
+        return view('auth.passwords.reset', ['token' => $token]);
     }
 }

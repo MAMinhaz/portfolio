@@ -20,9 +20,11 @@
                                         <!--<h4 class="text-uppercase font-bold m-b-0">Sign In</h4>-->
                                     </div>
                                     <div class="account-content">
-                                        <form class="form-horizontal" method="POST" action="{{ route('password.update') }}">
-                                            @csrf
-                                            <input type="hidden" name="token" value="{{ $token }}">
+                                        <div class="text-center m-b-20">
+                                            <p class="text-muted m-b-0">Enter your email address and we'll send you an email with instructions to reset your password.  </p>
+                                        </div>
+                                        <form class="form-horizontal" action="{{ route('password.email') }}" method="POST">
+                                        @csrf
 
                                             <div class="form-group row m-b-20">
                                                 <div class="col-12">
@@ -37,37 +39,20 @@
                                                 </div>
                                             </div>
 
-                                            <div class="form-group row m-b-20">
+                                            @if(session('status'))
                                                 <div class="col-12">
-                                                    <label for="password">New Password</label>
-                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                                    @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ session('status') }}</strong>
+                                                    </span>
                                                 </div>
-                                            </div>
-
-                                            <div class="form-group row m-b-20">
-                                                <div class="col-12">
-                                                    <label for="password-confirm">Confirm New Password</label>
-                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
-
-                                                    @error('password')
-                                                        <span class="invalid-feedback" role="alert">
-                                                            <strong>{{ $message }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-                                            </div>
+                                            @endif
 
                                             <div class="form-group row text-center m-t-10">
                                                 <div class="col-12">
                                                     <button class="btn btn-md btn-block btn-primary waves-effect waves-light" type="submit">Reset Password</button>
                                                 </div>
                                             </div>
+
                                         </form>
 
                                         <div class="clearfix"></div>
@@ -93,46 +78,4 @@
             </div>
           </section>
 
-
-
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{{-- 
-
-
-
-                    <form >
-                        @csrf
-
-
-
-
-
-
-
-                    </form> --}}

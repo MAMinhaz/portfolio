@@ -24,15 +24,21 @@
                                         <form class="form-horizontal" action="{{ route('custom_login_post') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
 
-                                            <div class="form-group m-b-20 row">
-                                                <div class="col-12">
-                                                    @if(session('credential_wrong'))
+                                                @if(session('credential_wrong'))
+                                                    <div class="col-12 mb-3">
                                                         <span class="invalid-feedback bg-danger" role="alert">
                                                             <strong>{{ session('credential_wrong') }}</strong>
                                                         </span>
-                                                    @endif
-                                                </div>
-                                            </div>
+                                                    </div>
+                                                @endif
+
+                                                @if(session('status'))
+                                                    <div class="col-12 mb-3">
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ session('status') }}</strong>
+                                                        </span>
+                                                    </div>
+                                                @endif
 
                                             <div class="form-group m-b-20 row">
                                                 <div class="col-12">
@@ -43,6 +49,7 @@
 
                                             <div class="form-group row m-b-20">
                                                 <div class="col-12">
+                                                    <a href="{{ route('password.request') }}" class="text-muted pull-right"><small>Forgot your password?</small></a>
                                                     <label for="password">Password</label>
                                                     <input class="form-control @error('password') is-invalid @enderror" type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
                                                 </div>
