@@ -65,6 +65,10 @@
                                 <ul class="submenu">
 
                                     <li>
+                                        <a href="{{ route('admin_index') }}">Portfoilio Admin</a>
+                                    </li>
+
+                                    <li>
                                         <a href="{{ route('landview') }}">Portfoilio Hero Info</a>
                                     </li>
 

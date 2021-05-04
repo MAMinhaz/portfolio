@@ -18,6 +18,7 @@ use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ContactinfoController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\CustomFrontendController;
+use App\Http\Controllers\AdminInformationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -270,7 +271,7 @@ use App\Http\Controllers\CustomFrontendController;
         Route::get('site-settings/customize-portfolio/remove-customization/{id}', [CustomFrontendController::class, 'front_customize_hard_delete'])->name('front_customize_hard_delete');
 
         Route::get('site-settings/customize-portfolio/download-old-cv/{id}', [CustomFrontendController::class, 'download_old_cv'])->name('download_old_cv');
-        
+
         Route::get('site-settings/customize-portfolio/customize-theme/to-light/{id}', [CustomFrontendController::class, 'front_customize_to_theme_light'])->name('front_customize_to_theme_light');
 
         Route::get('site-settings/customize-portfolio/customize-theme/to-dark/{id}', [CustomFrontendController::class, 'front_customize_to_theme_dark'])->name('front_customize_to_theme_dark');
@@ -304,4 +305,16 @@ use App\Http\Controllers\CustomFrontendController;
         Route::get('site-settings/social-link/show-social-link/{id}', [ContactinfoController::class, 'f_link_show'])->name('f_link_show');
 
         Route::get('site-settings/social-link/hide-social-link/{id}', [ContactinfoController::class, 'f_link_hide'])->name('f_link_hide');
+    });
+
+
+
+    //FrontendCustomizing controller routes
+    Route::middleware(['auth', 'verified'])->group(function (){
+        // frontend image and text customizing routes
+        Route::get('site-settings/admin-account', [AdminInformationController::class, 'admin_index'])->name('admin_index');
+
+        Route::post('site-settings/admin-account/update-info/post', [AdminInformationController::class, 'info_update_post'])->name('info_update_post');
+
+        Route::post('site-settings/admin-account/update-password/post', [AdminInformationController::class, 'password_update_post'])->name('password_update_post');
     });
