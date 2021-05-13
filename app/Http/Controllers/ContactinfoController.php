@@ -10,25 +10,26 @@ use Illuminate\Http\Request;
 class ContactinfoController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    /**
      * frontend contact info index page
      * @return void
      */
     function f_contactinfo_index(){
-        // frontend contact info index page
+        $countContactInfo = 0;
+        $countSocialLinkInfo = 0;
+
+        if(Contactinfo::where('show_status', 2)->count() === 0){
+            $countContactInfo = 1;
+        }
+
+        if(Sociallink::where('show_status', 2)->count() < 3){
+            $countSocialLinkInfo = 1;
+        }
+
         return view('admin.contactinfo.index', [
             'contactinfo' => Contactinfo::latest()->get(),
             'sociallink' => Sociallink::latest()->get(),
+            'countContactInfo' => $countContactInfo,
+            'countSocialLinkInfo' => $countSocialLinkInfo,
         ]);
     }
 
@@ -118,6 +119,28 @@ class ContactinfoController extends Controller
 
 
     /**
+     * showing frontend contact info
+     * @param  mixed $id
+     * @return void
+     */
+    function f_contactinfo_show($id){
+        if(Contactinfo::where('show_status', 2)->count() > 0){
+            return redirect()->route('f_contactinfo_index')->with('f_contactinfo_shown_to_top_again', 'You have a pinned contact information existing before on the topbar.');
+        }
+
+        else{
+            // data updating
+            Contactinfo::findOrFail($id)->update([
+                'show_status' => 2,
+                'updated_at' => now(),
+            ]);
+
+            return redirect()->route('f_contactinfo_index')->with('contact_info_shown', 'You have pinned a piece of contact information to the topbar.');
+        }
+    }
+
+
+    /**
      * hiding frontend contact info
      * @param  mixed $id
      * @return void
@@ -125,27 +148,11 @@ class ContactinfoController extends Controller
     function f_contactinfo_hide($id){
         // data updating
         Contactinfo::findOrFail($id)->update([
-            'show_status' => 2,
-            'updated_at' => now(),
-        ]);
-
-        return redirect()->route('f_contactinfo_index')->with('contact_info_hidden', 'You have hidden an existing contact information.');
-    }
-
-
-    /**
-     * showing frontend contact info
-     * @param  mixed $id
-     * @return void
-     */
-    function f_contactinfo_show($id){
-        // data updating
-        Contactinfo::findOrFail($id)->update([
             'show_status' => 1,
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('f_contactinfo_index')->with('contact_info_shown', 'You have shown an existing contact information.');
+        return redirect()->route('f_contactinfo_index')->with('contact_info_hidden', 'You have removed an existing pinned contact information from the topbar.');
     }
 
 
@@ -158,7 +165,7 @@ class ContactinfoController extends Controller
         // counting previously added column for limit validation
         $count = count(Sociallink::all());
 
-        if($count < 6){
+        if($count < 7){
             // input validation
             $request->validate([
                 'link_name' => ['alpha_spaces', 'required'],
@@ -229,6 +236,28 @@ class ContactinfoController extends Controller
 
 
     /**
+     * showing frontend social link
+     * @param  mixed $id
+     * @return void
+     */
+    function f_link_show($id){
+        if(Sociallink::where('show_status', 2)->count() <= 2){
+            // data updating
+            Sociallink::findOrFail($id)->update([
+                'show_status' => 2,
+                'updated_at' => now(),
+            ]);
+
+            return redirect()->route('f_contactinfo_index')->with('link_shown', 'You have pinned a social link on topbar.');
+        }
+
+        else{
+            return redirect()->route('f_contactinfo_index')->with('link_shown_before', 'You have a pinned social link existing on the topbar.');
+        }
+    }
+
+
+    /**
      * hiding frontend social link
      * @param  mixed $id
      * @return void
@@ -236,26 +265,10 @@ class ContactinfoController extends Controller
     function f_link_hide($id){
         // data updating
         Sociallink::findOrFail($id)->update([
-            'show_status' => 2,
-            'updated_at' => now(),
-        ]);
-
-        return redirect()->route('f_contactinfo_index')->with('link_hidden', 'You have hidden an existing social link.');
-    }
-
-
-    /**
-     * showing frontend social link
-     * @param  mixed $id
-     * @return void
-     */
-    function f_link_show($id){
-        // data updating
-        Sociallink::findOrFail($id)->update([
             'show_status' => 1,
             'updated_at' => now(),
         ]);
 
-        return redirect()->route('f_contactinfo_index')->with('link_shown', 'You have shown an existing social link.');
+        return redirect()->route('f_contactinfo_index')->with('link_hidden', 'You have removed a social link from the topbar.');
     }
 }

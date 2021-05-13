@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\CustomFrontend;
 use Illuminate\Support\Facades\Auth;
@@ -10,17 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class CustomFrontendController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * front customize index
      * @return void

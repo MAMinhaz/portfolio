@@ -52,7 +52,7 @@
                         <div class="form-group">
                             <label>Blog Category</label>
                             <select class="form-control" name="category_id" required>
-                                <option value="1">Select Blog Category</option>
+                                <option>Select Blog Category</option>
                                 @foreach($blog_cats as $blog_cat)
                                     <option value="{{ $blog_cat->id }}">{{ $blog_cat->category_name }}</option>
                                 @endforeach
@@ -74,7 +74,7 @@
 
                         <div class="form-group">
                             <label>Blog Details</label>
-                            <textarea id="elm1" name="description" required></textarea>
+                            <textarea id="elm1" name="description"></textarea>
                             <br>
 
                             @error('description')

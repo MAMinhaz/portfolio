@@ -85,8 +85,10 @@
                 </div>
 
                 {{-- about me description table start --}}
-                <a href="#des" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
-                data-overlaySpeed="100" data-overlayColor="#36404a">Add "About Me" Description</a>
+                @if($about_me_des_count == 0)
+                    <a href="#des" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
+                    data-overlaySpeed="100" data-overlayColor="#36404a">Add "About Me" Description</a>
+                @endif
                 <hr>
                 <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                     <thead>
@@ -324,8 +326,10 @@
                 </div>
 
                 {{-- about me skills table start --}}
-                <a href="#milestone" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
-                data-overlaySpeed="100" data-overlayColor="#36404a">Add "About Me" Milestones</a>
+                @if($about_me_ms_count <= 3)
+                    <a href="#milestone" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
+                    data-overlaySpeed="100" data-overlayColor="#36404a">Add "About Me" Milestones</a>
+                @endif
                 <hr>
                 <table id="milestones" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                     <thead>
@@ -373,7 +377,7 @@
                         <strong>Notes your should follow to add new description</strong>
                         <mark>
                             <ul>
-                                <li>You cannot add milestone only one time.</li>
+                                <li>You cann add descripton only one time.</li>
                                 <li>Your can edit it as you want after adding a new description.</li>
                             </ul>
                         </mark>
@@ -458,7 +462,8 @@
                         <strong>Notes your should follow to add milestone name</strong>
                         <mark>
                             <ul>
-                                <li>You cannot add milestone only five time.</li>
+                                <li>You can add milestone only four times. If you want to add another try to add after deleting previous one or edit it . </li>
+                                <li>Your Milestone should be unique.</li>
                                 <li>Your can edit it as you want after adding a new milestone.</li>
                             </ul>
                         </mark>
@@ -473,8 +478,9 @@
                         <strong>Notes your should follow to add skill name</strong>
                         <mark>
                             <ul>
-                                <li>You cannot add milestone only four times. If you want to add another try to add after deleting previous one or edit it . </li>
+                                <li>You can add milestone only four times. If you want to add another try to add after deleting previous one or edit it . </li>
                                 <li>Your Milestone should be unique.</li>
+                                <li>Your can edit it as you want after adding a new milestone.</li>
                             </ul>
                         </mark>
                     </p>

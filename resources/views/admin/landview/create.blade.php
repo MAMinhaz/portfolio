@@ -38,7 +38,7 @@
                                             <strong>Notes your should follow to add name</strong>
                                             <mark>
                                                 <ul>
-                                                    <li>You cannot add homepage name only once. If you want to add another try to add after deleting previous title or edit it. </li>
+                                                    <li>You can add Hero's name only once. If you want to add another try to add after deleting previous title or edit it. </li>
                                                 </ul>
                                             </mark>
                                         </p>

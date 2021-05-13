@@ -26,7 +26,7 @@
 
     {{-- Contact Information block --}}
     <div id="main_contact_information" class="card m-b-20 card-block mt-3 mb-3">
-        <h4 class="card-title">Social Links</h4>
+        <h4 class="card-title">Contact Informations </h4>
         <div class="row">
             <div class="col-md-12">
                 {{-- contact info flash message start --}}
@@ -100,6 +100,16 @@
                         </div>
                     @endif
 
+                    {{-- flash warning -> contact information showing to top limit --}}
+                    @if(session()->has('f_contactinfo_shown_to_top_again'))
+                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>{{ session('f_contactinfo_shown_to_top_again') }}</strong>
+                        </div>
+                    @endif
+
                     {{-- flash success -> contact info edited --}}
                     @if(session()->has('contact_info_edited'))
                         <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
@@ -123,9 +133,11 @@
                 </div>
 
                 {{-- about me description table start --}}
-                <a href="#f_contact_info" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
-                data-overlaySpeed="100" data-overlayColor="#36404a">Add New Social Link</a>
-                <hr>
+                @if($countContactInfo === 1)
+                    <a href="#f_contact_info" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
+                    data-overlaySpeed="100" data-overlayColor="#36404a">Add New Contact Information</a>
+                    <hr>
+                @endif
                 <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                     <thead>
                         <tr>
@@ -146,10 +158,14 @@
                                 <td>
                                     <a href="{{ route('f_contactinfo_edit', $contact->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Contact Info</a>
                                     <a href="{{ route('f_contactinfo_hard_delete', $contact->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Contact Info</a>
-                                    @if($contact->show_status == 2)
-                                        <a href="{{ route('f_contactinfo_show', $contact->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Show Contact Info</a>
-                                    @elseif($contact->show_status == 1)
-                                        <a href="{{ route('f_contactinfo_hide', $contact->id) }}" class="btn btn-primary btn-rounded w-md waves-effect waves-light w-sm btn-sm">Hide Contact Info</a>
+                                    @if($countContactInfo === 1)
+                                        <a href="{{ route('f_contactinfo_show', $contact->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Pin Contact Info To Topbar</a>
+                                    @else
+                                        @if($contact->show_status == 2)
+                                            <a href="{{ route('f_contactinfo_hide', $contact->id) }}" class="btn btn-primary btn-rounded w-md waves-effect waves-light w-sm btn-sm">Remove Pinned Contact Info from Topbar</a>
+                                        @elseif($contact->show_status == 1)
+                                            <a href="{{ route('f_contactinfo_show', $contact->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm disabled">Pin Contact Info Info To Topbar</a>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>
@@ -163,7 +179,7 @@
 
     {{-- Social Links block --}}
     <div id="social_links" class="card m-b-20 card-block mt-3 mb-3">
-        <h4 class="card-title">Contact Informations</h4>
+        <h4 class="card-title">Social Links</h4>
         <div class="row">
             <div class="col-md-12">
                 {{-- contact info flash message start --}}
@@ -197,24 +213,34 @@
                         </div>
                     @endif
 
-                    {{-- flash success -> contact information shown--}}
-                    @if(session()->has('contact_info_shown'))
+                    {{-- flash success -> social link shown on topbar--}}
+                    @if(session()->has('link_shown'))
                         <div class="alert alert-icon alert-white alert-success alert-dismissible fade show"
                             role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="false">×</span>
                             </button>
-                            <strong>{{ session('contact_info_shown') }}</strong>
+                            <strong>{{ session('link_shown') }}</strong>
                         </div>
                     @endif
 
-                    {{-- flash warning -> contact information hidden --}}
-                    @if(session()->has('contact_info_hidden'))
+                    {{-- flash warning -> social link hidden --}}
+                    @if(session()->has('link_hidden'))
                         <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">×</span>
                             </button>
-                            <strong>{{ session('contact_info_hidden') }}</strong>
+                            <strong>{{ session('link_hidden') }}</strong>
+                        </div>
+                    @endif
+
+                    {{-- flash warning -> social link shown before on topbar --}}
+                    @if(session()->has('link_shown_before'))
+                        <div class="alert alert-icon alert-white alert-warning alert-dismissible fade show" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>{{ session('link_shown_before') }}</strong>
                         </div>
                     @endif
 
@@ -251,9 +277,11 @@
                 </div>
 
                 {{-- about me description table start --}}
-                <a href="#f_social_link" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
-                data-overlaySpeed="100" data-overlayColor="#36404a">Add New Contact Information</a>
-                <hr>
+                @if($countSocialLinkInfo === 1)
+                    <a href="#f_social_link" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm" data-animation="contentscale" data-plugin="custommodal"
+                    data-overlaySpeed="100" data-overlayColor="#36404a">Add New Social Link</a>
+                    <hr>
+                @endif
                 <table id="aaa" class="table m-0 table-colored-bordered table-bordered-inverse" style="width:100%">
                     <thead>
                         <tr>
@@ -272,10 +300,18 @@
                                 <td>
                                     <a href="{{ route('f_links_edit', $link->id) }}" class="btn btn-purple btn-rounded w-md waves-effect waves-light w-sm btn-sm">Edit Social Link</a>
                                     <a href="{{ route('f_links_hard_delete', $link->id) }}" class="btn btn-danger btn-rounded w-md waves-effect waves-light w-sm btn-sm">Delete Social Link</a>
-                                    @if($link->show_status == 2)
-                                        <a href="{{ route('f_link_show', $link->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Show Social Link</a>
-                                    @elseif($link->show_status == 1)
-                                        <a href="{{ route('f_link_hide', $link->id) }}" class="btn btn-primary btn-rounded w-md waves-effect waves-light w-sm btn-sm">Hide Social Link</a>
+                                    @if($countSocialLinkInfo === 1)
+                                        @if($link->show_status == 2)
+                                            <a href="{{ route('f_link_hide', $link->id) }}" class="btn btn-primary btn-rounded w-md waves-effect waves-light w-sm btn-sm">Remove Pinned Social Link From Topbar</a>
+                                        @elseif($link->show_status == 1)
+                                            <a href="{{ route('f_link_show', $link->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm">Pin Social Link To Topbar</a>
+                                        @endif
+                                    @else
+                                        @if($link->show_status == 2)
+                                            <a href="{{ route('f_link_hide', $link->id) }}" class="btn btn-primary btn-rounded w-md waves-effect waves-light w-sm btn-sm">Remove Pinned Social Link From Topbar</a>
+                                        @elseif($link->show_status == 1)
+                                            <a href="{{ route('f_link_show', $link->id) }}" class="btn btn-inverse btn-rounded w-md waves-effect waves-light w-sm btn-sm disabled">Pin Social Link To Topbar</a>
+                                        @endif
                                     @endif
                                 </td>
                             </tr>

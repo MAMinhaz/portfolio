@@ -17,7 +17,7 @@
                                 {{-- <a href="#"><i class="fi-layout"></i>Site Setting</a> --}}
                                 <ul class="submenu">
                                     <li>
-                                        <a href="{{ route('service') }}">Service Block</a>
+                                        <a href="{{ url('/portfolio/services') }}">Service Block</a>
                                     </li>
 
                                     <li class="has-submenu">
@@ -77,7 +77,7 @@
                                     </li>
 
                                     <li class="has-submenu">
-                                        <a>Your Contact Information's</a>
+                                        <a href="{{ route('f_contactinfo_index') }}">Your Contact Information's</a>
                                         <ul class="submenu">
                                             <a href="{{ route('f_contactinfo_index') }}#main_contact_information">Customize Contact Informations</a>
                                             <a href="{{ route('f_contactinfo_index') }}#social_links">Customize Social Links</a>

@@ -52,18 +52,18 @@
         </div><!-- /preloader-inner -->
     </div><!-- /preloader -->
 
-        <!-- Header
+    <!-- Header
     ================================================== --> 
     <header class="site-header sticky-header">
         <div class="container-fluid pd-0">
             <div class="row no-gutters">
-                <div class="col-lg-7">
-                    <div class="header-left-block dark">  
+                <div class="col-xl-7">
+                    <div class="header-left-block">  
                         <!-- Site Branding -->
                         <div class="site-branding">
                             <a href="{{ route('portfolio') }}"><img src="{{ asset('uploads/portfolio_logo') }}/{{ logo() }}" alt="Site Logo" /></a>
                         </div><!--  /.site-branding -->
-                        
+
                         <!-- Site Navigation -->
                         <div class="site-navigation">
                             <div class="hamburger-menus">
@@ -104,10 +104,10 @@
                             </nav>
                         </div><!--  /.site-navigation -->
                     </div><!--  /.header-left-block -->
-                </div><!--  /.col-lg-7 -->
+                </div><!--  /.col-xl-7 -->
 
-                <div class="col-lg-5">
-                    <div class="header-right-block bg-midnight-express dark">
+                <div class="col-xl-5">
+                    <div class="header-right-block bg-white">
                         <div class="mail-block">
                             @isset($contact_infos_topbar)
                                 <a href="mailto:{{ $contact_infos_topbar->email }}"><i class="fas fa-envelope"></i><span>{{ $contact_infos_topbar->email }}</span></a>
@@ -137,17 +137,16 @@
         </div><!--  /.container-fluid -->
     </header><!-- /.site-header -->
 
-
     @yield('portfolio_content')
 
     <!-- Footer
     ================================================== -->
-    <footer class="site-footer bg-midnight-express pd-t-75 pd-b-75">
+    <footer class="site-footer pd-t-75 pd-b-75">
         <div class="container text-center">
             <!-- Scroll Top -->
             <div class="row">
                 <div class="col-12">
-                    <a href="#top" class="back-to-top dark">
+                    <a href="#top" class="back-to-top">
                         <span class="text">Back <br>To Top</span>
                         <i class="fas fa-angle-up"></i>
                     </a>
@@ -157,7 +156,7 @@
             <!-- Social Link -->
             <div class="row">
                 <div class="col-12">
-                    <ul class="footer-social dark mrt-30 mrb-30">
+                    <ul class="footer-social mrt-30 mrb-30">
                         @forelse($social_links as $social_link)
                             <li><a href="{{ $social_link->link }}">{{ $social_link->link_name }}</a></li>
                             @empty

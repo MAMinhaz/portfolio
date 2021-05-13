@@ -10,17 +10,6 @@ use Intervention\Image\Facades\Image;
 class TestimonialController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    /**
      * testimonial index page
      *
      * @return void

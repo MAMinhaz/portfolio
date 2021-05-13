@@ -45,10 +45,7 @@ class CustomAuthController extends Controller
         ]);
    
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials, $remember = true)) {
-            return redirect()->intended('admin-dashboard')
-                            ->with('loggedin', 'Hello Admin, You have Successfully loggedin');
-        }
+        Auth::attempt($credentials, $remember = true);
 
         return back()->with('credential_wrong', 'Oppes! You have entered invalid credentials');
     }

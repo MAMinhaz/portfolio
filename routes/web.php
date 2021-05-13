@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Controllers\AboutMeController;
@@ -20,24 +19,22 @@ use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\CustomFrontendController;
 use App\Http\Controllers\AdminInformationController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-    //portofolio controller routes
+    // portfolio frontend links
     Route::get('/', [FrontendController::class, 'portfolio'])->name('portfolio')->middleware('web');
+
+    Route::get('blog-details/{id}', [FrontendController::class, 'show_blog'])->name('show_blog')->middleware('web');
+
+    Route::get('blog-categories/{id}', [FrontendController::class, 'show_categories'])->name('show_categories')->middleware('web');
+
+    Route::get('portfolios/{id}', [FrontendController::class, 'portfolio_details'])->name('portfolio_details')->middleware('web');
+
+    Route::get('portfolios-categories/{id}', [FrontendController::class, 'show_portfolios_category'])->name('show_portfolios_category')->middleware('web');
 
 
 
     //Home controller routes
-    Route::get('admin-dashboard', [HomeController::class, 'admin_dashboard'])->middleware('verified')->name('home');
+    Route::get('admin-dashboard', [FrontendController::class, 'admin_dashboard'])->middleware('verified')->name('home');
 
 
 
@@ -52,19 +49,19 @@ use App\Http\Controllers\AdminInformationController;
 
     Route::get('admin/logout', [CustomAuthController::class, 'custom_logout'])->name('custom_logout')->middleware('auth');
 
-    Route::get('/email/verify',[CustomAuthController::class, 'custom_verify'])->middleware('auth')->name('verification.notice');
+    Route::get('admin/email/verify',[CustomAuthController::class, 'custom_verify'])->middleware('auth')->name('verification.notice');
 
-    Route::get('/email/verify/{id}/{hash}', [CustomAuthController::class, 'get_verified'])->middleware(['auth', 'signed'])->name('verification.verify');
+    Route::get('admin/email/verify/{id}/{hash}', [CustomAuthController::class, 'get_verified'])->middleware(['auth', 'signed'])->name('verification.verify');
 
-    Route::post('/email/verification-notification', [CUstomAuthController::class, 'request_new_verification_token'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
+    Route::post('admin/email/verification-notification', [CUstomAuthController::class, 'request_new_verification_token'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
-    Route::get('/forgot-password', [CustomAuthController::class, 'password_reset'])->middleware('guest')->name('password.request');
+    Route::get('admin/forgot-password', [CustomAuthController::class, 'password_reset'])->middleware('guest')->name('password.request');
 
-    Route::post('/forgot-password', [CustomAuthController::class, 'password_reset_email'])->middleware('guest')->name('password.email');
+    Route::post('admin/forgot-password', [CustomAuthController::class, 'password_reset_email'])->middleware('guest')->name('password.email');
 
-    Route::get('/reset-password/{token}', [CustomAuthController::class, 'password_reseting_form'])->middleware('guest')->name('password.reset');
+    Route::get('admin/reset-password/{token}', [CustomAuthController::class, 'password_reseting_form'])->middleware('guest')->name('password.reset');
 
-    Route::post('/reset-password', function (Request $request) {
+    Route::post('admin/reset-password', function (Request $request) {
         $request->validate([
             'token' => 'required',
             'email' => 'required|email',
@@ -87,10 +84,10 @@ use App\Http\Controllers\AdminInformationController;
         return $status == Password::PASSWORD_RESET
                     ? redirect()->route('custom_login')->with('status', __('Your password has been changed successfully. Now give a try of your new password.'))
                     : back()->withErrors(['email' => [__($status)]]);
-    })->middleware('guest')->name('password.update');
+        })->middleware('guest')->name('password.update');
 
     //landview controller routes
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['verified'])->group(function () {
         Route::get('site-settings/hero-block', [LandviewController::class, 'index'])->name('landview');
 
         Route::get('site-settings/hero-block/create-new', [LandviewController::class, 'create'])->name('landview_create');
@@ -102,8 +99,8 @@ use App\Http\Controllers\AdminInformationController;
 
 
 
-    //Service controller routes
-    Route::middleware(['auth', 'verified'])->group(function () {
+    // Service controller routes
+    Route::middleware(['verified'])->group(function () {
         Route::get('portfolio/services', [ServiceController::class, 'index'])->name('service');
 
         Route::get('portfolio/services/create-new', [ServiceController::class, 'create'])->name('service_create');
@@ -120,7 +117,7 @@ use App\Http\Controllers\AdminInformationController;
 
 
     //Aboutme controller routes
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['verified'])->group(function () {
         //Aboutme section home route
         Route::get('portfolio/aboutme', [AboutMeController::class, 'index'])->name('aboutme');
 
@@ -156,8 +153,9 @@ use App\Http\Controllers\AdminInformationController;
     });
 
 
+
     //portfolio controller routes
-    Route::middleware(['auth', 'verified'])->group(function () {
+    Route::middleware(['verified'])->group(function () {
         // Portfolio content Routes
         Route::get('portfolio/portfolio', [PortfolioController::class, 'portfolio_index'])->name('portfolio_index');
 
@@ -181,8 +179,9 @@ use App\Http\Controllers\AdminInformationController;
     });
 
 
+
     //Testimonial controller routes
-    Route::middleware(['auth', 'verified'])->group(function (){
+    Route::middleware(['verified'])->group(function (){
         // Testimonial content Routes
         Route::get('portfolio/testimonial', [TestimonialController::class, 'testimonial_index'])->name('testimonial_index');
 
@@ -214,8 +213,9 @@ use App\Http\Controllers\AdminInformationController;
     });
 
 
+
     //Contact controller routes
-    Route::middleware(['auth', 'verified'])->group(function (){
+    Route::middleware(['verified'])->group(function (){
         Route::get('portfolio/contacts', [ContactController::class, 'contact_index'])->name('contact_index');
 
         Route::post('portfolio/contact/create-new', [ContactController::class, 'contact_create_post'])->name('contact_create_post');
@@ -226,8 +226,9 @@ use App\Http\Controllers\AdminInformationController;
     });
 
 
+
     //Blog controller routes
-    Route::middleware(['auth', 'verified'])->group(function (){
+    Route::middleware(['verified'])->group(function (){
         // blog content index routes
         Route::get('portfolio/blog/blog', [BlogController::class, 'blog_index'])->name('blog_index');
 
@@ -259,8 +260,9 @@ use App\Http\Controllers\AdminInformationController;
     });
 
 
+
     //FrontendCustomizing controller routes
-    Route::middleware(['auth', 'verified'])->group(function (){
+    Route::middleware(['verified'])->group(function (){
         // frontend image and text customizing routes
         Route::get('site-settings/customize-portfolio', [CustomFrontendController::class, 'front_customize_index'])->name('front_customize_index');
 
@@ -292,6 +294,10 @@ use App\Http\Controllers\AdminInformationController;
 
         Route::get('site-settings/contact-information/hide-contact-info/{id}', [ContactinfoController::class, 'f_contactinfo_hide'])->name('f_contactinfo_hide');
 
+        Route::get('site-settings/contact-information/show-contact-on-topbar/{id}', [ContactinfoController::class, 'f_contactinfo_show_on_topbar'])->name('f_contactinfo_show_on_topbar');
+
+        Route::get('site-settings/contact-information/hide-contact-on-topbar/{id}', [ContactinfoController::class, 'f_contactinfo_hide_on_topbar'])->name('f_contactinfo_hide_on_topbar');
+
 
         // frontend social link customizing routes
         Route::post('site-settings/social-links/add-new-social-links/', [ContactinfoController::class, 'f_links_create_post'])->name('f_links_create_post');
@@ -310,7 +316,7 @@ use App\Http\Controllers\AdminInformationController;
 
 
     //FrontendCustomizing controller routes
-    Route::middleware(['auth', 'verified'])->group(function (){
+    Route::middleware(['verified'])->group(function (){
         // frontend image and text customizing routes
         Route::get('site-settings/admin-account', [AdminInformationController::class, 'admin_index'])->name('admin_index');
 

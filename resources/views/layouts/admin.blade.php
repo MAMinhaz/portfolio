@@ -30,7 +30,6 @@
         <div class="wrapper">
             <div class="container">
 
-
                 @yield('admin_content')
 
             </div> <!-- end container -->

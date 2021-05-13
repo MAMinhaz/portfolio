@@ -3,24 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Sociallink;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\Blog_category;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class BlogController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * blog category index
      *
@@ -127,7 +118,7 @@ class BlogController extends Controller
         ]);
     }
 
-    
+
     /**
      * blog post create post
      *
@@ -194,7 +185,7 @@ class BlogController extends Controller
         ]);
     }
 
-    
+
     /**
      * blog post edit post
      *

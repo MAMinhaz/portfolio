@@ -9,17 +9,6 @@ use App\Models\Service_title;
 class ServiceController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    /**
      * service index page
      *
      * @return void

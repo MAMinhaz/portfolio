@@ -11,17 +11,6 @@ use App\Models\AboutMeMilestone;
 class AboutMeController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    /**
      * about me index page
      *
      * @return void
@@ -32,6 +21,9 @@ class AboutMeController extends Controller
             'about_me_desc' => AboutMeDes::all(),
             'about_me_skills' => AboutMeSkill::all(),
             'about_me_mss' => AboutMeMilestone::all(),
+            'about_me_desc' => AboutMeDes::all(),
+            'about_me_des_count' => AboutMeDes::all()->count(),
+            'about_me_ms_count' => AboutMeMilestone::all()->count(),
         ]);
     }
 

@@ -23,6 +23,7 @@ class PortfolioDetailsSeeder extends Seeder
                 'date' => $faker->dateTime,
                 'clients' => $faker->userName,
                 'category_id' => $faker->numberBetween($min = 1, $max = 10),
+                'created_at' => now()
             ]);
         }
     }

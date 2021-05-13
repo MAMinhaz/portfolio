@@ -256,16 +256,18 @@
                                         <div class="form-group row align-items-center">
                                             <label class="col-3 col-form-label">Your CV</label>
                                             <div class="col-6">
-                                                <div class="file-man-box">
-                                                    <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
-                                                    <div class="file-img-box">
-                                                        <img src="{{ asset('dash') }}/assets/images/file_icons/{{ file_ext_name($custom->cv) }}.svg" alt="icon">
+                                                @isset($custom->cv)
+                                                    <div class="file-man-box">
+                                                        <a href="" class="file-close"><i class="mdi mdi-close-circle"></i></a>
+                                                        <div class="file-img-box">
+                                                            <img src="{{ asset('dash') }}/assets/images/file_icons/{{ file_ext_name($custom->cv) }}.svg" alt="icon">
+                                                        </div>
+                                                        <a href="{{ route('download_old_cv', $custom->id) }}" class="file-download"><i class="mdi mdi-download"></i> </a>
+                                                        <div class="file-man-title">
+                                                            <h5 class="m-b-0 text-overflow">{{ file_name($custom->cv) }}</h5>
+                                                        </div>
                                                     </div>
-                                                    <a href="{{ route('download_old_cv', $custom->id) }}" class="file-download"><i class="mdi mdi-download"></i> </a>
-                                                    <div class="file-man-title">
-                                                        <h5 class="m-b-0 text-overflow">{{ file_name($custom->cv) }}</h5>
-                                                    </div>
-                                                </div>
+                                                @endisset
                                             </div>
                                             <div class="col-3">
                                                 <input type="file" name="cv">

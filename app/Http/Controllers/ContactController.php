@@ -9,17 +9,6 @@ use Illuminate\Support\Facades\Storage;
 class ContactController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
-    /**
      * contact details index page
      *
      * @return void

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Portfo;
 use App\Models\Landview;
 use App\Models\AboutMeDes;
+use Illuminate\Support\Str;
 use App\Models\PortfoImages;
 use Illuminate\Http\Request;
 use App\Models\Service_title;
@@ -13,17 +14,6 @@ use Intervention\Image\Facades\Image;
 
 class PortfolioController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * portfolio content index
      *
@@ -113,6 +103,13 @@ class PortfolioController extends Controller
         ]);
     }
 
+
+    /**
+     * portfolio edit post
+     *
+     * @param  mixed $request
+     * @return void
+     */
     function portfolio_edit_post(Request $request){
         // input validation
         $request->validate([
