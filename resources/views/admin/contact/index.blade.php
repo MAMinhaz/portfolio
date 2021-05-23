@@ -63,7 +63,12 @@
                                 <td>{{ $contact->contact_email }}</td>
                                 <td>{{ $contact->contact_subject }}</td>
                                 <td>{{ $contact->contact_message }}</td>
-                                <td>{{ $contact->contact_attachment }}</td>
+                                <td>
+                                    @isset($contact->contact_attachment)
+                                        <img class="icon-colored" src="{{ asset('dash') }}/assets/images/icons/file.svg" title="{{ file_name($contact->contact_attachment) }}">
+                                        <br>
+                                    @endisset
+                                </td>
                                 <td>
                                     @isset($contact->created_at)
                                         <li>Duration : {{ $contact->created_at->diffForHumans() }}</li>

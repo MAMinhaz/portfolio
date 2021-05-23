@@ -5153,62 +5153,9 @@ a:hover, a:active {
   padding: 20px 45px;
   position: relative;
 }
-.contact-form .btn-contact .status {
-  bottom: 0;
-  height: 1.375rem;
-  left: 0;
-  margin: auto;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 1.5rem;
-}
 .contact-form .btn-contact span {
   -webkit-transition: .3s ease;
   transition: .3s ease;
-}
-.contact-form .btn-contact .status .spinner {
-  left: .3125rem;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
-  top: .1875rem;
-  position: absolute;
-  opacity: 0;
-}
-.contact-form .btn-contact .status .status-icon {
-  border-radius: 50%;
-  left: 0;
-  opacity: 0;
-  font-size: .625rem;
-  padding: .25rem .4375rem;
-  position: relative;
-  -webkit-transition: .3s ease;
-  transition: .3s ease;
-  z-index: 1;
-  -webkit-transform: scale(0);
-  -ms-transform: scale(0);
-  transform: scale(0);
-}
-.contact-form .btn-contact .status .status-icon.valid {
-  background-color: var(--green);
-}
-.contact-form .btn-contact .status .status-icon.invalid {
-  background-color: var(--red);
-}
-.contact-form .btn-contact.processing span {
-  opacity: .2;
-}
-.contact-form .btn-contact.processing .spinner {
-  opacity: 1;
-}
-.contact-form .btn-contact.done .ts-spinner {
-  opacity: 0;
-}
-.contact-form .btn-contact.done .status-icon {
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
-  opacity: 1;
 }
 .contact-form.dark-theme label {
   color: white;
