@@ -15,7 +15,7 @@ class CreateAboutMeDesTable extends Migration
     {
         Schema::create('about_me_des', function (Blueprint $table) {
             $table->id();
-            $table->string('about_me_des');
+            $table->longText('about_me_des');
             $table->softDeletes();
             $table->timestamps();
         });
