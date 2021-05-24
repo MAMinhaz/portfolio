@@ -279,7 +279,7 @@
                                 </figure><!-- /.portfolio-thumb -->
                                 <div class="content">
                                     <h3><a href="{{ route('portfolio_details', $portfolios->id) }}">{{ $portfolios->title }}</a></h3>
-                                    <div class="cate"><a href="{{ route('show_portfolios_category', $portfolios->id) }}">{{ $portfolios->PortfolioCats->category_name }}</a></div>
+                                    <div class="cate"><a href="{{ route('show_portfolios_category', $portfolios->category_id) }}">{{ $portfolios->PortfolioCats->category_name }}</a></div>
                                 </div>
                             </div><!--  /.portfolio-item -->
                         </div><!-- /.col-lg-4 -->

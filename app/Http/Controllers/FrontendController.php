@@ -252,8 +252,7 @@ class FrontendController extends Controller
     function show_portfolios_category($id){
         $contact_infos_topbar = Contactinfo::where('show_status', 2)->first();
         $social_links_topbar = Sociallink::where('show_status', 2)->get(['link_name', 'link']);
-        $portfolios = Portfo::where('id', $id)->get();
-        $category_name = Portfo::find($id)->title;
+        $portfolio = Portfo::where('category_id', $id)->first();
         $social_links = Sociallink::all();
 
         $theme = 1;
@@ -270,8 +269,7 @@ class FrontendController extends Controller
         if($theme == 1){
             return view('frontend.light.portfolio_category.portfolio_category', compact([
                 'social_links', 
-                'portfolios', 
-                'category_name',
+                'portfolio', 
                 'contact_infos_topbar',
                 'social_links_topbar'
             ]));
@@ -280,8 +278,7 @@ class FrontendController extends Controller
         else{
             return view('frontend.dark.portfolio_category.portfolio_category', compact([
                 'social_links', 
-                'portfolios', 
-                'category_name',
+                'portfolio', 
                 'contact_infos_topbar',
                 'social_links_topbar'
             ]));
