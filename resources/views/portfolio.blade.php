@@ -319,7 +319,7 @@
                                 <div class="item">
                                     <div class="client-testimonial dark">
                                         <div class="client-thumb">
-                                            <img src="{{asset('uploads')}}/testimonial_image/{{ $testimonial->testimonial_image }}" alt="Image not found" />
+                                            <img src="{{asset('uploads')}}/testimonial/testimonial_image/{{ $testimonial->testimonial_image }}" alt="Image not found" />
                                         </div><!--  /.client-thumb -->
                                         <div class="testimonial-details">
                                             <div class="client-area">
