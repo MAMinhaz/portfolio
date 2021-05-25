@@ -52,11 +52,11 @@
                                             <li><a href="{{ route('blog_cats_index') }}">Blog Post Categories</a></li>
                                         </ul>
                                     </li>
-
-                                    <li>
-                                        <a href="{{ route('contact_index') }}">Get In Touch Block</a>
-                                    </li>
                                 </ul>
+                            </li>
+
+                            <li class="has-submenu">
+                                <a href="{{ route('contact_index') }}"><i class="fi-mail"></i>Contact Messages</a>
                             </li>
 
                             <li class="has-submenu">
