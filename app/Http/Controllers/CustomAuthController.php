@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Hash;
+use Mail;
 use App\Models\User;
+use App\Mail\NewAdmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -117,6 +119,7 @@ class CustomAuthController extends Controller
     function get_verified(EmailVerificationRequest $request){
         $request->fulfill();
 
+        Mail::to(Auth::user()->email)->send(new NewAdmin);
         return redirect()->route('home');
     }
 

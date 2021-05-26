@@ -434,7 +434,7 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="section-title">
-                        <h2 class="title-counter color-dim-gray-im">05</h2><!--  /.title-counter -->
+                        <h2 class="title-counter color-dim-gray-im">06</h2><!--  /.title-counter -->
                         <h2 class="title-main color-white-im">Get In Touch</h2><!-- /.title-main -->
                         <div class="title-border">
                             <span class="small-border bg-white"></span>
