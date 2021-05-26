@@ -20,11 +20,6 @@ use App\Http\Controllers\CustomFrontendController;
 use App\Http\Controllers\AdminInformationController;
 
 
-    Route::get('view_mail', function(){
-        return view('frontend.email_template.NewAdmin');
-    });
-
-
     // portfolio frontend links
     Route::get('/', [FrontendController::class, 'portfolio'])->name('portfolio')->middleware('web');
 
