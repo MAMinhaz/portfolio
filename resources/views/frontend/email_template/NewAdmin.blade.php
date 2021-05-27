@@ -11,7 +11,7 @@
     <!--[if !mso]><!-->
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <!--<![endif]-->
-    <title></title>
+
     <!--[if !mso]><!-->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" />
@@ -358,7 +358,8 @@
                                             <div align="center" class="img-container center autowidth fullwidth">
                                                 <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr style="line-height:0px"><td style="" align="center"><![endif]--><img
                                                     align="center" alt="Image" border="0"
-                                                    class="center autowidth fullwidth" src="{{ asset('front/email_template/images/Top.png') }}"
+                                                    class="center autowidth fullwidth"
+                                                    src="{{ asset('front/email_template/images/Top.png') }}"
                                                     style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 650px; display: block;"
                                                     title="Image" width="650" />
                                                 <!--[if mso]></td></tr></table><![endif]-->
@@ -492,8 +493,8 @@
                                                     <p
                                                         style="margin: 0; line-height: 1.2; font-size: 22px; text-align: left; word-break: break-word; mso-line-height-alt: 26px; margin-top: 0; margin-bottom: 0;">
                                                         <span style="font-size: 22px;"><span
-                                                        style="color: #333333; font-size: 22px;"><strong>01</strong>
-                                                        </span>
+                                                                style="color: #333333; font-size: 22px;"><strong>01</strong>
+                                                            </span>
                                                             Powerful Admin
                                                             dashboard !!
                                                         </span>
@@ -1049,7 +1050,8 @@
                     <div style="background-color:transparent;">
                         <div class="block-grid"
                             style="min-width: 320px; max-width: 650px; overflow-wrap: break-word; word-wrap: break-word; word-break: break-word; Margin: 0 auto; background-color: transparent;">
-                            <div style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
+                            <div
+                                style="border-collapse: collapse;display: table;width: 100%;background-color:transparent;">
                                 <!--[if (mso)|(IE)]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:transparent;"><tr><td align="center"><table cellpadding="0" cellspacing="0" border="0" style="width:650px"><tr class="layout-full-width" style="background-color:transparent"><![endif]-->
                                 <!--[if (mso)|(IE)]><td align="center" width="650" style="background-color:transparent;width:650px; border-top: 0px solid transparent; border-left: 0px solid transparent; border-bottom: 0px solid transparent; border-right: 0px solid transparent;" valign="top"><table width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="padding-right: 25px; padding-left: 25px; padding-top:35px; padding-bottom:25px;"><![endif]-->
                                 <div class="col num12"
@@ -1124,8 +1126,8 @@
                                                                         href="https://www.portfolios-minhaz.com/"><img
                                                                             align="center" alt="Designed with BEE"
                                                                             class="icon" height="32"
-                                                                            src="{{ asset('front/email_template/images/developer_name.png') }}" style="border:0;"
-                                                                            width="null" /></a></td>
+                                                                            src="{{ asset('front/email_template/images/developer_name.png') }}"
+                                                                            style="border:0;" width="null" /></a></td>
                                                                 <td style="word-break: break-word; font-family: Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif; font-size: 15px; color: #9d9d9d; vertical-align: middle; letter-spacing: undefined;"
                                                                     valign="middle"><a
                                                                         href="https://www.facebook.com/minhaz.zul.abadin/"

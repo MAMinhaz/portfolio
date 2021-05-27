@@ -5,7 +5,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Neopolitan Invitation Email</title>
     <!-- Designed by https://github.com/kaytcat -->
     <!-- Robot header image designed by Freepik.com -->
 
@@ -68,6 +67,7 @@
         .force-full-width {
             width: 100% !important;
         }
+
     </style>
 
     <style type="text/css" media="screen">
@@ -81,6 +81,7 @@
                 font-family: 'Droid Sans', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
             }
         }
+
     </style>
 
     <style type="text/css" media="only screen and (max-width: 480px)">
@@ -93,6 +94,7 @@
 
 
         }
+
     </style>
 </head>
 
@@ -141,7 +143,7 @@
                                                     <tr>
                                                         <td style="color:#187272;">
                                                             <br>
-                                                                Something is happened in your account!
+                                                            Something is happened in your account!
                                                             <br>
                                                             <br>
                                                             <br>
@@ -162,7 +164,8 @@
                                             <br>
                                             <img src="https://www.filepicker.io/api/file/9pNfCnQNm0Km3UK44WhA"
                                                 width="110" height="110" alt="profile pic"><br><br>
-                                            Your User Name:<a style="color:#ffffff;" href="#">   {{ Auth::user()->name }}</a>
+                                            Your User Name:<a style="color:#ffffff;" href="#">
+                                                {{ Auth::user()->name }}</a>
                                         </td>
                                     </tr>
                                     <tr>
@@ -174,7 +177,7 @@
                                                     <tr>
                                                         <td style="color:#933f24;">
                                                             <br>
-                                                                Your password has been changed successfully.
+                                                            Your password has been changed successfully.
                                                             <br><br>
                                                             <br><br>
                                                         </td>
@@ -193,7 +196,7 @@
                           <w:anchorlock/>
                           <center>
                         <![endif]-->
-                        <!--[if mso]>
+                                                <!--[if mso]>
                           </center>
                         </v:roundrect>
                       <![endif]-->
